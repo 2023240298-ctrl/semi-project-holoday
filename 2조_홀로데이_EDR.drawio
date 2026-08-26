@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="페이지-2" id="S5NIUem6ag1Uwcfzz1Ug">
-    <mxGraphModel dx="754" dy="-1972" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1257" dy="-1420" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -183,6 +183,39 @@
         </mxCell>
         <mxCell id="Uum3npTg3cZJWKTV0CUr-61" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="섬네일" vertex="1">
           <mxGeometry height="49" width="53" x="1077" y="3404" as="geometry" />
+        </mxCell>
+        <mxCell id="oQmsvoZE_mTHQR0vs1eA-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;fillColor=#f8cecc;strokeColor=#b85450;" value="고유&lt;div&gt;번호&lt;/div&gt;" vertex="1">
+          <mxGeometry height="49" width="53" x="161" y="3455" as="geometry" />
+        </mxCell>
+        <mxCell id="oQmsvoZE_mTHQR0vs1eA-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="유저&lt;div&gt;아이디&lt;/div&gt;" vertex="1">
+          <mxGeometry height="49" width="53" x="200" y="3455" as="geometry" />
+        </mxCell>
+        <mxCell id="oQmsvoZE_mTHQR0vs1eA-3" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="카드&lt;div&gt;아이디&lt;/div&gt;" vertex="1">
+          <mxGeometry height="49" width="53" x="244" y="3455" as="geometry" />
+        </mxCell>
+        <mxCell id="oQmsvoZE_mTHQR0vs1eA-4" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="날짜" vertex="1">
+          <mxGeometry height="49" width="53" x="287" y="3455" as="geometry" />
+        </mxCell>
+        <mxCell id="oQmsvoZE_mTHQR0vs1eA-5" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;fillColor=#f8cecc;strokeColor=#b85450;" value="아이디" vertex="1">
+          <mxGeometry height="49" width="53" x="295" y="3606.5" as="geometry" />
+        </mxCell>
+        <mxCell id="oQmsvoZE_mTHQR0vs1eA-6" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="날짜" vertex="1">
+          <mxGeometry height="49" width="53" x="334" y="3606.5" as="geometry" />
+        </mxCell>
+        <mxCell id="oQmsvoZE_mTHQR0vs1eA-7" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="카테고리" vertex="1">
+          <mxGeometry height="49" width="53" x="378" y="3606.5" as="geometry" />
+        </mxCell>
+        <mxCell id="oQmsvoZE_mTHQR0vs1eA-8" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="제목" vertex="1">
+          <mxGeometry height="49" width="53" x="421" y="3606.5" as="geometry" />
+        </mxCell>
+        <mxCell id="oQmsvoZE_mTHQR0vs1eA-9" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="요약글" vertex="1">
+          <mxGeometry height="49" width="53" x="273.5" y="3646.5" as="geometry" />
+        </mxCell>
+        <mxCell id="oQmsvoZE_mTHQR0vs1eA-10" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="원본&lt;div&gt;링크&lt;/div&gt;" vertex="1">
+          <mxGeometry height="49" width="53" x="316.5" y="3646.5" as="geometry" />
+        </mxCell>
+        <mxCell id="oQmsvoZE_mTHQR0vs1eA-11" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="이미지&amp;nbsp;&lt;div&gt;링크&lt;/div&gt;" vertex="1">
+          <mxGeometry height="49" width="53" x="365" y="3646.5" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
