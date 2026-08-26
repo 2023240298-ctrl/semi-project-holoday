@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="페이지-1" id="ECQnEAkLxNAv2x1aDP1W">
+    <mxGraphModel dx="1414" dy="829" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="q2Gl1YJC1tNJOZ1t-3F8-4" parent="1" style="shape=ext;margin=3;double=1;whiteSpace=wrap;html=1;align=center;" value="" vertex="1">
+          <mxGeometry height="620" width="650" x="70" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="q2Gl1YJC1tNJOZ1t-3F8-5" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="header" vertex="1">
+          <mxGeometry height="80" width="630" x="80" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="q2Gl1YJC1tNJOZ1t-3F8-6" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="footer" vertex="1">
+          <mxGeometry height="80" width="630" x="80" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="q2Gl1YJC1tNJOZ1t-3F8-7" parent="1" style="html=1;whiteSpace=wrap;" value="card&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="320" width="590" x="100" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="q2Gl1YJC1tNJOZ1t-3F8-8" parent="1" style="html=1;whiteSpace=wrap;" value="홀로 뗌 페이지 이런 기능을 제공합니다 ..." vertex="1">
+          <mxGeometry height="40" width="540" x="90" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="q2Gl1YJC1tNJOZ1t-3F8-9" parent="1" style="html=1;whiteSpace=wrap;" value="새로고침" vertex="1">
+          <mxGeometry height="30" width="50" x="640" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="q2Gl1YJC1tNJOZ1t-3F8-12" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="image" vertex="1">
+          <mxGeometry height="170" width="210" x="120" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="q2Gl1YJC1tNJOZ1t-3F8-13" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="title" vertex="1">
+          <mxGeometry height="40" width="530" x="130" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="q2Gl1YJC1tNJOZ1t-3F8-14" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="content" vertex="1">
+          <mxGeometry height="180" width="280" x="390" y="310" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
