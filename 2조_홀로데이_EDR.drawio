@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="페이지-2" id="S5NIUem6ag1Uwcfzz1Ug">
-    <mxGraphModel dx="1571" dy="-1174" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1242" dy="-1183" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -75,13 +75,13 @@
           <mxGeometry height="49" width="53" x="341" y="2815.5" as="geometry" />
         </mxCell>
         <mxCell id="ppNDbEFXngTroExkpxti-30" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="제목" vertex="1">
-          <mxGeometry height="49" width="53" x="476" y="2815.5" as="geometry" />
+          <mxGeometry height="49" width="53" x="432" y="2815.5" as="geometry" />
         </mxCell>
         <mxCell id="ppNDbEFXngTroExkpxti-31" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="회원&lt;div&gt;번호&lt;/div&gt;" vertex="1">
           <mxGeometry height="49" width="53" x="384" y="2815.5" as="geometry" />
         </mxCell>
         <mxCell id="ppNDbEFXngTroExkpxti-32" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="비밀번호" vertex="1">
-          <mxGeometry height="49" width="53" x="516" y="2815.5" as="geometry" />
+          <mxGeometry height="49" width="53" x="472" y="2815.5" as="geometry" />
         </mxCell>
         <mxCell id="ppNDbEFXngTroExkpxti-33" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="날짜" vertex="1">
           <mxGeometry height="49" width="53" x="341" y="2855" as="geometry" />
@@ -112,9 +112,6 @@
         </mxCell>
         <mxCell id="ppNDbEFXngTroExkpxti-42" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="관리자&lt;div&gt;번호&lt;/div&gt;" vertex="1">
           <mxGeometry height="49" width="53" x="257" y="3000" as="geometry" />
-        </mxCell>
-        <mxCell id="ppNDbEFXngTroExkpxti-43" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="회원&lt;div&gt;이름&lt;/div&gt;" vertex="1">
-          <mxGeometry height="49" width="53" x="427" y="2815.5" as="geometry" />
         </mxCell>
         <mxCell id="ppNDbEFXngTroExkpxti-44" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="내용" vertex="1">
           <mxGeometry height="49" width="53" x="215" y="3000" as="geometry" />
