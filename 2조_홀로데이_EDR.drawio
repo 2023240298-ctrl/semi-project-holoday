@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="페이지-2" id="S5NIUem6ag1Uwcfzz1Ug">
-    <mxGraphModel dx="1242" dy="-1183" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="975" dy="-1488" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -168,16 +168,16 @@
           <mxGeometry height="49" width="53" x="669" y="2512" as="geometry" />
         </mxCell>
         <mxCell id="ppNDbEFXngTroExkpxti-91" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="조회수" vertex="1">
-          <mxGeometry height="49" width="53" x="665" y="2551" as="geometry" />
+          <mxGeometry height="49" width="53" x="804" y="2553" as="geometry" />
         </mxCell>
         <mxCell id="ppNDbEFXngTroExkpxti-92" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="좋아요" vertex="1">
-          <mxGeometry height="49" width="53" x="710" y="2551" as="geometry" />
+          <mxGeometry height="49" width="53" x="761" y="2551" as="geometry" />
         </mxCell>
         <mxCell id="ppNDbEFXngTroExkpxti-93" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="제목" vertex="1">
           <mxGeometry height="49" width="53" x="751" y="2512" as="geometry" />
         </mxCell>
         <mxCell id="ppNDbEFXngTroExkpxti-94" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="내용" vertex="1">
-          <mxGeometry height="49" width="53" x="756" y="2554" as="geometry" />
+          <mxGeometry height="49" width="53" x="671" y="2551" as="geometry" />
         </mxCell>
         <mxCell id="ppNDbEFXngTroExkpxti-95" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="아이디" vertex="1">
           <mxGeometry height="49" width="53" x="710" y="2512" as="geometry" />
@@ -188,7 +188,7 @@
         <mxCell id="ppNDbEFXngTroExkpxti-97" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;fillColor=#f8cecc;strokeColor=#b85450;" value="번호" vertex="1">
           <mxGeometry height="49" width="53" x="665" y="2240" as="geometry" />
         </mxCell>
-        <mxCell id="ppNDbEFXngTroExkpxti-98" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="닉네임" vertex="1">
+        <mxCell id="ppNDbEFXngTroExkpxti-98" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="아이디" vertex="1">
           <mxGeometry height="49" width="53" x="703" y="2240" as="geometry" />
         </mxCell>
         <mxCell id="ppNDbEFXngTroExkpxti-99" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="비밀번호" vertex="1">
@@ -197,8 +197,8 @@
         <mxCell id="ppNDbEFXngTroExkpxti-100" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="내용" vertex="1">
           <mxGeometry height="49" width="53" x="796" y="2240" as="geometry" />
         </mxCell>
-        <mxCell id="ppNDbEFXngTroExkpxti-101" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="좋아요" vertex="1">
-          <mxGeometry height="49" width="53" x="840" y="2240" as="geometry" />
+        <mxCell id="ppNDbEFXngTroExkpxti-101" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="날짜" vertex="1">
+          <mxGeometry height="49" width="53" x="836" y="2240" as="geometry" />
         </mxCell>
         <mxCell id="ppNDbEFXngTroExkpxti-123" edge="1" parent="1" source="ppNDbEFXngTroExkpxti-119" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" target="ppNDbEFXngTroExkpxti-56">
           <mxGeometry relative="1" as="geometry" />
@@ -223,6 +223,12 @@
         </mxCell>
         <mxCell id="ppNDbEFXngTroExkpxti-131" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="주소" vertex="1">
           <mxGeometry height="49" width="53" x="983" y="2660" as="geometry" />
+        </mxCell>
+        <mxCell id="p_t0nh7J6T3RciT5gzLP-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="날짜" vertex="1">
+          <mxGeometry height="49" width="53" x="715" y="2553" as="geometry" />
+        </mxCell>
+        <mxCell id="p_t0nh7J6T3RciT5gzLP-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="좋아요" vertex="1">
+          <mxGeometry height="49" width="53" x="877" y="2238" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
