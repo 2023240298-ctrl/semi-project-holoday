@@ -1,14 +1,14 @@
 package com.holoday.api.user.dto;
 
-import org.jspecify.annotations.Nullable;
-import org.springframework.security.core.GrantedAuthority;
+import lombok.*;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-
+@Getter
 public class UserDTO extends User {
     private String userId;
     private String userEmail;
@@ -24,5 +24,16 @@ public class UserDTO extends User {
         this.userNick = userNick;
         this.userPw = userPw;
         this.userIsAdmin = userIsAdmin;
+    }
+
+    public Map<String, Object> getClaims() {
+        Map<String, Object> dataMap = new HashMap<>();
+
+        dataMap.put("userId",userId);
+        dataMap.put("userEmail",userEmail);
+        dataMap.put("userNick",userNick);
+        dataMap.put("userIsAdmin",userIsAdmin);
+
+        return dataMap;
     }
 }
