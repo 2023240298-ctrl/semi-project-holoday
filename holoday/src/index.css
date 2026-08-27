@@ -30,3 +30,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.logo-text {
+  font-family: 'JejuStoneWall';
+}
+
+.head-text {
+  font-family: 'NexonCartGothic';
+}
