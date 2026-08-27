@@ -1,4 +1,4 @@
-package com.holoday.api.common.paginationdto;
+package com.holoday.api.common.pagination;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
