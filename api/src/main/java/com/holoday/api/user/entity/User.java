@@ -1,9 +1,6 @@
 package com.holoday.api.user.entity;
 
-import jakarta.persistence.Convert;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.type.NumericBooleanConverter;
@@ -14,10 +11,18 @@ import org.hibernate.type.NumericBooleanConverter;
 @NoArgsConstructor
 public class User {
     @Id
+    @Column(length = 10)
     private String userId;
+
+    @Column(length = 30)
     private String userEmail;
+
+    @Column(length = 10)
     private String userNick;
+
+    @Column(length = 100)
     private String userPw;
+
     @Convert(converter = NumericBooleanConverter.class)
     private boolean userIsAdmin;
 
