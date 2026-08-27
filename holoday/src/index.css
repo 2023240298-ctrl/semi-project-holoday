@@ -25,6 +25,12 @@
   font-weight: 800;
   font-display: swap;
 }
+@font-face {
+    font-family: 'SeoulNamsan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
 
 
 @tailwind base;
@@ -37,4 +43,7 @@
 
 .head-text {
   font-family: 'NexonCartGothic';
+}
+.holo-text{
+  font-family: 'SeoulNamsan';
 }
