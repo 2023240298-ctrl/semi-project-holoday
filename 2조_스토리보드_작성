@@ -53,7 +53,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="홀로 땜 페이지" id="aFGNUr_YFNJ2xHFwpEBk">
-    <mxGraphModel dx="1481" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1473" dy="1109" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -96,29 +96,29 @@
         <mxCell id="4k7jeTAUXZ2IPHiXONjB-14" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="footer" vertex="1">
           <mxGeometry height="80" width="630" x="790" y="660" as="geometry" />
         </mxCell>
-        <mxCell id="4k7jeTAUXZ2IPHiXONjB-15" parent="1" style="html=1;whiteSpace=wrap;" value="card&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="320" width="590" x="810" y="310" as="geometry" />
+        <mxCell id="4k7jeTAUXZ2IPHiXONjB-15" parent="1" style="html=1;whiteSpace=wrap;" value="card&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="270" width="360" x="920" y="320" as="geometry" />
         </mxCell>
-        <mxCell id="4k7jeTAUXZ2IPHiXONjB-16" parent="1" style="html=1;whiteSpace=wrap;" value="본 카드들&amp;nbsp;" vertex="1">
+        <mxCell id="4k7jeTAUXZ2IPHiXONjB-16" parent="1" style="html=1;whiteSpace=wrap;" value="본 카드들입니다 ..." vertex="1">
           <mxGeometry height="40" width="540" x="800" y="240" as="geometry" />
-        </mxCell>
-        <mxCell id="4k7jeTAUXZ2IPHiXONjB-17" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="title" vertex="1">
-          <mxGeometry height="40" width="530" x="840" y="340" as="geometry" />
-        </mxCell>
-        <mxCell id="4k7jeTAUXZ2IPHiXONjB-18" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="title" vertex="1">
-          <mxGeometry height="40" width="530" x="840" y="400" as="geometry" />
-        </mxCell>
-        <mxCell id="4k7jeTAUXZ2IPHiXONjB-19" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="title" vertex="1">
-          <mxGeometry height="40" width="530" x="840" y="460" as="geometry" />
-        </mxCell>
-        <mxCell id="4k7jeTAUXZ2IPHiXONjB-20" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="title" vertex="1">
-          <mxGeometry height="40" width="530" x="840" y="520" as="geometry" />
-        </mxCell>
-        <mxCell id="4k7jeTAUXZ2IPHiXONjB-21" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="title" vertex="1">
-          <mxGeometry height="40" width="530" x="840" y="570" as="geometry" />
         </mxCell>
         <mxCell id="4k7jeTAUXZ2IPHiXONjB-22" parent="1" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" value="조회 2" vertex="1">
           <mxGeometry height="50" width="130" x="780" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="eaLwJEkikYE4o0N9G4mf-1" parent="1" style="html=1;whiteSpace=wrap;" value="next" vertex="1">
+          <mxGeometry height="40" width="80" x="1310" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="eaLwJEkikYE4o0N9G4mf-2" parent="1" style="html=1;whiteSpace=wrap;" value="previous" vertex="1">
+          <mxGeometry height="40" width="80" x="820" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="eaLwJEkikYE4o0N9G4mf-3" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="title" vertex="1">
+          <mxGeometry height="40" width="140" x="1020" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="eaLwJEkikYE4o0N9G4mf-4" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="image" vertex="1">
+          <mxGeometry height="100" width="110" x="940" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="eaLwJEkikYE4o0N9G4mf-6" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="content" vertex="1">
+          <mxGeometry height="110" width="140" x="1101" y="400" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
