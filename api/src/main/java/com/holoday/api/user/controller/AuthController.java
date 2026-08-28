@@ -3,13 +3,14 @@ package com.holoday.api.user.controller;
 import com.holoday.api.user.dto.*;
 import com.holoday.api.user.entity.User;
 import com.holoday.api.user.service.AuthService;
+import com.holoday.api.util.JWTUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.*;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/holoday")
@@ -17,12 +18,10 @@ import java.util.Map;
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final AuthService authService;
+    private final JWTUtil jwtUtil;
 
     @PostMapping("/signup")
     public void signup(@RequestBody User user) {
-
-        System.out.println("컨트롤러 회원가입 진입");
-
         authService.signup(user);
     }
 
@@ -40,7 +39,16 @@ public class AuthController {
                 authenticationManager.authenticate(authenticationToken);
 
         UserDTO userDTO = (UserDTO) authentication.getPrincipal();
+        Map<String, Object> claims = userDTO.getClaims();
 
-        return userDTO.getClaims();
+        String accessToken = jwtUtil.generateToken(loginDTO.getUserId());
+        String refreshToken = jwtUtil.generateToken(loginDTO.getUserId());
+
+        Map<String, Object> result = new HashMap<>(claims);
+
+        result.put("accessToken", accessToken);
+        result.put("refreshToken", refreshToken);
+
+        return result;
     }
 }
