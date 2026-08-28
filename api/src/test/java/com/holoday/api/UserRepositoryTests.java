@@ -27,8 +27,11 @@ public class UserRepositoryTests {
     @Commit
     public void testInsertUser() {
         User user = new User(
-                "gildong11", "gildong11@naver.com", "홍길동",
-                "rlfehd1234", false
+                "alstn11",
+                "gildong11@naver.com",
+                "홍길동",
+                passwordEncoder.encode("1234"),
+                false
         );
 
         User result = userRepository.save(user);
@@ -37,7 +40,7 @@ public class UserRepositoryTests {
 
     @Test
     public void testRead() {
-        String userId = "gildong11";
+        String userId = "alstn11";
 
         User user = userRepository.findByUserId(userId)
                 .orElseThrow(() ->
