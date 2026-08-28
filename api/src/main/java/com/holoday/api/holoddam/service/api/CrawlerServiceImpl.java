@@ -1,4 +1,4 @@
-package com.holoday.api.holoddam.service;
+package com.holoday.api.holoddam.service.api;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
