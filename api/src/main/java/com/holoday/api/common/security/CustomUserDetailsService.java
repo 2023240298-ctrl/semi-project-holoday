@@ -1,4 +1,4 @@
-package com.holoday.api.security;
+package com.holoday.api.common.security;
 
 import com.holoday.api.user.dto.UserDTO;
 import com.holoday.api.user.entity.User;

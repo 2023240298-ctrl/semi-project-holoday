@@ -1,4 +1,4 @@
-package com.holoday.api.controller.advice;
+package com.holoday.api.common.controller.advice;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;

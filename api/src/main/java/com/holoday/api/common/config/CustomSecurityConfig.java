@@ -1,4 +1,4 @@
-package com.holoday.api.config;
+package com.holoday.api.common.config;
 
 import lombok.*;
 import org.springframework.context.annotation.*;
