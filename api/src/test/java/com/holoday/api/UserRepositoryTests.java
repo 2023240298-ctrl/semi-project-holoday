@@ -27,8 +27,11 @@ public class UserRepositoryTests {
     @Commit
     public void testInsertUser() {
         User user = new User(
-                "gildong11", "gildong11@naver.com", "홍길동",
-                "rlfehd1234", false
+                "gildong11",
+                "gildong11@naver.com",
+                "홍길동",
+                passwordEncoder.encode("1234"),
+                false
         );
 
         User result = userRepository.save(user);
