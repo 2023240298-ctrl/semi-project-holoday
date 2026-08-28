@@ -47,3 +47,14 @@
 .holo-text{
   font-family: 'SeoulNamsan';
 }
+
+/* 공통 메인 영역 */
+.main-content {
+  width: 100%;
+  max-width: 1200px;
+  min-height: 700px;
+
+  margin: 0 auto;
+  padding: 40px 60px;
+  box-sizing: border-box;
+}
