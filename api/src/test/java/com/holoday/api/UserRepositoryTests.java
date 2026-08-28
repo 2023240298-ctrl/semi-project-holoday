@@ -27,7 +27,7 @@ public class UserRepositoryTests {
     @Commit
     public void testInsertUser() {
         User user = new User(
-                "gildong11",
+                "alstn11",
                 "gildong11@naver.com",
                 "홍길동",
                 passwordEncoder.encode("1234"),
