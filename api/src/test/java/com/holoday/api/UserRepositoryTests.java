@@ -40,7 +40,7 @@ public class UserRepositoryTests {
 
     @Test
     public void testRead() {
-        String userId = "gildong11";
+        String userId = "alstn11";
 
         User user = userRepository.findByUserId(userId)
                 .orElseThrow(() ->
