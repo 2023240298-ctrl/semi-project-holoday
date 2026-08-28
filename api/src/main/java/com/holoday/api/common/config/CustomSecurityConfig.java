@@ -1,5 +1,8 @@
 package com.holoday.api.common.config;
 
+import com.holoday.api.common.security.JWTCheckFilter;
+import com.holoday.api.user.repository.UserRepository;
+import com.holoday.api.util.JWTUtil;
 import lombok.*;
 import org.springframework.context.annotation.*;
 import org.springframework.http.HttpMethod;
@@ -10,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -19,6 +23,9 @@ import java.util.Arrays;
 @Configuration
 @RequiredArgsConstructor
 public class CustomSecurityConfig {
+    private final JWTUtil jwtUtil;
+    private final UserRepository userRepository;
+
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -41,6 +48,7 @@ public class CustomSecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .formLogin(form -> form.disable())
+
                 .authorizeHttpRequests(auth -> auth
 
                         //로그인 하지 않아도 접근 가능
@@ -56,6 +64,10 @@ public class CustomSecurityConfig {
                         ).permitAll()
 
                         .anyRequest().authenticated()
+                )
+                .addFilterBefore(
+                        new JWTCheckFilter(jwtUtil, userRepository),
+                        UsernamePasswordAuthenticationFilter.class
                 );
 
         return http.build();
@@ -66,7 +78,7 @@ public class CustomSecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(Arrays.asList("*"));
         configuration.setAllowedMethods(
-                Arrays.asList("GET","POST","PATCH","DELETE")
+                Arrays.asList("GET","POST","PATCH","DELETE", "OPTIONS")
         );
         configuration.setAllowedHeaders(
                 Arrays.asList("Authorization", "Cache-Control", "Content-Type")
