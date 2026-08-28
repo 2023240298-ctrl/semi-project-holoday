@@ -19,7 +19,7 @@ public class NaverNewsApiServiceImpl {
 
     private final RestClient restClient = RestClient.create();
 
-    public NaverNewsResponse searchNews(String keyword, String sortValue){
+    public NaverNewsResponse search(String keyword, String sortValue){
         URI uri = UriComponentsBuilder
                 .fromUriString("https://openapi.naver.com")
                 .path("/v1/search/news.json")
