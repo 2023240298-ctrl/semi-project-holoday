@@ -14,9 +14,15 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
 
     public void signup(User user) {
+
+        System.out.println("회원가입 서비스 진입");
+        System.out.println("암호화 전: " + user.getUserPw());
+
         user.changeUserPw(
                 passwordEncoder.encode(user.getUserPw())
         );
+
+        System.out.println("암호화 후: " + user.getUserPw());
 
         user.changeUserIsAdmin(false);
 

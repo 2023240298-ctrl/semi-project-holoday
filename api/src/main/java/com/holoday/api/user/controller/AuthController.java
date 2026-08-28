@@ -20,6 +20,9 @@ public class AuthController {
 
     @PostMapping("/signup")
     public void signup(@RequestBody User user) {
+
+        System.out.println("컨트롤러 회원가입 진입");
+
         authService.signup(user);
     }
 

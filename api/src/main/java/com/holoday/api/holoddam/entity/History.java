@@ -4,7 +4,6 @@ package com.holoday.api.holoddam.entity;
 import com.holoday.api.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
