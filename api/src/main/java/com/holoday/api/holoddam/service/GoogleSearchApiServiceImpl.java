@@ -12,9 +12,9 @@ import java.net.URI;
 
 @Service
 public class GoogleSearchApiServiceImpl {
-    @Value("${google.api.key}")
+    @Value("${external-api.google.api-key}")
     private String apiKey;
-    @Value("${google.api.cx}")
+    @Value("${external-api.google.cx}")
     private String cx;
 
     private final RestClient restClient = RestClient.create();

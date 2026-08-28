@@ -11,10 +11,10 @@ import java.net.URI;
 
 @Service
 public class NaverNewsApiServiceImpl {
-    @Value("${naver.api.client-id}")
+    @Value("${external-api.naver.client-id}")
     private String clientId;
 
-    @Value("${naver.api.client-secret}")
+    @Value("${external-api.naver.client-secret}")
     private String clientSecret;
 
     private final RestClient restClient = RestClient.create();
