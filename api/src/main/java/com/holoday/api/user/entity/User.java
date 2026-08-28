@@ -1,13 +1,13 @@
 package com.holoday.api.user.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.type.NumericBooleanConverter;
 
 @Entity
 @Table(name = "h_user")
 @Getter
+@Setter
 @NoArgsConstructor
 public class User {
     @Id
@@ -34,5 +34,11 @@ public class User {
         this.userIsAdmin = userIsAdmin;
     }
 
+    public void changeUserPw(String userPw) {
+        this.userPw = userPw;
+    }
 
+    public void changeUserIsAdmin(boolean userIsAdmin) {
+        this.userIsAdmin = userIsAdmin;
+    }
 }

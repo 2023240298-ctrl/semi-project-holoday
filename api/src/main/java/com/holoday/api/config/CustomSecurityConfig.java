@@ -2,6 +2,7 @@ package com.holoday.api.config;
 
 import lombok.*;
 import org.springframework.context.annotation.*;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -39,7 +40,23 @@ public class CustomSecurityConfig {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-                .formLogin(form -> form.disable());
+                .formLogin(form -> form.disable())
+                .authorizeHttpRequests(auth -> auth
+
+                        //로그인 하지 않아도 접근 가능
+                        .requestMatchers(
+                                "/api/holoday/login",
+                                "/api/holoday/signup"
+                        ).permitAll()
+
+                        .requestMatchers(
+                                HttpMethod.GET,
+                                "/api/holoday/board",
+                                "/api/holoday/board/*"
+                        ).permitAll()
+
+                        .anyRequest().authenticated()
+                );
 
         return http.build();
     }

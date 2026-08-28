@@ -15,7 +15,7 @@ public class Category {
     @Column(name = "CATEGORY_NO")
     private Long categoryNo;
 
-    @Column(name ="CATEGORY_NAME")
+    @Column(name ="CATEGORY_NAME", length = 20)
     private String categoryName;
 
 
