@@ -1,4 +1,4 @@
-package com.holoday.api;
+package com.holoday.api.hololoungeTest;
 
 import com.holoday.api.hololounge.entity.HoloLounge;
 import com.holoday.api.hololounge.repository.HoloLoungeRepository;
@@ -7,9 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
-
-import java.time.LocalDate;
-import java.util.Locale;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
