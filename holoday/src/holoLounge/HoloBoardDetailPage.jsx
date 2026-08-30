@@ -1,6 +1,7 @@
 import { createSearchParams, useNavigate, useParams, useSearchParams } from "react-router";
+import HoloBoardOneRead from "./HoloBoardOneRead";
 
-const HoloBoardDetailPage = () => {
+const HoloBoardDetailPage = ({no}) => {
     const {no} = useParams();
     const navigate = useNavigate();
     const [queryParams] = useSearchParams();
@@ -15,7 +16,7 @@ const HoloBoardDetailPage = () => {
 
     const moveToModify = () => {
         navigate({
-            pathname: `/holoboard/edit/${boardNo}`,
+            pathname: `/holoboard/edit/${no}`,
             search: `?${queryStr}`,
         })
     };
@@ -32,6 +33,7 @@ const HoloBoardDetailPage = () => {
             <div>
                 홀로라운지 게시판 상세 조회 페이지 {no}
             </div>
+            <HoloBoardOneRead no={no}></HoloBoardOneRead>
 
             <div>
                 <button
