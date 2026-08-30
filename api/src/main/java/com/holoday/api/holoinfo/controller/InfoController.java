@@ -1,5 +1,7 @@
 package com.holoday.api.holoinfo.controller;
 
+import com.holoday.api.common.file.FileUtil;
+import com.holoday.api.common.file.dto.FileDTO;
 import com.holoday.api.common.pagination.PageRequestDTO;
 import com.holoday.api.common.pagination.PageResponseDTO;
 import com.holoday.api.holoinfo.dto.InfoDTO;
@@ -12,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -21,6 +24,7 @@ import java.util.Map;
 public class InfoController {
 
     private final InfoService infoService;
+    private final FileUtil fileUtil;
 
     @GetMapping(value = "/{info_no}",produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
@@ -50,11 +54,24 @@ public class InfoController {
         return ResponseEntity.ok(responseDTO);
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(hidden = true)
-    public ResponseEntity<Map<String,Long>> register(@RequestBody InfoDTO infoDTO){
+    public ResponseEntity<Map<String,Long>> register(
+            @RequestPart("info") InfoDTO infoDTO,
+            @RequestPart(value = "file", required = false) MultipartFile file
+    ){
+        FileDTO fileDTO = fileUtil.saveFile(file);
+
+        if (fileDTO != null) {
+            infoDTO.setInfoImg(fileDTO.getSavedName());
+            infoDTO.setInfoSimg(fileDTO.getThumbnailName());
+        }
+
         Long infoNo = infoService.register(infoDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("infoNo",infoNo));
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(Map.of("infoNo", infoNo));
     }
 
     @PatchMapping("/{info_no}")
