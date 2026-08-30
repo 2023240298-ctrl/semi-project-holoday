@@ -60,8 +60,12 @@ public class InfoServiceImpl implements InfoService {
         info.changeInfoContent(infoDTO.getInfoContent());
         info.changeInfoPlace(infoDTO.getInfoPlace());
         info.changeInfoAddress(infoDTO.getInfoAddress());
-        info.changeInfoImg(infoDTO.getInfoImg());
-        info.changeInfoSimg(infoDTO.getInfoSimg());
+
+        //새로운 사진 있을때만 변경
+        if (infoDTO.getInfoImg() != null) {
+            info.changeInfoImg(infoDTO.getInfoImg());
+            info.changeInfoSimg(infoDTO.getInfoSimg());
+        }
     }
 
     @Override

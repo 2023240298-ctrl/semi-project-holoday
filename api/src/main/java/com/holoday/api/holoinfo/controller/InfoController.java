@@ -74,12 +74,27 @@ public class InfoController {
                 .body(Map.of("infoNo", infoNo));
     }
 
-    @PatchMapping("/{info_no}")
+    @PatchMapping(value = "/{info_no}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(hidden = true)
-    public ResponseEntity<Map<String,String>> modify(@PathVariable(name = "info_no") Long infoNo, @RequestBody InfoDTO infoDTO){
+    public ResponseEntity<Map<String,String>> modify(
+            @PathVariable(name = "info_no") Long infoNo,
+            @RequestPart("info") InfoDTO infoDTO,
+            @RequestPart(value = "file", required = false) MultipartFile file
+    ){
         infoDTO.setInfoNo(infoNo);
+
+        FileDTO fileDTO = fileUtil.saveFile(file);
+
+        if (fileDTO != null) {
+            infoDTO.setInfoImg(fileDTO.getSavedName());
+            infoDTO.setInfoSimg(fileDTO.getThumbnailName());
+        }
+
         infoService.modify(infoDTO);
-        return ResponseEntity.ok(Map.of("result", "success"));
+
+        return ResponseEntity.ok(
+                Map.of("result", "success")
+        );
     }
 
     @DeleteMapping("/{info_no}")
