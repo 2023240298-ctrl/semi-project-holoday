@@ -1,9 +1,10 @@
+import { lazy } from "react";
 import {Navigate} from "react-router";
 
 const holoBoardRouter = () => {
     return [
         {
-            path: "list",
+            path: "holoboard",
             HydrateFallback: () => <div>불러오는 중</div>,
             lazy: async () => {
                 const {default: Component} = await import("./HoloBoard")
@@ -12,10 +13,10 @@ const holoBoardRouter = () => {
         },
         {
             index: true,
-            element: <Navigate to="list" replace />,
+            element: <Navigate to="holoboard" replace />,
         },
         {
-            path: "read/:no",
+            path: "holoboard/:boardno",
             HydrateFallback: () => <div>불러오는 중</div>,
             lazy: async () => {
                 const {default: Component} = await import("./HoloBoardDetailPage");
@@ -23,7 +24,15 @@ const holoBoardRouter = () => {
             },
         },
         {
-            path: "add",
+            path: "holoboard/new",
+            HydrateFallback: () => <div>불러오는 중</div>,
+            lazy: async () => {
+                const {default: Component} = await import("./HoloBoardEditPage");
+                return {Component};
+            },
+        },
+        {
+            path: "holoboard/edit/:boardno",
             HydrateFallback: () => <div>불러오는 중</div>,
             lazy: async () => {
                 const {default: Component} = await import("./HoloBoardEditPage");
