@@ -44,7 +44,7 @@ public class UserRepositoryTests {
     public void testInsertUserAdmin() {
         User user = new User(
                 "admin1234",
-                "gildong11@naver.com",
+                "gildong@naver.com",
                 "홍길동",
                 passwordEncoder.encode("1234"),
                 true
