@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getList } from "../js/HoloBoardApi";
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
+import PageComponent from "../../components/common/PageComponent";
 
 const initState = {
     dtoList: [],
@@ -16,27 +17,30 @@ const initState = {
 };
 
 const ListComponent = () => {
-   const {page, size} = useBoardCustomMove();
+   const {page, size, moveToList, moveToRead} = useBoardCustomMove();
 
-   const [listData, setServerData] = useState(initState);
+   const [serverData, setServerData] = useState(initState);
 
    useEffect(() => {
       getList({page, size}).then((data) => {
-         console.log(data);
          setServerData(data);
       });
    }, [page, size]);
 
    return (
       <div>
-         {listData.dtoList.map((board) => (
-            <div key={board.boardNo}>
-               <div>게시글 번호: {board.boardNo}</div>
-               <div>작성자: {board.userId}</div>
-               <div>제목: {board.boardTitle}</div>
-               <div>내용: {board.boardContent}</div>
-            </div>
-         ))}
+         <div>
+            {serverData.dtoList.map((board) => (
+               <div key={board.boardNo}>
+                  <div>게시글 번호: {board.boardNo}</div>
+                  <div>작성자: {board.userId}</div>
+                  <div>제목: {board.boardTitle}</div>
+                  <div>내용: {board.boardContent}</div>
+               </div>
+            ))}
+         </div>
+
+         <PageComponent serverData={serverData} movePage={moveToList} />
       </div>
    );
 };
