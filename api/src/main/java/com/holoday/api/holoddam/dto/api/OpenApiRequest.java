@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class OpenApiRequest {
     private String model;
-    private List<Message> message;
+    private List<Message> messages;
 
     @Getter
     @NoArgsConstructor

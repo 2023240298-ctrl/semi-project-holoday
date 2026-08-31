@@ -54,7 +54,8 @@ public class CustomSecurityConfig {
                         //로그인 하지 않아도 접근 가능
                         .requestMatchers(
                                 "/api/holoday/login",
-                                "/api/holoday/signup"
+                                "/api/holoday/signup",
+                                "/error"
                         ).permitAll()
 
                         .requestMatchers(

@@ -25,7 +25,7 @@ public class OpenApiService {
         if (content == null || content.isBlank()){
             return null;
         }
-        if (content.length() >= MAX_TEXT_LENGTH){
+        if (content.length() > MAX_TEXT_LENGTH){
             content = content.substring(0, MAX_TEXT_LENGTH);
         }
         OpenApiRequest request = new OpenApiRequest(
@@ -45,22 +45,21 @@ public class OpenApiService {
             OpenApiResponse response = restClient.post()
                     .uri("https://api.openai.com/v1/chat/completions")
                     .header("Authorization", "Bearer "+apiKey)
-                    .header("Content-Type", "application/json")
                     .body(request)
                     .retrieve()
                     .body(OpenApiResponse.class);
 
             if (response !=null && response.getChoices() != null && !response.getChoices().isEmpty()){
                 String summary = response.getChoices().get(0).getMessage().getContent();
-                if (summary != null && summary.length()>=500){
+                if (summary != null && summary.length()>500){
                     summary = summary.substring(0, 496)+"...";
                 }
                 return summary;
             }
             return null;
         } catch (Exception e){
-            log.error(e.getMessage());
-            return null;
+            log.error("error occurred during calling open api",e.getMessage());
+            throw e;
         }
     }
 }

@@ -6,6 +6,7 @@ import com.holoday.api.holoddam.entity.SortType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -27,10 +28,9 @@ public class NaverNewsApiServiceImpl implements ApiService<NaverNewsResponse> {
     @Override
     public NaverNewsResponse search(String keyword, SortType sortType) {
         String sort = (sortType == SortType.RECENCY) ? "date":"sim";
-
         URI uri = UriComponentsBuilder
-                .fromUriString("https://openapi.naver.com")
-                .path("/v1/search/news.json")
+                .fromUriString("https://naverapihub.apigw.ntruss.com")
+                .path("/search/v1/news")
                 .queryParam("query", keyword)
                 .queryParam("display", 3)
                 //resent: date, popular: sim
@@ -41,8 +41,9 @@ public class NaverNewsApiServiceImpl implements ApiService<NaverNewsResponse> {
         try {
             return restClient.get()
                     .uri(uri)
-                    .header("X-Naver-Client-Id", clientId)
-                    .header("X-Naver-Client-Secret", clientSecret)
+                    .header("X-NCP-APIGW-API-KEY-ID", clientId)
+                    .header("X-NCP-APIGW-API-KEY", clientSecret)
+                    .accept(MediaType.APPLICATION_JSON)
                     .retrieve()
                     .body(NaverNewsResponse.class);
         } catch (Exception e) {
