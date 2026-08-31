@@ -16,3 +16,9 @@ export const getList = async (pageParam) => {
     });
     return response.data;
 };
+
+export const postAdd = async(holoLounge) => {
+    const response = await axios.post(prefix, holoLounge);
+
+    return response.data;
+};
