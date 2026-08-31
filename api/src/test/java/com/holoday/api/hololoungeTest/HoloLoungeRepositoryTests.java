@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
+import org.springframework.test.annotation.Commit;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -27,6 +28,7 @@ public class HoloLoungeRepositoryTests {
     }
 
     @Test
+    @Commit
     public void testInsertDummyData() {
         String[] titles = {"하루종일 카페에 앉아 책을 읽었습니다.", "산책 다녀왔습니다. 날씨가 정말 좋아요!," +
                 "그냥 아무것도 안 하고 쉰 날~ 힐링!"};
@@ -46,7 +48,7 @@ public class HoloLoungeRepositoryTests {
 
     @Test
     public void testRead() {
-        Long no = 3L;
+        Long no = 209L;
         HoloLounge holoLounge = holoLoungeRepository.findById(no)
                 .orElseThrow(()->
                         new IllegalArgumentException(no + "번 게시글이 존재하지 않습니다."));
@@ -55,9 +57,11 @@ public class HoloLoungeRepositoryTests {
         printHoloLounge(holoLounge);
     }
 
+
     @Test
+    @Commit
     public void testUpdate() {
-        Long no = 3L;
+        Long no = 302L;
         HoloLounge holoLounge = holoLoungeRepository.findById(no)
                 .orElseThrow(()->
                         new IllegalArgumentException(no + "번 게시글이 존재하지 않습니다."));
@@ -68,8 +72,9 @@ public class HoloLoungeRepositoryTests {
     }
 
     @Test
+    @Commit
     public void testDelete() {
-        Long no = 4L;
+        Long no = 301L;
         if(holoLoungeRepository.existsById(no)) {
             holoLoungeRepository.deleteById(no);
             log.info("{}번 게시글을 삭제했습니다.",no);
@@ -77,4 +82,5 @@ public class HoloLoungeRepositoryTests {
             log.info("{}번 게시글이 존재하지 않습니다.", no);
         }
     }
+
 }
