@@ -19,9 +19,9 @@ const Header = ({ isLogin, setIsLogin }) => {
 
       <nav className="header_menu head-text">
         <a href="/">홈</a>
-        <a href="/info">홀로정보</a>
-        <a href="/board">홀로라운지</a>
-        <a href="/card">홀로땜</a>
+        <a href="/holoinfo">홀로정보</a>
+        <a href="/holoboard">홀로라운지</a>
+        <a href="/holoddam">홀로땜</a>
       </nav>
 
       <div className="header_login head-text">
@@ -42,7 +42,7 @@ const Header = ({ isLogin, setIsLogin }) => {
           </button>
         )}
         <button
-          type="button"
+          type="button" onClick={() => navigate("/holosignup")}
         >
           회원가입
         </button>
