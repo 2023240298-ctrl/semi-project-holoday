@@ -51,7 +51,6 @@ public class UserRepositoryTests {
         );
 
         User result = userRepository.save(user);
-        printUser(result);
     }
 
     @Test
