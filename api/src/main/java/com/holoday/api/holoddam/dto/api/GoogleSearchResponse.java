@@ -1,4 +1,4 @@
-package com.holoday.api.holoddam.dto;
+package com.holoday.api.holoddam.dto.api;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +21,6 @@ public class GoogleSearchResponse {
         private String snippet;
 
         private String fullText;
+        private String imageUrl;
     }
 }
