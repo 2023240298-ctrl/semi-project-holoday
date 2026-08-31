@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getList } from "../js/HoloBoardApi";
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
-import PageComponent from "../../components/common/PageComponent";
+import PagiNation from "../../components/common/PagiNation";
 
 const initState = {
     dtoList: [],
@@ -17,7 +17,7 @@ const initState = {
 };
 
 const ListComponent = () => {
-   const {page, size, moveToList, moveToRead} = useBoardCustomMove();
+   const {page, size, moveToList} = useBoardCustomMove();
 
    const [serverData, setServerData] = useState(initState);
 
@@ -40,7 +40,7 @@ const ListComponent = () => {
             ))}
          </div>
 
-         <PageComponent serverData={serverData} movePage={moveToList} />
+         <PagiNation serverData={serverData} movePage={moveToList} />
       </div>
    );
 };
