@@ -20,5 +20,6 @@ public class NaverNewsResponse {
         private String pubDate;
 
         private String fullText;
+        private String imageUrl;
     }
 }

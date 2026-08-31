@@ -21,5 +21,6 @@ public class GoogleSearchResponse {
         private String snippet;
 
         private String fullText;
+        private String imageUrl;
     }
 }
