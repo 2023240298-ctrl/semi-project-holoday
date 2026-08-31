@@ -1,7 +1,9 @@
 import { useSearchParams } from "react-router";
+import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 
 const HoloBoard = () => {
     const [queryParams] = useSearchParams();
+    const {moveToRegister} = useBoardCustomMove();
 
     const page = parseInt(queryParams.get("page")) || 1;
     const size = parseInt(queryParams.get("size")) || 10;
@@ -13,6 +15,7 @@ const HoloBoard = () => {
             </div>
             <button
                 type="button"
+                onClick={moveToRegister}
             >
                 글쓰기
             </button>

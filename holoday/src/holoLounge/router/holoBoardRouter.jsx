@@ -4,7 +4,7 @@ const holoBoardRouter = () => {
     return [
         {
             path: "holoboard",
-            HydrateFallback: () => <div>불러오는 중</div>,
+            HydrateFallback: () => <div>목록 불러오는 중</div>,
             lazy: async () => {
                 const {default: Component} = await import("../pages/HoloBoard")
                 return {Component};
@@ -16,7 +16,7 @@ const holoBoardRouter = () => {
         },
         {
             path: "holoboard/:no",
-            HydrateFallback: () => <div>불러오는 중</div>,
+            HydrateFallback: () => <div>상세 페이지 불러오는 중</div>,
             lazy: async () => {
                 const {default: Component} = await import("../pages/HoloBoardDetailPage");
                 return {Component};
@@ -24,15 +24,15 @@ const holoBoardRouter = () => {
         },
         {
             path: "holoboard/new",
-            HydrateFallback: () => <div>불러오는 중</div>,
+            HydrateFallback: () => <div>등록 페이지 불러오는 중</div>,
             lazy: async () => {
-                const {default: Component} = await import("../pages/HoloBoardEditPage");
+                const {default: Component} = await import("../pages/HoloBoardNewPage");
                 return {Component};
             },
         },
         {
             path: "holoboard/edit/:no",
-            HydrateFallback: () => <div>불러오는 중</div>,
+            HydrateFallback: () => <div>수정 페이지 불러오는 중</div>,
             lazy: async () => {
                 const {default: Component} = await import("../pages/HoloBoardEditPage");
                 return {Component};
