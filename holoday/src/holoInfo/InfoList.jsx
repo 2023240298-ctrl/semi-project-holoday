@@ -1,0 +1,60 @@
+import { useEffect, useState } from "react";
+import{ getList } from "./api/infoApi";
+import { Card } from "flowbite-react";
+import "./InfoList.css";
+
+const InfoList = () => {
+
+  const[data, setData] = useState([]);
+  
+  useEffect(() => {
+    getList({
+        page: 1,
+        size: 10
+    }).then((result) => {
+        console.log("전체 응답:", result);
+        console.log("dtoList:", result.dtoList);
+        setData(result.dtoList);
+    });
+  },[]);
+
+    return (
+        <div className="info-list holo-text">
+
+            <div className="info-title">
+                <h2>홀로 알림</h2>
+                <p>혼자 즐기는 하루에 필요한 소식을 확인해보세요.</p>
+            </div>
+
+            <div className="info-category">
+                <button>전체 보기</button>
+                <button>홀로 휴식</button>
+                <button>홀로 문화</button>
+                <button>홀로 체험</button>
+            </div>
+
+            <div className="info-cards">
+                {data.map((info) => (
+                <div
+                    key={info.infoNo}
+                    className="info-card-overlay"
+                >
+                <img
+                src="/images/holoInfo/testfile.png"
+                alt={info.infoTitle}
+                />
+
+            <div className="info-overlay-text">
+                <span>홀로 체험</span>
+                <h3>{info.infoTitle}</h3>
+                <p>{info.infoPlace}</p>
+            </div>   
+            </div>
+                ))}
+
+          </div>
+        </div>
+    );
+};
+
+export default InfoList;
