@@ -1,9 +1,8 @@
-package com.holoday.api.holoddam.dto;
+package com.holoday.api.holoddam.dto.api;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -21,5 +20,6 @@ public class NaverNewsResponse {
         private String pubDate;
 
         private String fullText;
+        private String imageUrl;
     }
 }

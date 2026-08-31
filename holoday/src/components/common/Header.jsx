@@ -1,6 +1,16 @@
+import { useNavigate } from "react-router";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({isLogin, setIsLogin}) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    setIsLogin(false);
+    navigate("/");
+  };
+
       return (
     <header className="header">
       <div className="header_logo logo-text ">
@@ -15,8 +25,27 @@ const Header = () => {
       </nav>
 
       <div className="header_login head-text">
-        <button>로그인</button>
-        <button>회원가입</button>
+
+        {isLogin ? (
+          <button
+            type="button"
+            onClick={handleLogout}
+          >
+            로그아웃
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => navigate("/login")}
+          >
+            로그인
+          </button>
+        )}
+          <button
+            type="button"
+          >
+            회원가입
+          </button>
       </div>
     </header>
   );
