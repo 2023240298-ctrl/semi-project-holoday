@@ -38,6 +38,21 @@ public class UserRepositoryTests {
         printUser(result);
     }
 
+
+    @Test
+    @Commit
+    public void testInsertUserAdmin() {
+        User user = new User(
+                "admin1234",
+                "gildong11@naver.com",
+                "홍길동",
+                passwordEncoder.encode("1234"),
+                true
+        );
+
+        User result = userRepository.save(user);
+    }
+
     @Test
     public void testRead() {
         String userId = "alstn11";
