@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class CrawlerServiceImpl {
+public class CrawlerService {
     public CrawlResult extractText(String url){
         if (url == null || url.isBlank()) return null;
 

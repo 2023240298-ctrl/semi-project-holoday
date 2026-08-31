@@ -14,7 +14,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class OpenApiServiceImpl {
+public class OpenApiService {
+    private static final int MAX_TEXT_LENGTH = 2500;
     @Value("${external-api.openai.api-key}")
     private String apiKey;
 
@@ -23,6 +24,9 @@ public class OpenApiServiceImpl {
     public String summarize(String content){
         if (content == null || content.isBlank()){
             return null;
+        }
+        if (content.length() >= MAX_TEXT_LENGTH){
+            content = content.substring(0, MAX_TEXT_LENGTH);
         }
         OpenApiRequest request = new OpenApiRequest(
                 "gpt-4o-mini",

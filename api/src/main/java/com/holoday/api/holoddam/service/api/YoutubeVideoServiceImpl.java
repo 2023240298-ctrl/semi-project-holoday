@@ -30,7 +30,7 @@ public class YoutubeVideoServiceImpl implements ApiService<YoutubeVideoResponse>
                 .queryParam("part", "snippet")
                 .queryParam("type", "video")
                 .queryParam("q", query)
-                .queryParam("maxResults", 5) // num 대신 유튜브는 maxResults 사용
+                .queryParam("maxResults", 3) // num 대신 유튜브는 maxResults 사용
                 .queryParam("order", order)
                 .encode()
                 .build()
