@@ -1,24 +1,22 @@
-import axios from "axios";
+import customAxios from "../../api/customAxios";
 
-export const API_SERVER_HOST = "http://localhost:8080";
-
-const prefix = `${API_SERVER_HOST}/api/holoday/board`;
+const prefix = `/api/holoday/board`;
 
 export const getOne = async (no) => {
-    const response = await axios.get(`${prefix}/${no}`);
+    const response = await customAxios.get(`${prefix}/${no}`);
     return response.data;
 };
 
 export const getList = async (pageParam) => {
     const {page, size} = pageParam;
-    const response = await axios.get(prefix, {
+    const response = await customAxios.get(prefix, {
         params: {page, size},
     });
     return response.data;
 };
 
 export const postAdd = async(holoLounge) => {
-    const response = await axios.post(prefix, holoLounge);
+    const response = await customAxios.post(prefix, holoLounge);
 
     return response.data;
 };
