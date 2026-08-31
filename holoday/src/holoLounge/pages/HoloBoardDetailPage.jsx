@@ -1,8 +1,11 @@
 import { createSearchParams, useNavigate, useParams, useSearchParams } from "react-router";
-import HoloBoardOneRead from "../components/HoloBoardOneRead";
+import ReadComponent from "../components/ReadComponent";
 
 const HoloBoardDetailPage = () => {
     const {no} = useParams();
+
+    console.log("상세조회 no:", no);
+
     const navigate = useNavigate();
     const [queryParams] = useSearchParams();
 
@@ -33,23 +36,7 @@ const HoloBoardDetailPage = () => {
             <div>
                 홀로라운지 게시판 상세 조회 페이지 {no}
             </div>
-            <HoloBoardOneRead no={no}></HoloBoardOneRead>
-
-            <div>
-                <button
-                    type="button"
-                    onClick={moveToModify}
-                >
-                    수정하기
-                </button>
-
-                <button
-                    type = "button"
-                    onClick={moveToList}                
-                >
-                    목록
-                </button>
-            </div>
+            <ReadComponent no={no}></ReadComponent>
         </div>
     );
 };
