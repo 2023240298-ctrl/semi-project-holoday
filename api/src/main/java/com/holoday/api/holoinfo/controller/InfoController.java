@@ -100,7 +100,14 @@ public class InfoController {
     @DeleteMapping("/{info_no}")
     @Operation(hidden = true)
     public ResponseEntity<Map<String, String>> remove(@PathVariable(name = "info_no") Long infoNo){
+
+        InfoDTO infoDTO = infoService.get(infoNo);
+
+        fileUtil.deleteFile(infoDTO.getInfoImg());
+        fileUtil.deleteFile(infoDTO.getInfoSimg());
+
         infoService.remove(infoNo);
+
         return ResponseEntity.ok(Map.of("result","success"));
     }
 

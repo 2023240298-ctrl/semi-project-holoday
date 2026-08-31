@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
+import org.springframework.test.annotation.Rollback;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -36,6 +37,32 @@ public class InfoRepositoryTest {
                         new IllegalArgumentException());
 
         printInfo(info);
+    }
+
+    @Test
+    public void testUpdate() {
+
+        Info info = infoRepository.findById(21L).orElseThrow();
+
+        info.changeInfoTitle("수정 테스트 제목");
+        info.changeInfoContent("수정 테스트 내용");
+        info.changeInfoPlace("망원한강공원");
+        info.changeInfoAddress("서울 마포구");
+
+        infoRepository.save(info);
+
+        printInfo(info);
+    }
+
+    @Test
+    public void testDelete(){
+        Long infoNo = 21L;
+        if(infoRepository.existsById(infoNo)){
+            infoRepository.deleteById(infoNo);
+            log.info("{}번 게시글을 삭제했습니다.", infoNo);
+        } else {
+            log.info("{}번 게시글이 존재하지 않습니다.",infoNo);
+        }
     }
 
 }
