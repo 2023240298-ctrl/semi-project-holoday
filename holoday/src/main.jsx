@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import memberRouter from './router/memberRouter.jsx'
+import holoBoardRouter from "./holoLounge/router/holoBoardRouter.jsx";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
     children: [
       // 밑에 자식 Router 하나씩 추가해 갈 예정
       ...memberRouter(),
+      ...holoBoardRouter(),
     ],
   },
 ])

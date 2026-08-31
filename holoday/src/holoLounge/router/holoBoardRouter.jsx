@@ -1,5 +1,3 @@
-import {Navigate} from "react-router";
-
 const holoBoardRouter = () => {
     return [
         {
@@ -9,10 +7,6 @@ const holoBoardRouter = () => {
                 const {default: Component} = await import("../pages/HoloBoard")
                 return {Component};
             },
-        },
-        {
-            index: true,
-            element: <Navigate to="holoboard" replace />,
         },
         {
             path: "holoboard/:no",
