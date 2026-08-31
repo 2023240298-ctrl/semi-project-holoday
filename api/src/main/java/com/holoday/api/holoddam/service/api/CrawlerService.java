@@ -14,8 +14,11 @@ public class CrawlerService {
     public CrawlResult extractText(String url){
         if (url == null || url.isBlank()) return null;
 
-        if (url.contains("news.naver.com")) return extractNews(url);
-        return extractGenericWeb(url);
+        String fixedUrl = url.replace("\\u003d", "=")
+                .replace("\\u0026", "&");
+
+        if (url.contains("news.naver.com")) return extractNews(fixedUrl);
+        return extractGenericWeb(fixedUrl);
     }
 
     private CrawlResult extractNews(String url){
@@ -33,7 +36,7 @@ public class CrawlerService {
             }
             String cleanedText= cleanNewsNoise(fullText);
 
-            return new CrawlResult(cleanedText, imageUrl);
+            return new CrawlResult(cleanedText, imageUrl, null);
 
         } catch (Exception e){
             log.error(e.getMessage());
@@ -47,7 +50,6 @@ public class CrawlerService {
                     .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
                     .timeout(5000)
                     .get();
-
             String imageUrl = extractImageUrl(doc);
 
             String text = doc.select(".entry-content, .tt_article_useless_p_margin, article").text();
@@ -61,7 +63,7 @@ public class CrawlerService {
             }
             String fullText = text.replaceAll("\\s+", " ").trim();
 
-            return new CrawlResult(fullText, imageUrl);
+            return new CrawlResult(fullText, imageUrl, doc.title());
 
         } catch (Exception e){
             log.error(e.getMessage());

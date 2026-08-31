@@ -11,7 +11,6 @@ import com.holoday.api.holoddam.service.api.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
@@ -25,7 +24,6 @@ public class CardFacadeServiceImpl implements CardFacadeService {
     private final CardRepository cardRepository;
 
     @Override
-    @Transactional
     public void collectAndSaveAll(String query, SortType sortType) {
         collectAndSaveNews(query, sortType);
         collectAndSaveBlog(query, sortType);
@@ -57,6 +55,7 @@ public class CardFacadeServiceImpl implements CardFacadeService {
             }
         } catch (Exception e) {
             log.error("error occurred during collecting news(naver)", e.getMessage(), e);
+            throw e;
         }
     }
 
@@ -64,20 +63,22 @@ public class CardFacadeServiceImpl implements CardFacadeService {
     public void collectAndSaveBlog(String query, SortType sortType) {
         try {
             GoogleSearchResponse response = googleSearchApiService.search(query, sortType);
-            if (response == null || response.getItems() == null) return;
+            if (response == null || response.getOrganicResults() == null) return;
 
-            for (GoogleSearchResponse.SearchItem item : response.getItems()) {
+            for (GoogleSearchResponse.SearchItem item : response.getOrganicResults()) {
                 CrawlResult crawlResult = crawlerService.extractText(item.getLink());
 
                 String rawContent = (crawlResult != null && !crawlResult.getContent().isBlank())
                         ? crawlResult.getContent() : item.getSnippet();
 
+                String title = (crawlResult != null && crawlResult.getTitle() != null && !crawlResult.getTitle().isBlank())
+                        ? crawlResult.getTitle() : item.getTitle();
                 String imageUrl = (crawlResult != null) ? crawlResult.getImageUrl() : "";
                 String summary = openApiService.summarize(rawContent);
 
                 Card card = Card.builder()
                         .cardCategory("BLOG")
-                        .cardTitle(item.getTitle())
+                        .cardTitle(title.replaceAll("<[^>]*>", ""))
                         .cardSumm(summary)
                         .cardOriginUrl(item.getLink())
                         .cardImageUrl(imageUrl)
@@ -86,6 +87,7 @@ public class CardFacadeServiceImpl implements CardFacadeService {
             }
         } catch (Exception e) {
             log.error("Error occurred during collecting blog(google api)", e.getMessage(), e);
+            throw e;
         }
     }
 
@@ -96,10 +98,11 @@ public class CardFacadeServiceImpl implements CardFacadeService {
             if (response == null || response.getItems() == null) return;
 
             for (YoutubeVideoResponse.SearchItem item : response.getItems()) {
+                String summary = (item.getDescription() == null||item.getDescription().isBlank()) ? "영상을 시청해보세요!":item.getDescription();
                 Card card = Card.builder()
                         .cardCategory("VIDEO")
                         .cardTitle(item.getTitle())
-                        .cardSumm(item.getDescription())
+                        .cardSumm(summary)
                         .cardOriginUrl(item.getVideoUrl())
                         .cardImageUrl(item.getThumbnailUrl())
                         .build();
@@ -107,6 +110,7 @@ public class CardFacadeServiceImpl implements CardFacadeService {
             }
         } catch (Exception e) {
             log.error("error occurred during collecting video(youtube)", e.getMessage(), e);
+            throw e;
         }
     }
 }

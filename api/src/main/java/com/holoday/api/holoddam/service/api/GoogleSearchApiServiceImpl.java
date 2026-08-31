@@ -16,27 +16,25 @@ import java.net.URI;
 @RequiredArgsConstructor
 @Slf4j
 public class GoogleSearchApiServiceImpl implements ApiService<GoogleSearchResponse> {
-    @Value("${external-api.google.api-key}")
+    @Value("${external-api.serpapi-key}")
     private String apiKey;
-    @Value("${external-api.google.cx}")
-    private String cx;
 
     private final RestClient restClient;
 
     @Override
     public GoogleSearchResponse search(String query, SortType sortType) {
         UriComponentsBuilder builder = UriComponentsBuilder
-                .fromUriString("https://www.googleapis.com/customsearch/v1")
-                .queryParam("key", apiKey)
-                .queryParam("cx", cx)
+                .fromUriString("https://serpapi.com/search.json")
+                .queryParam("engine", "google")
+                .queryParam("api_key", apiKey)
                 .queryParam("q", query)
+                .queryParam("hl", "ko")
+                .queryParam("gl", "kr")
                 .queryParam("num", 3);
         if (sortType == SortType.RECENCY) {
-            builder.queryParam("sort", "date");
+            builder.queryParam("tbs", "qdr:d");
         }
-        URI uri = builder.build()
-                .encode()
-                .toUri();
+        URI uri = builder.build().toUri();
 
         try {
             return restClient.get()

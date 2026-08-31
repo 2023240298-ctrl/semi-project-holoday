@@ -8,4 +8,5 @@ import lombok.Getter;
 public class CrawlResult{
     private String content;
     private String imageUrl;
+    private String title;
 }
