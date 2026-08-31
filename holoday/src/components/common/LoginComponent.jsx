@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import axios from "axios";
+import customAxios from "../../api/customAxios";
 
 const LoginComponent = () => {
    const navigate = useNavigate();
@@ -22,8 +22,8 @@ const LoginComponent = () => {
    const handleChangeLogin = async () => {
       console.log(login);
       try {
-         const response = await axios.post(
-            "http://localhost:8080/api/holoday/login",
+         const response = await customAxios.post(
+            "/api/holoday/login",
             login
          );
 
