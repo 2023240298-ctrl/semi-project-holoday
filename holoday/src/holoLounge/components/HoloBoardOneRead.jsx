@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getOne } from "./HoloBoardApi";
+import { getOne } from "../js/HoloBoardApi";
 
 const initState = {
     categoryNo: null,
