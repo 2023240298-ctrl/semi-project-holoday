@@ -8,7 +8,14 @@ const HoloBoard = () => {
 
     return (
         <div>
-            홀로라운지 게시판 목록 조회 페이지 {page} - {size}
+            <div>
+                홀로라운지 게시판 목록 조회 페이지 {page} - {size}
+            </div>
+            <button
+                type="button"
+            >
+                글쓰기
+            </button>
         </div>
     );
 };

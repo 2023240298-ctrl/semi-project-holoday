@@ -1,7 +1,7 @@
 import { createSearchParams, useNavigate, useParams, useSearchParams } from "react-router";
 import HoloBoardOneRead from "./HoloBoardOneRead";
 
-const HoloBoardDetailPage = ({no}) => {
+const HoloBoardDetailPage = () => {
     const {no} = useParams();
     const navigate = useNavigate();
     const [queryParams] = useSearchParams();
