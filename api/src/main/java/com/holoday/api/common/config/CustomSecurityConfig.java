@@ -60,7 +60,10 @@ public class CustomSecurityConfig {
                         .requestMatchers(
                                 HttpMethod.GET,
                                 "/api/holoday/board",
-                                "/api/holoday/board/*"
+                                "/api/holoday/board/*",
+                                "/api/holoday/info",
+                                "/api/holoday/info/*"
+
                         ).permitAll()
 
                         .anyRequest().authenticated()
