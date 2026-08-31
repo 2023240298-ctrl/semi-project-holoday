@@ -1,8 +1,6 @@
 package com.holoday.api.user.controller;
 
 import com.holoday.api.user.dto.*;
-import com.holoday.api.user.entity.User;
-import com.holoday.api.user.service.AuthService;
 import com.holoday.api.util.JWTUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.*;
@@ -17,13 +15,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthenticationManager authenticationManager;
-    private final AuthService authService;
     private final JWTUtil jwtUtil;
-
-    @PostMapping("/signup")
-    public void signup(@RequestBody User user) {
-        authService.signup(user);
-    }
 
     @PostMapping("/login")
     @Operation(hidden=true)

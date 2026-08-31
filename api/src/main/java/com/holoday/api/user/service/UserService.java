@@ -8,24 +8,28 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuthService {
+public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
     public void signup(User user) {
-
-        System.out.println("회원가입 서비스 진입");
-        System.out.println("암호화 전: " + user.getUserPw());
+        //System.out.println("회원가입 서비스 진입");
+        //System.out.println("암호화 전: " + user.getUserPw());
 
         user.changeUserPw(
                 passwordEncoder.encode(user.getUserPw())
         );
-
-        System.out.println("암호화 후: " + user.getUserPw());
-
+        //System.out.println("암호화 후: " + user.getUserPw());
         user.changeUserIsAdmin(false);
-
         userRepository.save(user);
+    }
+
+    public boolean existsByUserId(String userId){
+        return userRepository.existsByUserId(userId);
+    }
+
+    public boolean existsByUserEmail(String userEmail){
+        return userRepository.existsByUserEmail(userEmail);
     }
 }

@@ -58,9 +58,7 @@ public class UserRepositoryTests {
         String userId = "alstn11";
 
         User user = userRepository.findByUserId(userId)
-                .orElseThrow(() ->
-                        new IllegalArgumentException("회원이 존재하지 않습니다.")
-                );
+                .orElseThrow(()->new IllegalArgumentException("doesn't exist"));
 
         printUser(user);
         log.info("isAdmin: {}", user.isUserIsAdmin());
