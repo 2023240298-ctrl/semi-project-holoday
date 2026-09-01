@@ -3,6 +3,8 @@ import{ getList } from "./api/infoApi";
 import { useNavigate } from "react-router";
 import "./InfoList.css";
 import PagiNation from "../components/common/PagiNation";
+import Header from "../components/common/Header";
+import Footer from "../components/common/Footer";
 
 const InfoList = () => {
   const[serverData, setServerData] = useState(null);

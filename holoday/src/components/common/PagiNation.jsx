@@ -20,6 +20,11 @@ const PagiNation = ({serverData, movePage}) => {
                      ? "primary"
                      : "text"
                }
+               style={
+                  serverData.currentPage === pageNum
+                        ? { backgroundColor: "#5B87B3" }
+                        : {}
+               }
                size="small"
                key={pageNum}
                onClick={() => movePage({page: pageNum})}
