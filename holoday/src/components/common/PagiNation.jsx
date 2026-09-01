@@ -1,4 +1,4 @@
-const PageNation = ({serverData, movePage}) => {
+const PagiNation = ({serverData, movePage}) => {
    return (
       <div>
          {serverData.prev && (
@@ -32,4 +32,4 @@ const PageNation = ({serverData, movePage}) => {
    );
 };
 
-export default PageNation;
+export default PagiNation;
