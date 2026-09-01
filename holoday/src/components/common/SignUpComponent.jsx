@@ -13,14 +13,13 @@ const initState = {
 }
 
 const SignUpComponent = () => {
-
     const [formData, setFormData] = useState(initState);
     const [codeInput, setCodeInput] = useState('');
     const [isEmailSent, setIsEmailSent] = useState(false);
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     const [timeLeft, setTimeLeft] = useState(0);
     const [isTimerRunning, setIsTimerRunning] = useState(false);
-    const [authError, setAuthError] = useState('');
+    const [isIdAvailable, setIsIdAvailable] = useState(null);
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -35,10 +34,14 @@ const SignUpComponent = () => {
             toast.warning("이메일을 입력해주세요.")
             return;
         }
+        const isDuplicated = await checkEmail(formData);
+        if (isDuplicated) {
+            toast.error("이미 사용중인 이메일입니다.")
+            return;
+        }
         try {
             await send(formData);
             setIsEmailSent(true);
-            toast.success("이메일이 발송되었습니다!")
             setTimeLeft(300);
             setIsTimerRunning(true);
         } catch (e) {
@@ -56,12 +59,13 @@ const SignUpComponent = () => {
             if (isValid) {
                 setIsEmailVerified(true);
                 toast.success("이메일 인증에 성공하였습니다!")
+                setTimeLeft(0);
+                setIsTimerRunning(false);
             } else if (!isValid) {
                 toast.error("잘못된 비밀번호입니다.")
                 return;
             }
         } catch (e) {
-            console.error("진짜 에러 내용:", e);
             toast.error("오류입니다. 잠시 후 다시 시도해주세요.")
         }
     };
@@ -73,8 +77,15 @@ const SignUpComponent = () => {
             toast.warning("이메일을 인증해주세요.")
             return;
         }
+        if (!isIdAvailable) {
+            toast.warning("중복되지 않는 아이디를 써주세요.")
+            return;
+        }
         try {
             await signup(formData);
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 3000);
             toast.success("성공적으로 가입되었습니다. 환영합니다!")
         } catch (e) {
             toast.error("가입에 실패했습니다.")
@@ -98,6 +109,23 @@ const SignUpComponent = () => {
         const secs = seconds % 60;
         return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`
     }
+
+    useEffect(() => {
+        if (!formData.userId) {
+            setIsIdAvailable(null);
+            return;
+        }
+        const timer = setTimeout(async () => {
+            try {
+                const isDuplicated = await checkId(formData);
+                setIsIdAvailable(!isDuplicated);
+            } catch (e) {
+                console.error("id check error", e)
+            }
+        }, 300);
+
+        return () => clearTimeout(timer);
+    }, [formData.userId]);
 
     return (
         <>
@@ -151,7 +179,12 @@ const SignUpComponent = () => {
                             <div className="mb-2 block">
                                 <Label className="logo-text head-guide">아이디</Label>
                             </div>
-                            <div className="flex items-center w-full h-14 rounded-lg border border-gray-300 bg-gray-50 px-4 shadow-sm transition-colors focus-within:bg-white focus-within:ring-1 focus-within:ring-blue-500 focus-within:border-blue-500">
+                            <div className={`flex items-center w-full h-14 rounded-lg border px-4 shadow-sm transition-colors 
+                            ${isIdAvailable === null
+                                    ? 'border-gray-300 bg-gray-50 focus-within:bg-white focus-within:ring-1 focus-within:ring-blue-500 focus-within:border-blue-500' : isIdAvailable
+                                        ? 'bg-emerald-50 border-emerald-500 text-emerald-900'
+                                        : 'bg-rose-50 border-rose-500 text-rose-900'
+                                }`}>
                                 <span className="text-lg font-bold text-gray-500 mr-4 select-none">@</span>
                                 <input type="text" placeholder="holoday1234" required id="userId"
                                     value={formData.userId} onChange={handleChange}
@@ -193,13 +226,13 @@ const SignUpComponent = () => {
                         <div>
                             <Label className="text-white text-xs">.</Label>
                             <button type="submit" className="logo-text head-guide w-full py-3 px-5 h-14 bg-blue-700 hover:bg-blue-600 active:bg-blue-700 text-white font-medium rounded-lg text-center text-lg transition-colors focus:ring-2 shadow-sm">
-                                가입
+                                가입!
                             </button>
                         </div>
 
                     </form>
                 </Card>
-            </div>
+            </div >
         </>
     );
 };
