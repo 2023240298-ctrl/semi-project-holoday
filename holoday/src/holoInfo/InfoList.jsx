@@ -4,19 +4,25 @@ import { useNavigate } from "react-router";
 import "./InfoList.css";
 
 const InfoList = () => {
-  const[data, setData] = useState([]);
+  const[serverData, setServerData] = useState(null);
   const navigate = useNavigate();
+
+  const moveToRead = (infoNo) => {
+    navigate(`/info/${infoNo}`);
+  };
   
   useEffect(() => {
     getList({
         page: 1,
         size: 10
     }).then((result) => {
-        console.log("전체 응답:", result);
-        console.log("dtoList:", result.dtoList);
-        setData(result.dtoList);
+        setServerData(result);
     });
   },[]);
+
+  if (!serverData) {
+    return <div>Loading...</div>;
+    }
 
     return (
         <div className="info-list holo-text">
@@ -34,10 +40,11 @@ const InfoList = () => {
             </div>
 
             <div className="info-cards">
-                {data.map((info) => (
+                {serverData.dtoList.map((info) => (
                 <div
-                    key={info.infoNo}
                     className="info-card-overlay"
+                    key={info.infoNo}
+                    onClick={() => moveToRead(info.infoNo)}
                 >
                 <img
                 src="/images/holoInfo/testfile.png"
