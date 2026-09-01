@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getOne } from "../js/HoloBoardApi";
+import { getOne, deleteOne } from "../js/HoloBoardApi";
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 
 const initState = {
@@ -45,14 +45,30 @@ const ReadComponent = ({no}) => {
                     type="button"
                     onClick={moveToList}
                 >
-                    목록
+                    목록으로
                 </button>
 
                 <button
                     type="button"
                     onClick={() => moveToModify(no)}
                 >
-                    수정
+                    수정하기
+                </button>
+                
+                <button
+                    type="button"
+                    onClick={() => {
+                        deleteOne(no)
+                            .then(result => {
+                                console.log("삭제 완료:", result);
+                                moveToList();
+                            })  
+                            .catch(e => {
+                                console.error(e);
+                            });
+                    }}
+                >
+                    삭제하기
                 </button>
             </div>
         </div>
