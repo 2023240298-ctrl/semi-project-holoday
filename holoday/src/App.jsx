@@ -4,6 +4,8 @@ import Footer from './components/common/Footer'
 import { Outlet } from 'react-router'
 import { useState } from 'react'
 import { ThemeInit } from '../.flowbite-react/init'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [isLogin, setIsLogin] = useState(
@@ -12,6 +14,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer position="top-right" autoClose={4000} />
       <ThemeInit />
       <Header
         isLogin={isLogin}

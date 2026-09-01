@@ -3,6 +3,7 @@ import './SignUpComponent.css'
 import { HiMail } from "react-icons/hi";
 import { useState, useEffect, use } from 'react';
 import { checkEmail, checkId, signup, send, authenticate } from '../../api/SignUpApi';
+import { toast } from 'react-toastify';
 
 const initState = {
     userId: '',
@@ -30,15 +31,15 @@ const SignUpComponent = () => {
 
     const handleSendEmailClick = async () => {
         if (!formData.userEmail) {
-            alert("enter the email");
+            toast.warning("이메일을 입력해주세요.")
             return;
         }
         try {
             await send(formData);
             setIsEmailSent(true);
-            alert("email sent");
+            toast.success("이메일이 발송되었습니다!")
         } catch (e) {
-            alert("failed to send email");
+            toast.error("이메일 발송에 실패했습니다...")
         }
     };
 
