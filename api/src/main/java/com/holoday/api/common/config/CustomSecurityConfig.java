@@ -66,6 +66,7 @@ public class CustomSecurityConfig {
                                 HttpMethod.GET,
                                 "/api/holoday/board",
                                 "/api/holoday/board/*",
+                                "/api/holoday/board/*/comments",
                                 "/api/holoday/info",
                                 "/api/holoday/info/*"
 
