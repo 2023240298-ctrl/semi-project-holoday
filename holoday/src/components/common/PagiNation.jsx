@@ -1,32 +1,41 @@
+import { Button } from "antd";
+
 const PagiNation = ({serverData, movePage}) => {
    return (
       <div>
          {serverData.prev && (
-            <button
-               type="button"
+            <Button
+               type="text"
+               size="small"
                onClick={() => movePage({page: serverData.prevPage})}
             >
-               이전
-            </button>
+               &lt;
+            </Button>
          )}
 
          {serverData.pageNumberList.map((pageNum) => (
-            <button
-               type="button"
+            <Button
+               type={
+                  serverData.currentPage === pageNum
+                     ? "primary"
+                     : "text"
+               }
+               size="small"
                key={pageNum}
                onClick={() => movePage({page: pageNum})}
             >
                {pageNum}
-            </button>
+            </Button>
          ))}
 
          {serverData.next && (
-            <button
-               type="button"
+            <Button
+               type="text"
+               size="small"
                onClick={() => movePage({page: serverData.nextPage})}
             >
-               다음
-            </button>
+               &gt;
+            </Button>
          )}
       </div>
    );

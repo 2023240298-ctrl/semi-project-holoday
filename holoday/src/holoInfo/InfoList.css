@@ -99,3 +99,10 @@
 .info-overlay-text p {
     margin: 0;
 }
+
+.info-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    
+}

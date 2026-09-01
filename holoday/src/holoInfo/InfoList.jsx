@@ -70,11 +70,12 @@ const InfoList = () => {
                 ))}
 
             </div>
-
-            <PagiNation
-              serverData={serverData}
-              movePage={movePage}
-            />
+            <div className="info-pagination">
+                <PagiNation
+                serverData={serverData}
+                movePage={movePage}
+                />
+            </div>
         </div>
     );
 };
