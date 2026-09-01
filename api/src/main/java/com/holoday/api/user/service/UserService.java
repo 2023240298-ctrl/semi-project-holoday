@@ -29,7 +29,7 @@ public class UserService {
             return "회원가입 성공!";
         } catch (Exception e){
             log.error("error occurred during saving user");
-            return "회원가입에 실패하였습니다.";
+            return null;
         }
     }
 

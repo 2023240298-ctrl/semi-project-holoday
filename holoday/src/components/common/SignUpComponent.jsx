@@ -68,6 +68,9 @@ const SignUpComponent = () => {
         }
         try {
             await signup(formData);
+            alert("successfully joined");
+        } catch (e) {
+            alert("something went wrong");
         }
     }
 
@@ -75,7 +78,7 @@ const SignUpComponent = () => {
         <>
             <div className="flex justify-center items-center signupbox-container">
                 <Card className="w-full max-w-2xl !p-8 shadow-xl m-10 !px-14">
-                    <form className="flex flex-col gap-7">
+                    <form className="flex flex-col gap-7" onSubmit={handleSubmit}>
 
 
                         <div className="w-full">
@@ -89,7 +92,8 @@ const SignUpComponent = () => {
                                         value={formData.userEmail} onChange={handleChange}
                                         className="w-full bg-transparent outline-none border-none p-0 focus:outline-none focus:ring-0 text-base text-gray-900 placeholder-gray-500" />
                                 </div>
-                                <button type="button" className="shrink-0 px-6 h-14 -ml-[1px] rounded-l-none rounded-r-lg bg-blue-200 hover:bg-blue-300 active:bg-blue-200 font-medium text-md transition-colors border border-blue-300 flex items-center justify-center">
+                                <button type="button" onClick={handleSendEmailClick}
+                                    className="shrink-0 px-6 h-14 -ml-[1px] rounded-l-none rounded-r-lg bg-blue-200 hover:bg-blue-300 active:bg-blue-200 font-medium text-md transition-colors border border-blue-300 flex items-center justify-center">
                                     인증
                                 </button>
                             </div>
@@ -110,7 +114,7 @@ const SignUpComponent = () => {
                                         03:00
                                     </span>
                                 </div>
-                                <button type="button"
+                                <button type="button" onClick={handleVerifyCodeClick}
                                     className="shrink-0 px-6 h-14 -ml-[1px] rounded-l-none rounded-r-lg border border-gray-300 bg-gray-200 hover:bg-gray-300 active:bg-gray-200 font-medium text-md transition-colors flex items-center justify-center">
                                     확인
                                 </button>
@@ -137,7 +141,7 @@ const SignUpComponent = () => {
                             </div>
                             <div className="flex items-center w-full h-14 rounded-lg border border-gray-300 bg-gray-50 px-4 shadow-sm transition-colors focus-within:bg-white focus-within:ring-1 focus-within:ring-blue-500 focus-within:border-blue-500">
                                 <svg className="w-6 h-6 ml-0 mr-2 text-gray-500 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 16 4-4-4-4m6 8 4-4-4-4" />
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m7 16 4-4-4-4m6 8 4-4-4-4" />
                                 </svg>
                                 <input
                                     type="password" placeholder="holoday0831!" required id="userPw"

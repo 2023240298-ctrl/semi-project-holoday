@@ -55,7 +55,11 @@ public class CustomSecurityConfig {
                         .requestMatchers(
                                 "/api/holoday/login",
                                 "/api/holoday/signup",
-                                "/error"
+                                "/error",
+                                "/api/holoday/checkId",
+                                "/api/holoday/checkEmail",
+                                "/api/holoday/send",
+                                "/api/holoday/authenticate"
                         ).permitAll()
 
                         .requestMatchers(
