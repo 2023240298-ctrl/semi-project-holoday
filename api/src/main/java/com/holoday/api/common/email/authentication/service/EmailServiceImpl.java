@@ -39,7 +39,8 @@ public class EmailServiceImpl implements EmailService {
         try {
             mailSender.send(message);
         } catch (Exception e){
-            log.error("error occurred during sending email", e.getMessage(), e);
+            log.error("error occurred during sending email", e);
+            throw new RuntimeException("failed to send email", e);
         }
     }
 
