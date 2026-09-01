@@ -7,7 +7,7 @@ const holoddamRouter = () => {
             HydrateFallback: () => <div>Loading...</div>,
             lazy: async () => {
                 const { default: Component } = await import('../holoddam/pages/DrawPage');
-                return Component;
+                return { Component };
             },
         }
     ];
