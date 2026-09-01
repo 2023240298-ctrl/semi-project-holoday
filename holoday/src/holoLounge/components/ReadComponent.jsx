@@ -107,9 +107,14 @@ const ReadComponent = ({no}) => {
                     <button
                         type="button"
                         onClick={() => {
-                            const content = commentContent.trim();
+                            const accessToken = localStorage.getItem("accessToken");
 
-                            console.log("등록할 댓글:", content);
+                            if(!accessToken) {
+                                alert("로그인 후 이용해 주세요.");
+                                return;
+                            }
+
+                            const content = commentContent.trim();
 
                             if(!content){
                                 alert("댓글 내용을 입력해 주세요.");
@@ -117,7 +122,7 @@ const ReadComponent = ({no}) => {
                             }
 
                             postComment(no, {
-                                commentContent: commentContent
+                                commentContent: content
                             })
                                 .then((result) => {
                                     console.log("댓글 등록:", result);
@@ -215,6 +220,13 @@ const ReadComponent = ({no}) => {
                             <button
                                 type="button"
                                 onClick={() => {
+                                    const accessToken = localStorage.getItem("accessToken");
+
+                                    if(!accessToken) {
+                                        alert("로그인 후 이용해 주세요.");
+                                        return;
+                                    }
+
                                     setEditingCommentNo(comment.commentNo);
                                     setEditContent(comment.commentContent);
                                 }}
@@ -226,6 +238,13 @@ const ReadComponent = ({no}) => {
                         <button
                             type="button"
                             onClick={() => {
+                                const accessToken = localStorage.getItem("accessToken");
+
+                                if(!accessToken) {
+                                    alert("로그인 후 이용해 주세요.");
+                                    return;
+                                }
+
                                 deleteComment(comment.commentNo)
                                     .then(() => {
                                         setComments((prev) => ({
