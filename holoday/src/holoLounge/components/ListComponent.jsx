@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getList } from "../js/HoloBoardApi";
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 import PagiNation from "../../components/common/PagiNation";
+import { useNavigate } from "react-router";
 
 const initState = {
     dtoList: [],
@@ -18,7 +19,7 @@ const initState = {
 
 const ListComponent = () => {
    const {page, size, moveToList} = useBoardCustomMove();
-
+   const navigate = useNavigate();
    const [serverData, setServerData] = useState(initState);
 
    useEffect(() => {
@@ -31,7 +32,10 @@ const ListComponent = () => {
       <div>
          <div>
             {serverData.dtoList.map((board) => (
-               <div key={board.boardNo}>
+               <div
+                  key={board.boardNo}
+                  onClick={() => navigate(`/holoboard/${board.boardNo}`)}
+               >
                   <div>게시글 번호: {board.boardNo}</div>
                   <div>작성자: {board.userId}</div>
                   <div>제목: {board.boardTitle}</div>
