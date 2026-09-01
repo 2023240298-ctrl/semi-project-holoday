@@ -50,6 +50,9 @@ public class EmailServiceImpl implements EmailService {
         String userInput = request.getCode();
 
         AuthCode storedAuthCode = savedAuthCode.get(email);
+        if (storedAuthCode == null){
+            return false;
+        }
         if (savedAuthCode == null){
             return false;
         }

@@ -28,7 +28,7 @@ public class EmailController {
         if (isSuccess){
             return ResponseEntity.ok(ApiResponse.success("인증 성공!"));
         } else{
-         return ResponseEntity.badRequest().body(ApiResponse.fail("인증에 실패했습니다."));
+         return ResponseEntity.ok(ApiResponse.fail("인증에 실패했습니다."));
         }
     }
 }

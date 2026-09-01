@@ -18,7 +18,8 @@ const SignUpComponent = () => {
     const [codeInput, setCodeInput] = useState('');
     const [isEmailSent, setIsEmailSent] = useState(false);
     const [isEmailVerified, setIsEmailVerified] = useState(false);
-    const [timeLeft, setTimeLeft] = useState(300);
+    const [timeLeft, setTimeLeft] = useState(0);
+    const [isTimerRunning, setIsTimerRunning] = useState(false);
     const [authError, setAuthError] = useState('');
 
     const handleChange = (e) => {
@@ -38,6 +39,8 @@ const SignUpComponent = () => {
             await send(formData);
             setIsEmailSent(true);
             toast.success("이메일이 발송되었습니다!")
+            setTimeLeft(300);
+            setIsTimerRunning(true);
         } catch (e) {
             toast.error("이메일 발송에 실패했습니다...")
         }
@@ -53,11 +56,12 @@ const SignUpComponent = () => {
             if (isValid) {
                 setIsEmailVerified(true);
                 toast.success("이메일 인증에 성공하였습니다!")
-            } else {
+            } else if (!isValid) {
                 toast.error("잘못된 비밀번호입니다.")
                 return;
             }
         } catch (e) {
+            console.error("진짜 에러 내용:", e);
             toast.error("오류입니다. 잠시 후 다시 시도해주세요.")
         }
     };
@@ -89,6 +93,11 @@ const SignUpComponent = () => {
         return () => clearInterval(timer);
     }, [isTimerRunning, timeLeft]);
 
+    const formatTimer = (seconds) => {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`
+    }
 
     return (
         <>
@@ -126,9 +135,9 @@ const SignUpComponent = () => {
                                         value={codeInput}
                                         onChange={(e) => setCodeInput(e.target.value)}
                                         className="w-full bg-transparent outline-none border-none p-0 focus:outline-none focus:ring-0 text-base text-gray-900 placeholder-gray-500" />
-                                    <span className="shrink-0 text-md text-rose-400 select-none">
-                                        05:00
-                                    </span>
+                                    {isTimerRunning && (
+                                        <span className="shrink-0 text-md text-rose-400 select-none">{formatTimer(timeLeft)}</span>
+                                    )}
                                 </div>
                                 <button type="button" onClick={handleVerifyCodeClick}
                                     className="shrink-0 px-6 h-14 -ml-[1px] rounded-l-none rounded-r-lg border border-gray-300 bg-gray-200 hover:bg-gray-300 active:bg-gray-200 font-medium text-md transition-colors flex items-center justify-center">

@@ -35,5 +35,5 @@ export const authenticate = async (formData, codeInput) => {
         email: formData.userEmail,
         code: codeInput,
     });
-    return response.data;
+    return response.data.success;
 };
