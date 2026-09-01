@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Card, Label } from "flowbite-react";
 import customAxios from "../../api/customAxios";
+import './LoginComponent.css'
 
 const LoginComponent = () => {
    const navigate = useNavigate();
@@ -59,9 +60,23 @@ const LoginComponent = () => {
                                  </Label>
                               </div>
                               <div className="flex items-center w-full h-14 rounded-lg border border-gray-300 bg-gray-50 px-4 shadow-sm transition-colors focus-within:bg-white focus-within:ring-1 focus-within:ring-blue-500 focus-within:border-blue-500">
-                                 <span className="text-lg font-bold text-gray-500 mr-4 select-none">
-                                    @
-                                 </span>
+                                 <svg
+                                    className="w-6 h-6 mr-2 text-gray-500 shrink-0"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                 >
+                                    <path
+                                       stroke="currentColor"
+                                       strokeLinecap="round"
+                                       strokeLinejoin="round"
+                                       strokeWidth="2"
+                                       d="m7 16 4-4-4-4m6 8 4-4-4-4"
+                                    />
+                                 </svg>
 
                                  <input
                                     type="text"
