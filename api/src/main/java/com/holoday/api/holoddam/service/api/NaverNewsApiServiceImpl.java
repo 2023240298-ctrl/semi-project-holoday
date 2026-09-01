@@ -32,7 +32,7 @@ public class NaverNewsApiServiceImpl implements ApiService<NaverNewsResponse> {
                 .fromUriString("https://naverapihub.apigw.ntruss.com")
                 .path("/search/v1/news")
                 .queryParam("query", keyword)
-                .queryParam("display", 3)
+                .queryParam("display", 5)
                 //resent: date, popular: sim
                 .queryParam("sort", sort)
                 .encode()

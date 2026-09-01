@@ -25,8 +25,8 @@ public class CardFacadeServiceImpl implements CardFacadeService {
 
     @Override
     public void collectAndSaveAll(String query, SortType sortType) {
-        collectAndSaveNews(query, sortType);
-        collectAndSaveBlog(query, sortType);
+        //collectAndSaveNews(query, sortType);
+        //collectAndSaveBlog(query, sortType);
         collectAndSaveVideo(query, sortType);
     }
 
