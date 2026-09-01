@@ -27,11 +27,6 @@ const SignUpComponent = () => {
         }));
     };
 
-    const handleCodeChange = (e) => {
-        setCodeInput(e.target.value);
-    };
-
-
     return (
         <>
             <div className="flex justify-center items-center signupbox-container">
@@ -46,7 +41,7 @@ const SignUpComponent = () => {
                             <div className="flex items-center gap-0 w-full">
                                 <div className="flex items-center w-full h-14 rounded-l-lg rounded-r-none border border-gray-300 bg-gray-50 px-4 shadow-sm transition-colors focus-within:bg-white focus-within:ring-1 focus-within:ring-blue-500 focus-within:border-blue-500 border-r-0">
                                     <HiMail className="w-5 h-5 text-gray-500 mr-3 shrink-0" />
-                                    <input type="email" placeholder="email@holoday.com" required
+                                    <input type="email" placeholder="email@holoday.com" required id="userEmail"
                                         value={formData.userEmail} onChange={handleChange}
                                         className="w-full bg-transparent outline-none border-none p-0 focus:outline-none focus:ring-0 text-base text-gray-900 placeholder-gray-500" />
                                 </div>
@@ -63,8 +58,9 @@ const SignUpComponent = () => {
                             </div>
                             <div className="flex items-center gap-0 w-full">
                                 <div className="flex items-center justify-between w-full h-14 rounded-l-lg rounded-r-none border border-gray-300 bg-gray-50 px-4 shadow-sm transition-colors focus-within:bg-white focus-within:ring-1 focus-within:ring-blue-500 focus-within:border-blue-500 border-r-0">
-                                    <input type="text" placeholder="인증번호 입력" required
-                                        value={codeInput} onChange={handleCodeChange}
+                                    <input type="text" placeholder="인증번호 입력" required id="code"
+                                        value={codeInput}
+                                        onChange={(e) => setCodeInput(e.target.value)}
                                         className="w-full bg-transparent outline-none border-none p-0 focus:outline-none focus:ring-0 text-base text-gray-900 placeholder-gray-500" />
                                     <span className="shrink-0 text-md text-rose-400 select-none">
                                         03:00
@@ -84,7 +80,7 @@ const SignUpComponent = () => {
                             </div>
                             <div className="flex items-center w-full h-14 rounded-lg border border-gray-300 bg-gray-50 px-4 shadow-sm transition-colors focus-within:bg-white focus-within:ring-1 focus-within:ring-blue-500 focus-within:border-blue-500">
                                 <span className="text-lg font-bold text-gray-500 mr-4 select-none">@</span>
-                                <input type="text" placeholder="holoday1234" required
+                                <input type="text" placeholder="holoday1234" required id="userId"
                                     value={formData.userId} onChange={handleChange}
                                     className="w-full bg-transparent outline-none border-none p-0 focus:outline-none focus:ring-0 text-base text-gray-900 placeholder-gray-500" />
                             </div>
@@ -100,7 +96,7 @@ const SignUpComponent = () => {
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 16 4-4-4-4m6 8 4-4-4-4" />
                                 </svg>
                                 <input
-                                    type="password" placeholder="holoday0831!" required
+                                    type="password" placeholder="holoday0831!" required id="userPw"
                                     value={formData.userPw} onChange={handleChange}
                                     className="w-full bg-transparent outline-none border-none p-0 focus:outline-none focus:ring-0 text-base text-gray-900 placeholder-gray-500" />
                             </div>
