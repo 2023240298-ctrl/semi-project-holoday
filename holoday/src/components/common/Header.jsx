@@ -41,12 +41,14 @@ const Header = ({ isLogin, setIsLogin }) => {
             로그인
           </button>
         )}
-        <button
-          type="button" onClick={() => navigate("/holosignup")}
-        >
-          회원가입
-        </button>
-      </div>
+        {!isLogin && (
+          <button
+            type="button" onClick={() => navigate("/holosignup")}
+          >
+            회원가입
+          </button>
+        )}
+        </div>
     </header>
   );
 

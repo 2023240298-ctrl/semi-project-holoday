@@ -65,6 +65,12 @@ const LoginComponent = () => {
          >
             로그인
          </button>
+         <button
+            type="button"
+            onClick={() => navigate("/holosignup")}
+         >
+            회원가입
+         </button>
       </div>
    );
 };
