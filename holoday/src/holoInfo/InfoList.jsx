@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import{ getList } from "./api/infoApi";
 import { useNavigate } from "react-router";
 import "./InfoList.css";
+import PagiNation from "../components/common/PagiNation";
 
 const InfoList = () => {
   const[serverData, setServerData] = useState(null);
@@ -10,11 +11,20 @@ const InfoList = () => {
   const moveToRead = (infoNo) => {
     navigate(`/info/${infoNo}`);
   };
+
+  const movePage = ({ page }) => {
+    getList({
+        page: page,
+        size: 9
+    }).then((result) => {
+        setServerData(result);
+    });
+  };
   
   useEffect(() => {
     getList({
         page: 1,
-        size: 10
+        size: 9
     }).then((result) => {
         setServerData(result);
     });
@@ -51,15 +61,20 @@ const InfoList = () => {
                 alt={info.infoTitle}
                 />
 
-            <div className="info-overlay-text">
-                <span>홀로 체험</span>
-                <h3>{info.infoTitle}</h3>
-                <p>{info.infoPlace}</p>
-            </div>   
-            </div>
+                <div className="info-overlay-text">
+                    <span>홀로 체험</span>
+                    <h3>{info.infoTitle}</h3>
+                    <p>{info.infoPlace}</p>
+                </div>   
+                </div>
                 ))}
 
-          </div>
+            </div>
+
+            <PagiNation
+              serverData={serverData}
+              movePage={movePage}
+            />
         </div>
     );
 };
