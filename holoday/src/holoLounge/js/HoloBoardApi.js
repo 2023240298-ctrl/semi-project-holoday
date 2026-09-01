@@ -20,3 +20,20 @@ export const postAdd = async(holoLounge) => {
 
     return response.data;
 };
+
+export const putOne = async(holoLounge) => {
+    const response = await customAxios.patch(
+        `${prefix}/${holoLounge.boardNo}`,
+        holoLounge
+    );
+
+    return response.data;
+};
+
+export const deleteOne = async(no) => {
+    const response = await customAxios.delete(
+        `${prefix}/${no}`
+    );
+
+    return response.data;
+};
