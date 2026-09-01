@@ -40,6 +40,7 @@ const SignUpComponent = () => {
             return;
         }
         try {
+            toast.success("이메일이 발송되었습니다!")
             await send(formData);
             setIsEmailSent(true);
             setTimeLeft(300);
