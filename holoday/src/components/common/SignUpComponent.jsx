@@ -2,6 +2,7 @@ import { Card, Label } from "flowbite-react";
 import './SignUpComponent.css'
 import { HiMail } from "react-icons/hi";
 import { useState, useEffect, use } from 'react';
+import { checkEmail, checkId, signup, send, authenticate } from '../../api/SignUpApi';
 
 const initState = {
     userId: '',
@@ -14,7 +15,7 @@ const SignUpComponent = () => {
 
     const [formData, setFormData] = useState(initState);
     const [codeInput, setCodeInput] = useState('');
-    const [isEmaliSent, setIsEmailSent] = useState(false);
+    const [isEmailSent, setIsEmailSent] = useState(false);
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     const [timeLeft, setTimeLeft] = useState(300);
     const [authError, setAuthError] = useState('');
@@ -26,6 +27,49 @@ const SignUpComponent = () => {
             [id]: value,
         }));
     };
+
+    const handleSendEmailClick = async () => {
+        if (!formData.userEmail) {
+            alert("enter the email");
+            return;
+        }
+        try {
+            await send(formData);
+            setIsEmailSent(true);
+            alert("email sent");
+        } catch (e) {
+            alert("failed to send email");
+        }
+    };
+
+    const handleVerifyCodeClick = async () => {
+        if (!codeInput) {
+            alert("enter the code");
+        }
+        try {
+            const isValid = await authenticate(formData, codeInput);
+            if (isValid) {
+                setIsEmailVerified(true);
+                alert("email authentication completed");
+            } else {
+                alert("wrong or expired password");
+            }
+        } catch (e) {
+            alert("error occurred");
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!isEmailVerified) {
+            alert("do email verification first");
+            return;
+        }
+        try {
+            await signup(formData);
+        }
+    }
 
     return (
         <>

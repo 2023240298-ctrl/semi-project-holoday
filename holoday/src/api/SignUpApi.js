@@ -14,13 +14,25 @@ export const checkId = async (formData) => {
 
 export const signup = async (formData) => {
     const response = await axios.post(`${prefix}/signup`, {
-        uesrId: formData.userId,
+        userId: formData.userId,
         userEmail: formData.userEmail,
         userNick: formData.userNick,
         userPw: formData.userPw,
     });
+    return response.data;
 };
 
-export const send = async () => {
-    const response = 
-}
+export const send = async (formData) => {
+    const response = await axios.post(`${prefix}/send`, {
+        email: formData.userEmail,
+    });
+    return response.data;
+};
+
+export const authenticate = async (formData, codeInput) => {
+    const response = await axios.post(`${prefix}/authenticate`, {
+        email: formData.userEmail,
+        code: codeInput,
+    });
+    return response.data;
+};
