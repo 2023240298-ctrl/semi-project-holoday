@@ -8,8 +8,9 @@
 
 .card-title {
     text-align: center;
-    padding: 15px;
-    background-color: blueviolet;
 }
 
-iframe {}
+iframe {
+    height: 300px;
+    width: 800px;
+}

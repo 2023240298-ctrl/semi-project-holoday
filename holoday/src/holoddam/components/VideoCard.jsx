@@ -13,13 +13,21 @@ const VideoCard = ({ card: { cardNo, cardOriginDate, cardTitle, cardSumm, cardOr
     return (
         <>
             <div className='card-box-container'>
+                <div className='title-container grid relative group'>
 
-                <div className='card-title'>
-                    <h1>{cardTitle}</h1>
+                    <div className='card-title col-start-1 row-start-1 bg-gray-200 p-4 z-0'>
+                        <h1 className="truncate">{cardTitle}</h1>
+                    </div>
+                    <div className='delete-button col-start-1 row-start-1 bg-blue-500/80 p-4 z-10 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-200'>
+                        <h1 className="text-white font-bold">cardno: {cardNo}</h1>
+                        <button type='button' className="text-white font-bold bg-red-500 px-2 py-1 rounded hover:bg-red-600">
+                            X
+                        </button>
+                    </div>
+
                 </div>
 
-
-                <div className='card-main-content'>
+                <div className='card-main-content flex justify-center items-center'>
                     <iframe
                         src={getEmbedUrl(cardOriginUrl)} title={cardTitle} frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -32,14 +40,15 @@ const VideoCard = ({ card: { cardNo, cardOriginDate, cardTitle, cardSumm, cardOr
                     <div className='card-subtitle'>
                         <h1>asdf</h1>
                     </div>
-
                     <div className='card-detail-box'>
+
                         <div className='card-date'>
                             <h1>adf</h1>
                         </div>
                         <div className='card-url'>
                             <h1>asdf</h1>
                         </div>
+
                     </div>
                 </div>
             </div>
