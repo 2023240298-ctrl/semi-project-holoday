@@ -13,21 +13,21 @@ function App() {
   )
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <ToastContainer position="top-right" autoClose={4000} />
       <ThemeInit />
       <Header
         isLogin={isLogin}
         setIsLogin={setIsLogin}
       />
-      <div className="App">
-        <main className="main-content">
+      <div className="App flex-1 flex flex-col">
+        <main className="main-content flex-1">
           <Outlet />
         </main>
       </div>
       <Footer />
-    </>
-  )
-}
+    </div>
+  );
+};
 
 export default App

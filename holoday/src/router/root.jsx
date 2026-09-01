@@ -1,5 +1,5 @@
 import memberRouter from "./memberRouter";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Outlet } from "react-router";
 import holoddamRouter from "./holoddamRouter";
 
 const root = createBrowserRouter([
