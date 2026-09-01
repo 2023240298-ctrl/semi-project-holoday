@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import{ getList } from "./api/infoApi";
-import { Card } from "flowbite-react";
+import { useNavigate } from "react-router";
 import "./InfoList.css";
 
 const InfoList = () => {
-
   const[data, setData] = useState([]);
+  const navigate = useNavigate();
   
   useEffect(() => {
     getList({
