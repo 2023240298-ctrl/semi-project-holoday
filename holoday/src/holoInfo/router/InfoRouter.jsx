@@ -1,5 +1,5 @@
 
-const InfoRouter = () => {
+const holoInfoRouter = () => {
     return [
          {
             path:"holoinfo",
@@ -32,4 +32,4 @@ const InfoRouter = () => {
     ];
 };
 
-export default InfoRouter;
+export default holoInfoRouter;

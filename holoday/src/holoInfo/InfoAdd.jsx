@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { postAdd } from "./api/infoApi";
+import { useNavigate } from "react-router";
 import "./InfoAdd.css";
 
 const initState = {
@@ -14,6 +15,7 @@ const initState = {
 const InfoAdd = () => {
   const [info, setInfo] = useState(initState);
   const [file,setFile] = useState(null);
+  const navigate = useNavigate();
 
 
   const handleChange = (e) => {
@@ -26,10 +28,9 @@ const InfoAdd = () => {
   };
 
   const handleClickAdd = () => {
-    console.log(localStorage.getItem("accessToken"));
-    
+
     postAdd(info, file).then((result)=> {
-        console.log(result);
+        navigate(`/holoinfo/${result.info}`);
     });
   };
   

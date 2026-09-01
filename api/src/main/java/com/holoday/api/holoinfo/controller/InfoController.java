@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -60,6 +61,13 @@ public class InfoController {
             @RequestPart("info") InfoDTO infoDTO,
             @RequestPart(value = "file", required = false) MultipartFile file
     ){
+        String userId = SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
+
+        infoDTO.setUserId(userId);
+
         FileDTO fileDTO = fileUtil.saveFile(file);
 
         if (fileDTO != null) {
