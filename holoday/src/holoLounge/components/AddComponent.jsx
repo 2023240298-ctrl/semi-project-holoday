@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { postAdd } from "../js/HoloBoardApi";
+import { useNavigate } from "react-router";
+import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 
 const initState = {
    categoryNo: "",
@@ -12,6 +14,9 @@ const initState = {
 
 const AddComponent = () => {
    const [holoLounge, setHoloLounge] = useState(initState);
+   const {moveToList} = useBoardCustomMove();
+   
+   const navigate = useNavigate();
 
    const handleChangeHoloLounge = (e) => {
       const {name, value} = e.target;
@@ -25,8 +30,8 @@ const AddComponent = () => {
    const handleClickAdd = () => {
       postAdd(holoLounge)
       .then(result => {
-         console.log(result)
-         setHoloLounge({...initState})
+         console.log(result);
+         navigate(`/holoboard/${result.boardNo}`);
       }).catch(e => {
          console.error(e)
       });
@@ -96,9 +101,16 @@ const AddComponent = () => {
 
          <button
             type="button"
+            onClick={moveToList}
+         >
+            목록으로
+         </button>
+
+         <button
+            type="button"
             onClick={handleClickAdd}
          >
-            등록
+            글쓰기
          </button>
       </div>
    );
