@@ -37,3 +37,58 @@ export const deleteOne = async(no) => {
 
     return response.data;
 };
+
+export const getCommentList = async (boardNo, pageParam) => {
+    const {page, size} = pageParam;
+
+    const response = await customAxios.get(
+        `${prefix}/${boardNo}/comments`,
+        {
+            params: {page, size},
+        }
+    );
+
+    return response.data;
+};
+
+export const postComment = async (boardNo, comment) => {
+    const response = await customAxios.post(
+        `${prefix}/${boardNo}/comments`,
+        comment
+    );
+
+    return response.data;
+};
+
+export const putComment = async (hComment) => {
+    const response = await customAxios.patch(
+        `/api/holoday/comment/${hComment.commentNo}`,
+        hComment
+    );
+
+    return response.data;
+}
+
+export const deleteComment = async (commentNo) => {
+    const response = await customAxios.delete(
+        `/api/holoday/comment/${commentNo}`
+    );
+
+    return response.data;
+};
+
+export const likeComment = async (commentNo) => {
+    const response = await customAxios.patch(
+        `/api/holoday/comment/${commentNo}/like`
+    );
+
+    return response.data;
+};
+
+export const unLikeComment = async (commentNo) => {
+    const response = await customAxios.patch(
+        `/api/holoday/comment/${commentNo}/unlike`
+    );
+
+    return response.data;
+}
