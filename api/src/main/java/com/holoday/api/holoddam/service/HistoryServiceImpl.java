@@ -7,6 +7,7 @@ import com.holoday.api.holoddam.repository.HistoryRepository;
 import com.holoday.api.user.entity.User;
 import com.holoday.api.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,6 +47,12 @@ public class HistoryServiceImpl implements HistoryService{
 
     @Override
     public List<Card> viewCards(String userId) {
+        User user = userRepository.findByUserId(userId)
+                .orElseThrow(()->new IllegalArgumentException("there is no such user"));
+
+        if (user.isUserIsAdmin()){
+            return cardRepository.findAll(Sort.by(Sort.Direction.DESC, "cardNo"));
+        }
         List<History> histories = historyRepository.findAllByUserIdOrderByCardNoDesc(userId);
         return histories.stream()
                 .map(History::getCard)
