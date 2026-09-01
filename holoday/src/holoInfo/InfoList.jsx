@@ -11,7 +11,7 @@ const InfoList = () => {
   const navigate = useNavigate();
 
   const moveToRead = (infoNo) => {
-    navigate(`/info/${infoNo}`);
+    navigate(`/holoinfo/${infoNo}`);
   };
 
   const movePage = ({ page }) => {
