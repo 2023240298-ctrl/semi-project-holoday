@@ -8,9 +8,11 @@ import com.holoday.api.hololounge.mapper.HoloLoungeMapper;
 import com.holoday.api.hololounge.repository.HoloLoungeRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.util.bcel.classfile.EnumElementValue;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,9 +45,15 @@ public class HoloLoungeServiceImpl implements HoloLoungeService{
 
     @Override
     public Long register(HoloLoungeDTO holoLoungeDTO) {
-        HoloLounge holoLounge = new HoloLounge(holoLoungeDTO.getCategoryNo(), holoLoungeDTO.getUserId(),
-                holoLoungeDTO.getBoardTitle(),holoLoungeDTO.getBoardContent(),holoLoungeDTO.getBoardScontent(),
-                holoLoungeDTO.getBoardImg(),holoLoungeDTO.getBoardSimg());
+
+        Authentication authentication =
+                SecurityContextHolder.getContext().getAuthentication();
+
+        String userId = authentication.getName();
+
+        HoloLounge holoLounge = new HoloLounge(holoLoungeDTO.getCategoryNo(), userId, holoLoungeDTO.getBoardTitle(),
+                holoLoungeDTO.getBoardContent(),holoLoungeDTO.getBoardScontent(), holoLoungeDTO.getBoardImg(),
+                holoLoungeDTO.getBoardSimg());
         HoloLounge saveHoloLounge = holoLoungeRepository.save(holoLounge);
         return saveHoloLounge.getBoardNo();
     }
