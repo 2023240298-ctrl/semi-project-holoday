@@ -1,11 +1,11 @@
 import './DrawPage.css';
-import NewsCard from '../components/NewsCard';
+import VideoCard from '../components/VideoCard';
 
 const DrawPage = () => {
     return (
         <>
             <h1>hello</h1>
-            <NewsCard />
+            <VideoCard />
         </>
     );
 };
