@@ -24,7 +24,11 @@ const ListComponent = () => {
 
    useEffect(() => {
       getList({page, size}).then((data) => {
+         console.log("목록 조회 성공:",data);
          setServerData(data);
+      })
+      .catch((error) => {
+         console.error("목록 조회 실패:", error);
       });
    }, [page, size]);
 
