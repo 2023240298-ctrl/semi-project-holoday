@@ -10,4 +10,6 @@ public interface HoloLoungeService {
     void modify(HoloLoungeDTO holoLoungeDTO);
     void remove(Long no);
     PageResponseDTO<HoloLoungeDTO> list(PageRequestDTO pageRequestDTO);
+    void like(Long no);
+    void unLike(Long no);
 }

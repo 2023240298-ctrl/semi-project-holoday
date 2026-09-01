@@ -30,6 +30,18 @@ public class HoloLoungeServiceImpl implements HoloLoungeService{
     }
 
     @Override
+    public void like(Long no) {
+        HoloLounge holoLounge = getLounge(no);
+        holoLounge.plusLike();
+    }
+
+    @Override
+    public void unLike(Long no) {
+        HoloLounge holoLounge = getLounge(no);
+        holoLounge.minusLike();
+    }
+
+    @Override
     public Long register(HoloLoungeDTO holoLoungeDTO) {
         HoloLounge holoLounge = new HoloLounge(holoLoungeDTO.getCategoryNo(), holoLoungeDTO.getUserId(),
                 holoLoungeDTO.getBoardTitle(),holoLoungeDTO.getBoardContent(),holoLoungeDTO.getBoardScontent(),
@@ -41,6 +53,7 @@ public class HoloLoungeServiceImpl implements HoloLoungeService{
     @Override
     public HoloLoungeDTO get(Long no) {
         HoloLounge holoLounge = getLounge(no);
+        holoLounge.plusHit();
         return holoLoungeMapper.toDTO(holoLounge);
     }
 
@@ -70,4 +83,5 @@ public class HoloLoungeServiceImpl implements HoloLoungeService{
 
         return new PageResponseDTO<>(dtoList, pageRequestDTO, holoLoungePage.getTotalElements());
     }
+
 }
