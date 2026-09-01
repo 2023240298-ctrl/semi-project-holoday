@@ -1,7 +1,7 @@
 import { Card, Label } from "flowbite-react";
 import './SignUpComponent.css'
 import { HiMail } from "react-icons/hi";
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 import { checkEmail, checkId, signup, send, authenticate } from '../../api/SignUpApi';
 import { toast } from 'react-toastify';
 
@@ -45,18 +45,20 @@ const SignUpComponent = () => {
 
     const handleVerifyCodeClick = async () => {
         if (!codeInput) {
-            alert("enter the code");
+            toast.warning("인증문자를 입력해주세요.")
+            return;
         }
         try {
             const isValid = await authenticate(formData, codeInput);
             if (isValid) {
                 setIsEmailVerified(true);
-                alert("email authentication completed");
+                toast.success("이메일 인증에 성공하였습니다!")
             } else {
-                alert("wrong or expired password");
+                toast.error("잘못된 비밀번호입니다.")
+                return;
             }
         } catch (e) {
-            alert("error occurred");
+            toast.error("오류입니다. 잠시 후 다시 시도해주세요.")
         }
     };
 
@@ -64,16 +66,29 @@ const SignUpComponent = () => {
         e.preventDefault();
 
         if (!isEmailVerified) {
-            alert("do email verification first");
+            toast.warning("이메일을 인증해주세요.")
             return;
         }
         try {
             await signup(formData);
-            alert("successfully joined");
+            toast.success("성공적으로 가입되었습니다. 환영합니다!")
         } catch (e) {
-            alert("something went wrong");
+            toast.error("가입에 실패했습니다.")
         }
     }
+
+    useEffect(() => {
+        let timer;
+        if (isTimerRunning && timeLeft > 0) {
+            timer = setInterval(() => {
+                setTimeLeft((prev) => prev - 1);
+            }, 1000);
+        } else if (timeLeft === 0) {
+            setIsTimerRunning(false);
+        }
+        return () => clearInterval(timer);
+    }, [isTimerRunning, timeLeft]);
+
 
     return (
         <>
@@ -112,7 +127,7 @@ const SignUpComponent = () => {
                                         onChange={(e) => setCodeInput(e.target.value)}
                                         className="w-full bg-transparent outline-none border-none p-0 focus:outline-none focus:ring-0 text-base text-gray-900 placeholder-gray-500" />
                                     <span className="shrink-0 text-md text-rose-400 select-none">
-                                        03:00
+                                        05:00
                                     </span>
                                 </div>
                                 <button type="button" onClick={handleVerifyCodeClick}

@@ -18,6 +18,7 @@ export const signup = async (formData) => {
         userEmail: formData.userEmail,
         userNick: formData.userNick,
         userPw: formData.userPw,
+        userIsAdmin: false,
     });
     return response.data;
 };
