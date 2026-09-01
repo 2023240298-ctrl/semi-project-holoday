@@ -1,0 +1,15 @@
+.card-box-container {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 900px;
+    background-color: aliceblue;
+}
+
+.card-title {
+    text-align: center;
+    padding: 15px;
+    background-color: blueviolet;
+}
+
+iframe {}
