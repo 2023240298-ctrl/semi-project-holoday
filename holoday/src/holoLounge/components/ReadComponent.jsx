@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getOne, deleteOne, getCommentList, postComment, putComment, deleteComment } from "../js/HoloBoardApi";
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 import "../components/ReadComponent.css"
+import { Card, Badge } from "flowbite-react";
 
 const initState = {
     categoryNo: null,
@@ -50,48 +51,80 @@ const ReadComponent = ({no}) => {
 
     return (
         <div className="readBox">
-            <div>
-                <div>카테고리: {holoboard.categoryNo}</div>
-                <div>작성자: {holoboard.userId}</div>
-                <div>제목: {holoboard.boardTitle}</div>
-                <div>내용: {holoboard.boardContent}</div>
-                <div>서브내용: {holoboard.boardScontent}</div>
-                <div>이미지: {holoboard.boardImg}</div>
-                <div>썸네일: {holoboard.boardSimg}</div>
-                <div>좋아요: {holoboard.boardLike}</div>
-                <div>조회수: {holoboard.boardHit}</div>
-            </div>
 
-            <div>
-                <button
-                    type="button"
-                    onClick={moveToList}
-                >
-                    목록으로
-                </button>
+            <div className="boardArea">
 
-                <button
-                    type="button"
-                    onClick={() => moveToModify(no)}
-                >
-                    수정하기
-                </button>
+                <Card className="boardDetail">
+
+                    <div className="boardMeta">
+                        <span>{holoboard.categoryNo}</span>
+                        <span>{holoboard.boardDate}</span>
+                    </div>
+                    
+                    <div className="boardTitle">
+                        {holoboard.boardTitle}
+                    </div>
+
+                    <div className="boardWriter">
+                        작성자: {holoboard.userId}
+                    </div>
+
+                    <p className="boardContent">
+                        {holoboard.boardContent}
+                    </p>
+                    
+                    <div className="boardImage">
+                        <img
+                            src={holoboard.boardImg}
+                            alt="게시판 이미지"
+                        />
+                    </div>
+
+                    <div className="boardStats">
+                        <Badge color="gray">
+                            조회수 {holoboard.boardHit}
+                        </Badge>
+                        
+                        <Badge color="pink">
+                            LIKE {holoboard.boardLike}
+                        </Badge>
+                    </div>
+
+                </Card>
+
+                <div className="boardButtons">
+
+                    <button
+                        type="button"
+                        onClick={moveToList}
+                    >
+                        목록으로
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={() => moveToModify(no)}
+                    >
+                        수정하기
+                    </button>
                 
-                <button
-                    type="button"
-                    onClick={() => {
-                        deleteOne(no)
-                            .then(result => {
-                                console.log("삭제 완료:", result);
-                                moveToList();
-                            })  
-                            .catch(e => {
-                                console.error(e);
-                            });
-                    }}
-                >
-                    삭제하기
-                </button>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            deleteOne(no)
+                                .then(result => {
+                                    console.log("삭제 완료:", result);
+                                    moveToList();
+                                })  
+                                .catch(e => {
+                                    console.error(e);
+                                });
+                        }}
+                    >
+                        삭제하기
+                    </button>
+
+                </div>
             </div>
 
             <div>
@@ -151,10 +184,7 @@ const ReadComponent = ({no}) => {
                             작성일: {comment.commentDate}
                         </div>
                         <div>
-                            댓글번호: {comment.commentNo}
-                        </div>
-                        <div>
-                            아이디: {comment.userId}
+                            작성자: {comment.userId}
                         </div>
 
                         {editingCommentNo === comment.commentNo ? (

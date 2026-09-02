@@ -15,6 +15,22 @@ export const getList = async (pageParam) => {
     return response.data;
 };
 
+export const likeBoard = async (no) => {
+    const response = await customAxios.patch(
+        `${prefix}/${no}/like`
+    );
+
+    return response.data;
+};
+
+export const unLikeBoard = async (no) => {
+    const response = await customAxios.patch(
+        `${prefix}/${no}/unlike`
+    );
+
+    return response
+}
+
 export const postAdd = async(holoLounge) => {
     const response = await customAxios.post(prefix, holoLounge);
 
