@@ -28,8 +28,8 @@ export const unLikeBoard = async (no) => {
         `${prefix}/${no}/unlike`
     );
 
-    return response
-}
+    return response.data;
+};
 
 export const postAdd = async(holoLounge) => {
     const response = await customAxios.post(prefix, holoLounge);

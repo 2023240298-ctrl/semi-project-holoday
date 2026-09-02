@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getOne, deleteOne, getCommentList, postComment, putComment, deleteComment } from "../js/HoloBoardApi";
+import { getOne, deleteOne, likeBoard, unLikeBoard, getCommentList, postComment, putComment, deleteComment } from "../js/HoloBoardApi";
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 import "../components/ReadComponent.css"
 import { Card, Badge } from "flowbite-react";
@@ -54,7 +54,7 @@ const ReadComponent = ({no}) => {
 
             <div className="boardArea">
 
-                <Card className="boardDetail">
+                <Card className="boardDetail border border-blue-100">
 
                     <div className="boardMeta">
                         <span>{holoboard.categoryNo}</span>
@@ -69,15 +69,17 @@ const ReadComponent = ({no}) => {
                         작성자: {holoboard.userId}
                     </div>
 
-                    <p className="boardContent">
+                    <p className="boardContent mt-6">
                         {holoboard.boardContent}
                     </p>
                     
                     <div className="boardImage">
-                        <img
-                            src={holoboard.boardImg}
-                            alt="게시판 이미지"
-                        />
+                        {holoboard.boardImg && (
+                            <img
+                                src={holoboard.boardImg}
+                                alt="게시판 이미지"
+                            />
+                        )}
                     </div>
 
                     <div className="boardStats">
@@ -85,45 +87,77 @@ const ReadComponent = ({no}) => {
                             조회수 {holoboard.boardHit}
                         </Badge>
                         
-                        <Badge color="pink">
+                        <button
+                            type="button"
+                            className="rounded-lg border border-pink-300 bg-pink-50
+                            px-3 py-1 text-sm text-pink-500"
+                            onClick={() => {
+
+                                const accessToken = localStorage.getItem("accessToken");
+
+                                if(!accessToken) {
+                                    alert("로그인 후 이용해 주세요.");
+                                    return;
+                                }
+
+                                likeBoard(no)
+                                    .then(() => {
+                                        setHoloboard((prev) => ({
+                                            ...prev,
+                                            boardLike: prev.boardLike + 1
+                                        }));
+                                    })
+                                    .catch((e) => {
+                                        console.error("좋아요 오류:", e);
+                                    });
+                            }}
+                        >
                             LIKE {holoboard.boardLike}
-                        </Badge>
+                        </button>
                     </div>
 
                 </Card>
 
-                <div className="boardButtons">
+                <div className="boardButtons mt-5 flex items-center justify-between">
 
                     <button
                         type="button"
+                        className="rounded-lg border border-sky-300 bg-sky-100 px-5 py-3 text-base
+                        font-semibold text-sky-700 hover:bg-sky-200"
                         onClick={moveToList}
                     >
-                        목록으로
+                        목록보기
                     </button>
 
-                    <button
-                        type="button"
-                        onClick={() => moveToModify(no)}
-                    >
-                        수정하기
-                    </button>
+                    <div className="flex gap-3">
+
+                        <button
+                            type="button"
+                            className="rounded-lg border border-blue-200 bg-blue-50 px-5 py-3 text-base
+                            font-medium text-blue-600 hover:bg-blue-100"
+                            onClick={() => moveToModify(no)}
+                        >
+                            수정하기
+                        </button>
                 
-                    <button
-                        type="button"
-                        onClick={() => {
-                            deleteOne(no)
-                                .then(result => {
-                                    console.log("삭제 완료:", result);
-                                    moveToList();
-                                })  
-                                .catch(e => {
-                                    console.error(e);
-                                });
-                        }}
-                    >
-                        삭제하기
-                    </button>
-
+                        <button
+                            type="button"
+                            className="rounded-lg border border-red-200 bg-red-50 px-5 py-3 text-base
+                            font-medium text-red-500 hover:bg-red-100"
+                            onClick={() => {
+                                deleteOne(no)
+                                    .then(result => {
+                                        console.log("삭제 완료:", result);
+                                        moveToList();
+                                    })  
+                                    .catch(e => {
+                                        console.error(e);
+                                    });
+                            }}
+                        >
+                            삭제하기
+                        </button>
+                    </div>
                 </div>
             </div>
 
