@@ -33,13 +33,35 @@ public class AuthController {
         UserDTO userDTO = (UserDTO) authentication.getPrincipal();
         Map<String, Object> claims = userDTO.getClaims();
 
-        String accessToken = jwtUtil.generateToken(loginDTO.getUserId());
-        String refreshToken = jwtUtil.generateToken(loginDTO.getUserId());
+        String accessToken = jwtUtil.generateAccessToken(loginDTO.getUserId());
+        String refreshToken = jwtUtil.generateRefreshToken(loginDTO.getUserId());
 
         Map<String, Object> result = new HashMap<>(claims);
 
         result.put("accessToken", accessToken);
         result.put("refreshToken", refreshToken);
+
+        return result;
+    }
+
+    @PostMapping("/refresh")
+    public Map<String, Object> refresh(
+            @RequestBody Map<String, String> request
+    ) {
+
+        String refreshToken = request.get("refreshToken");
+
+        if (refreshToken == null || !jwtUtil.validateToken(refreshToken)) {
+            throw  new RuntimeException("유효하지 않은 Refresh Token입니다.");
+        }
+
+        String userId = jwtUtil.getUserId(refreshToken);
+
+        String accessToken = jwtUtil.generateAccessToken(userId);
+
+        Map<String, Object> result = new HashMap<>();
+
+        result.put("accessToken", accessToken);
 
         return result;
     }
