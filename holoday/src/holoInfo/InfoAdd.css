@@ -1,0 +1,109 @@
+.info-add {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 40px;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    background-color: #fff;
+}
+
+.info-add h2 {
+    margin-bottom: 32px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+
+/* 각 입력 영역 공통 간격 */
+.info-add-select,
+.info-add-input,
+.info-add-textarea,
+.info-add-file {
+    margin-bottom: 22px;
+}
+
+
+/* 라벨 공통 */
+.info-add label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+/* input / select / textarea 공통 */
+.info-add input,
+.info-add select,
+.info-add textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+
+/* 선택창 */
+.info-add select {
+    height: 50px;
+    background-color: white;
+}
+
+
+/* 내용 */
+.info-add textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+
+/* 눌렀을 때 */
+.info-add input:focus,
+.info-add select:focus,
+.info-add textarea:focus {
+    border-color: #5b87b2;
+    box-shadow: 0 0 0 3px rgba(91, 135, 178, 0.12);
+}
+
+
+/* 파일 */
+.info-add-file input[type="file"] {
+    padding: 0;
+    height: 42px;
+    background-color: #f9fafb;
+}
+
+.info-add-file input[type="file"]::file-selector-button {
+    height: 100%;
+    margin-right: 15px;
+    padding: 0 16px;
+    border: none;
+    background-color: #5b87b2;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* 등록 버튼 */
+.info-add button {
+    display: block;
+    width: 140px;
+    margin: 35px auto 0;
+    padding: 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #5b87b2;
+    color: white;
+
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.info-add button:hover {
+    background-color: #496f94;
+}
