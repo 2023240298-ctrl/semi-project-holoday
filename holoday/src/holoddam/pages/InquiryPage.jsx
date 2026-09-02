@@ -1,8 +1,15 @@
+import './InquiryPage.css';
+import HistoryCard from '../components/HistoryCard';
+import { useState } from 'react';
 
 
-const InquiryPage = () => {
+const InquiryPage = async () => {
+
+
     return (
-        <h1>card</h1>
+        <div>
+            <HistoryCard card={card} />
+        </div>
     );
 };
 
