@@ -71,7 +71,11 @@ public class CustomSecurityConfig {
                                 "/api/holoday/info/*"
 
                         ).permitAll()
-
+                        .requestMatchers(
+                                HttpMethod.GET,
+                                "/api/holoday/card",
+                                "/api/holoday/history"
+                        ).authenticated()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(

@@ -9,6 +9,7 @@ import com.holoday.api.holoddam.service.CardService;
 import com.holoday.api.holoddam.service.HistoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,16 +38,18 @@ public class CardController {
         );
     }
 
-    @GetMapping("/card/{userId}")
-    public ResponseEntity<ApiResponse<Card>> viewCard(@PathVariable String userId){
+    @GetMapping("/card")
+    public ResponseEntity<ApiResponse<Card>> viewCard(Authentication authentication){
+        String userId = authentication.getName();
         Card card = historyService.viewCard(userId);
         return ResponseEntity.ok(
                 ApiResponse.success("random card fetched successfully",card)
         );
     }
 
-    @GetMapping("/card/{userId}/history")
-    public ResponseEntity<ApiResponse<List<Card>>> viewCards(@PathVariable String userId){
+    @GetMapping("/card/history")
+    public ResponseEntity<ApiResponse<List<Card>>> viewCards(Authentication authentication){
+        String userId = authentication.getName();
         List<Card> cards = historyService.viewCards(userId);
         return ResponseEntity.ok(
                 ApiResponse.success("viewed card list fetched successfully", cards)
