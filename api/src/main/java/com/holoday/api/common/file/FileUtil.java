@@ -78,5 +78,34 @@ public class FileUtil {
         }
 
     }
+    public void deleteFile(String fileName) {
+
+        if (fileName == null || fileName.isBlank()) {
+            return;
+        }
+
+        try {
+            Path filePath = uploadPath.resolve(fileName).normalize();
+
+            if (!filePath.startsWith(uploadPath)) {
+                throw new FileUploadException(
+                        "올바르지 않은 파일 삭제 경로입니다."
+                );
+            }
+
+            Files.deleteIfExists(filePath);
+
+
+
+        } catch (IOException io) {
+            throw new FileUploadException(
+                    "파일을 삭제하는 중 오류가 발생했습니다." + io
+            );
+        }
+    }
+
+
+
+
 
 }
