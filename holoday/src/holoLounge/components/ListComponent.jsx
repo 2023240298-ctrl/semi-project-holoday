@@ -3,6 +3,7 @@ import { getList, deleteOne } from "../js/HoloBoardApi";
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 import PagiNation from "../../components/common/PagiNation";
 import { useNavigate } from "react-router";
+import
 
 const initState = {
     dtoList: [],
