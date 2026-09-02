@@ -16,7 +16,7 @@ const InfoRead = () => {
      .catch((error) => {
             console.log("상세 조회 오류 =", error);
         });
-        
+
   }, [infoNo]);
 
 
@@ -45,7 +45,7 @@ const InfoRead = () => {
             {/* 큰 이미지 */}
             <div className="info-read-image">
               <img
-                src="/images/holoInfo/testfile.png"
+                src={`http://localhost:8080/upload/${info.infoImg}`}
                 alt={info.infoTitle}
                 />
             </div>
@@ -67,8 +67,11 @@ const InfoRead = () => {
                 <p>{info.infoAddress}</p>
               </div>
 
-              <div className="info-map">
-                지도
+              <div 
+                className="info-map"
+                id="map"
+                >
+                
               </div>
 
             </div>

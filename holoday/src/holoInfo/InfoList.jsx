@@ -59,7 +59,7 @@ const InfoList = () => {
                     onClick={() => moveToRead(info.infoNo)}
                 >
                 <img
-                src="/images/holoInfo/testfile.png"
+                src={`http://localhost:8080/upload/${info.infoSimg}`}
                 alt={info.infoTitle}
                 />
 
