@@ -13,7 +13,8 @@ import java.util.Date;
 public class JWTUtil {
     private final SecretKey secretKey;
 
-    private final long expiration = 1000L * 60 * 60;
+    private final long accessExpiration = 1000L * 60 * 60;
+    private final long refreshExpiration = 1000L * 60 * 60 * 24 * 7;
 
     public JWTUtil(@Value("${jwt.secret}") String secret) {
         this.secretKey = Keys.hmacShaKeyFor(
@@ -21,10 +22,23 @@ public class JWTUtil {
         );
     }
 
-    public String generateToken(String userId) {
+    public String generateAccessToken(String userId) {
 
         Date now = new Date();
-        Date expirationDate = new Date(now.getTime() + expiration);
+        Date expirationDate = new Date(now.getTime() + accessExpiration);
+
+        return Jwts.builder()
+                .subject(userId)
+                .issuedAt(now)
+                .expiration(expirationDate)
+                .signWith(secretKey)
+                .compact();
+    }
+
+    public String generateRefreshToken(String userId) {
+
+        Date now = new Date();
+        Date expirationDate = new Date(now.getTime() + refreshExpiration);
 
         return Jwts.builder()
                 .subject(userId)

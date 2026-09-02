@@ -54,6 +54,7 @@ public class CustomSecurityConfig {
                         //로그인 하지 않아도 접근 가능
                         .requestMatchers(
                                 "/api/holoday/login",
+                                "/api/holoday/refresh",
                                 "/api/holoday/signup",
                                 "/error",
                                 "/api/holoday/checkId",
@@ -66,14 +67,16 @@ public class CustomSecurityConfig {
                                 HttpMethod.GET,
                                 "/api/holoday/board",
                                 "/api/holoday/board/*",
+                                "/api/holoday/board/*/comments",
                                 "/api/holoday/info",
-                                "/api/holoday/info/*"
+                                "/api/holoday/info/*",
+                                "/upload/**"
 
                         ).permitAll()
                         .requestMatchers(
                                 HttpMethod.GET,
                                 "/api/holoday/card",
-                                "/api/holoday/history"
+                                "/api/holoday/card/history"
                         ).authenticated()
                         .anyRequest().authenticated()
                 )
