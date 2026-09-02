@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import memberRouter from './router/memberRouter.jsx'
 import holoBoardRouter from "./holoLounge/router/holoBoardRouter.jsx";
 import holoddamRouter from './router/holoddamRouter.jsx'
-import holoInfoRouter from './holoInfo/router/infoRouter.jsx'
 
 const router = createBrowserRouter([
   {
@@ -17,16 +16,12 @@ const router = createBrowserRouter([
       ...memberRouter(),
       ...holoBoardRouter(),
       ...holoddamRouter(),
-      ...holoInfoRouter(),
-      
     ],
   },
 ])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}/>
-    {/*<App />*/}
-
+    <RouterProvider router={router} />
   </StrictMode>,
 )

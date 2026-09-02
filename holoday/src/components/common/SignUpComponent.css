@@ -1,0 +1,11 @@
+.head-guide {
+    font-size: 25px;
+}
+
+.signupbox-container {
+    font-family: 'SeoulNamsan';
+}
+
+input {
+    width: 250px !important;
+}
