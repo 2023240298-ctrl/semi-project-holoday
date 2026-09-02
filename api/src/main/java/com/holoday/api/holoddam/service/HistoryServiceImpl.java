@@ -58,4 +58,9 @@ public class HistoryServiceImpl implements HistoryService{
                 .map(History::getCard)
                 .toList();
     }
+
+    @Override
+    public void deleteHistory(Long cardNo) {
+        historyRepository.deleteByCardNo(cardNo);
+    }
 }

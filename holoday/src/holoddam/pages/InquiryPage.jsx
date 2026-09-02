@@ -1,18 +1,19 @@
 import './InquiryPage.css';
 import HistoryCard from '../components/HistoryCard';
 import { useState, useEffect } from 'react';
-import { cardList, deleteCard } from '../api/HistoryApi';
+import { cardList } from '../api/HistoryApi';
 import { Carousel } from "flowbite-react";
 
 const InquiryPage = () => {
     const [cards, setCards] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const currentCard = cards[currentIndex]
 
     const invisibleButton = (
         <span className='w-20 h-full opacity-0 cursor-pointer absolute inset-y-0' />
     );
+
+    const handleCardDelete = async (deleteCardNo) => {
+        setCards((prevCards) => prevCards.filter((card) => { card.cardNo != deleteCardNo }));
+    };
 
     useEffect(() => {
         const fetchCards = async () => {
@@ -21,8 +22,6 @@ const InquiryPage = () => {
                 setCards(data);
             } catch (e) {
                 console.error("fail to fetch card list", e);
-            } finally {
-                setLoading(false);
             }
         };
         fetchCards();
@@ -34,7 +33,7 @@ const InquiryPage = () => {
                 leftControl={invisibleButton} rightControl={invisibleButton}
             >
                 {cards.map((card) => (
-                    <HistoryCard key={card.cardNo} card={card} />
+                    <HistoryCard key={card.cardNo} card={card} onDeleteSuccess={handleCardDelete} />
                 ))}
             </Carousel>
         </div>

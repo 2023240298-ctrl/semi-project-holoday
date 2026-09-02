@@ -1,25 +1,34 @@
-import { jwtDecode } from "jwt-decode";
+import { deleteCard } from '../api/HistoryApi';
 import { formatDate } from '../util/formatDate';
 
+const HistoryCard = ({ card: { cardNo, cardOriginDate, cardTitle, cardSumm, cardOriginUrl, cardImageUrl }, onDeleteSuccess }) => {
 
+    const isAdmin = localStorage.getItem("userIsAdmin") === "true";
 
-
-const HistoryCard = ({ card: { cardNo, cardOriginDate, cardTitle, cardSumm, cardOriginUrl, cardImageUrl } }) => {
-
-    const isAdmin = sessionStorage.getItem("isAdmin") === "true";
+    const handleDelete = async (targetCardNo) => {
+        if (!window.confirm("정말 삭제합니까?")) return;
+        try {
+            await deleteCard(cardNo);
+            if (onDeleteSuccess) {
+                onDeleteSuccess(targetCardNo);
+            }
+        } catch (e) {
+            console.error("fail to delete card");
+        }
+    }
 
     return (
         <div className="w-full h-full bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
             <div className='bg-blue-500/80 p-4 z-10 flex justify-between items-center shrink-0'>
                 <h1 className="text-white font-bold">카드 번호: {cardNo}</h1>
                 {isAdmin && (
-                    <button type='button' className="text-white font-bold bg-red-500 px-3 py-1 rounded hover:bg-red-600">
+                    <button type='button' onClick={() => handleDelete(cardNo)}
+                        className="text-white font-bold bg-red-500 px-3 py-1 rounded hover:bg-red-600">
                         ×
                     </button>
                 )}
             </div>
 
-            {/* 상단 고정 영역 (스크롤 안 됨) */}
             <div className="p-4 shrink-0">
                 <h1 className="font-bold text-lg">{cardTitle}</h1>
             </div>
@@ -29,7 +38,6 @@ const HistoryCard = ({ card: { cardNo, cardOriginDate, cardTitle, cardSumm, card
                 <a href={cardOriginUrl} className="text-blue-500 underline">원본 링크 이동!</a>
             </div>
 
-            {/* 💡 이 박스(이미지 + 내용) 안에서만 스크롤이 발생함 */}
             <div className="flex flex-col gap-2 overflow-y-auto flex-1 min-h-0 p-4">
                 <div>
                     <img src={cardImageUrl} className="w-full object-cover rounded" />

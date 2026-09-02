@@ -32,6 +32,7 @@ public class CardController {
 
     @DeleteMapping("/{cardNo}")
     public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Long cardNo){
+        historyService.deleteHistory(cardNo);
         cardService.delete(cardNo);
         return ResponseEntity.ok(
                 ApiResponse.success("delete "+cardNo+"th card successfully")

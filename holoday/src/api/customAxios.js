@@ -7,8 +7,8 @@ const customAxios = axios.create({
 customAxios.interceptors.request.use((config) => {
    const accessToken = localStorage.getItem("accessToken");
 
-   if(accessToken) {
-      config.headers.Authorization=`Bearer ${accessToken}`;
+   if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
    }
 
    return config;
@@ -22,7 +22,7 @@ customAxios.interceptors.response.use(
 
       const originalRequest = error.config;
 
-      if(error.response?.status === 401 && !originalRequest._retry) {
+      if (error.response?.status === 401 && !originalRequest._retry) {
 
          originalRequest._retry = true;
 
@@ -38,14 +38,20 @@ customAxios.interceptors.response.use(
 
             const newAccessToken = response.data.accessToken;
 
+            localStorage.setItem("userIsAdmin", response.data.userIsAdmin);
             localStorage.setItem("accessToken", newAccessToken);
 
             originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+
+
+            localStorage.setItem("userIsAdmin", response.data?.userIsAdmin);
+            localStorage.setItem("accessToken", response.data?.accessToken);
 
             return customAxios(originalRequest);
          } catch (refreshError) {
             localStorage.removeItem("accessToken");
             localStorage.removeItem("refreshToken");
+            localStorage.removeItem("userIsAdmin");
 
             return Promise.reject(refreshError);
          }
