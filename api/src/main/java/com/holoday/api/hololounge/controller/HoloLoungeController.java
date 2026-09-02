@@ -47,6 +47,18 @@ public class HoloLoungeController {
         return ResponseEntity.ok(responseDTO);
     }
 
+    @PatchMapping("/{no}/like")
+    public ResponseEntity<Map<String, String>> like(@PathVariable Long no) {
+        holoLoungeService.like(no);
+        return ResponseEntity.ok(Map.of("result", "좋아요"));
+    }
+
+    @PatchMapping("/{no}/unlike")
+    public ResponseEntity<Map<String, String>> unLike(@PathVariable Long no) {
+        holoLoungeService.unLike(no);
+        return ResponseEntity.ok(Map.of("result", "좋아요 취소"));
+    }
+
     @PostMapping
     @Operation(hidden = true)
     public ResponseEntity<Map<String, Long>> register(@RequestBody HoloLoungeDTO holoLoungeDTO) {
