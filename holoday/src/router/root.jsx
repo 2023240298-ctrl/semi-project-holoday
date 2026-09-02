@@ -9,14 +9,9 @@ const root = createBrowserRouter([
       path: "/",
       element: <App />,
       children: [
-         memberRouter(),
+         ...memberRouter(),
          {
             path: "holoddam",
-            HydrateFallback: () => <div>Loading...</div>,
-            lazy: async () => {
-               const { default: Component } = await import('../holoddam/pages/DrawPage');
-               return { Component };
-            },
             children: holoddamRouter(),
          },
          {
