@@ -10,8 +10,10 @@ const categoryName = {
   3: "홀로 체험",
 };
 
+
 const InfoList = () => {
   const[serverData, setServerData] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(0);
   const navigate = useNavigate();
 
   const moveToRead = (infoNo) => {
@@ -39,6 +41,12 @@ const InfoList = () => {
   if (!serverData) {
     return <div>Loading...</div>;
     }
+    
+    const filteredList = selectedCategory === 0
+        ? serverData.dtoList
+        : serverData.dtoList.filter(
+            (info) => info.categoryNo === selectedCategory
+          );
 
     return (
         <div className="info-list holo-text">
@@ -49,14 +57,14 @@ const InfoList = () => {
             </div>
 
             <div className="info-category">
-                <button>전체 보기</button>
-                <button>홀로 휴식</button>
-                <button>홀로 문화</button>
-                <button>홀로 체험</button>
+                <button onClick={() => setSelectedCategory(0)}>전체 보기</button>
+                <button onClick={() => setSelectedCategory(1)}>홀로 휴식</button>
+                <button onClick={() => setSelectedCategory(2)}>홀로 문화</button>
+                <button onClick={() => setSelectedCategory(3)}>홀로 체험</button>
             </div>
 
             <div className="info-cards">
-                {serverData.dtoList.map((info) => (
+                {filteredList.map((info) => (
                 <div
                     className="info-card-overlay"
                     key={info.infoNo}
