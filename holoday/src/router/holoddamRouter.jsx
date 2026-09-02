@@ -1,4 +1,3 @@
-import { Navigate } from "react-router";
 
 const holoddamRouter = () => {
     return [
