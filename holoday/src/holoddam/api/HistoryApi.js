@@ -12,7 +12,7 @@ export const cardList = async () => {
 };
 
 export const deleteCard = async (cardNo) => {
-    const response = await axios.delete(`${prefix}/card/${cardNo}`, {
+    const response = await axios.delete(`${prefix}/${cardNo}`, {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         },

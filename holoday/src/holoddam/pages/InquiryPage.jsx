@@ -1,18 +1,32 @@
 import './InquiryPage.css';
 import HistoryCard from '../components/HistoryCard';
 import { useState, useEffect } from 'react';
-import { cardList, deleteCard } from '../api/HistoryApi';
+import { cardList } from '../api/HistoryApi';
 import { Carousel } from "flowbite-react";
 
 const InquiryPage = () => {
     const [cards, setCards] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const currentCard = cards[currentIndex]
+    const [currentCard, setCurrentCard] = useState(0);
 
     const invisibleButton = (
-        <span className='w-20 h-full opacity-0 cursor-pointer absolute inset-y-0' />
+        <span className='w-[50px] h-full opacity-0 cursor-pointer absolute inset-y-0' />
     );
+
+    const handleCardDelete = async (deleteCardNo) => {
+        const updateCards = cards.filter(card => card.cardNo != deleteCardNo);
+        setCards(updateCards);
+        const cardIndex = cards.findIndex(card => card.cardNo === deleteCardNo);
+
+        if (updateCards.length > 0) {
+            if (cardIndex >= updateCards.length) {
+                setCurrentCard(updateCards.length - 1);
+            } else {
+                setCurrentCard(cardIndex);
+            }
+        } else {
+            setCurrentCard(0);
+        }
+    };
 
     useEffect(() => {
         const fetchCards = async () => {
@@ -21,8 +35,6 @@ const InquiryPage = () => {
                 setCards(data);
             } catch (e) {
                 console.error("fail to fetch card list", e);
-            } finally {
-                setLoading(false);
             }
         };
         fetchCards();
@@ -30,11 +42,14 @@ const InquiryPage = () => {
 
     return (
         <div className="h-[600px] w-full max-w-xl mx-auto">
-            <Carousel indicators={false} className="!h-full !w-full" slide={false}
+            <h1 className='head-text text-4xl mb-2'>오늘의 카드들</h1>
+            <Carousel indicators={false} slide={false}
+                key={cards.length}
+                className="!h-full !w-full"
                 leftControl={invisibleButton} rightControl={invisibleButton}
             >
                 {cards.map((card) => (
-                    <HistoryCard key={card.cardNo} card={card} />
+                    <HistoryCard key={card.cardNo} card={card} onDeleteSuccess={handleCardDelete} />
                 ))}
             </Carousel>
         </div>
