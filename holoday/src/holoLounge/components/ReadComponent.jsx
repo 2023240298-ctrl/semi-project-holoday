@@ -55,41 +55,52 @@ const ReadComponent = ({no}) => {
             <div className="boardArea">
 
                 <Card className="boardDetail border border-blue-100">
+                    <div className="flex justify-end">
+                        <button
+                            type="button"
+                            className="border border-orange-300 px-2 py-1 text-xl text-orange-500 hover:bg-orange-50"
+                            onClick={moveToList}
+                        >
+                            X
+                        </button>
+                    </div>
 
-                    <div className="boardMeta">
+                    <div className="boardMeta holo-text flex items-center justify-between text-sm text-blue-800">
                         <span>{holoboard.categoryNo}</span>
                         <span>{holoboard.boardDate}</span>
                     </div>
                     
-                    <div className="boardTitle">
+                    <div className="boardTitle head-text mt-6 text-center text-2xl font-semibold">
                         {holoboard.boardTitle}
                     </div>
 
-                    <div className="boardWriter">
-                        작성자: {holoboard.userId}
+                    <div className="boardWriter holo-text flex items-center justify-between text-left">
+                        <div>작성자: {holoboard.userId}</div>
+                        <div className="holo-text mt-1 text-sm text-gray-500">
+                            조회수 {holoboard.boardHit}
+                        </div>
                     </div>
+                    
 
-                    <p className="boardContent mt-6">
+                    <p className="boardContent max-h-80 min-h-40 overflow-y-auto rounded-lg 
+                    bg-blue-50 px-5 py-4 leading-7 text-gray-600">
                         {holoboard.boardContent}
                     </p>
                     
-                    <div className="boardImage">
+                    <div className="boardImage mt-6 mb-6 flex justify-center">
                         {holoboard.boardImg && (
                             <img
                                 src={holoboard.boardImg}
                                 alt="게시판 이미지"
+                                className="h-80 w-3/4 rounded-lg border border-blue-100"
                             />
                         )}
                     </div>
 
-                    <div className="boardStats">
-                        <Badge color="gray">
-                            조회수 {holoboard.boardHit}
-                        </Badge>
-                        
+                    <div className="boardStats holo-text flex justify-end">
                         <button
                             type="button"
-                            className="rounded-lg border border-pink-300 bg-pink-50
+                            className="holo-text rounded-lg border border-pink-300 bg-pink-50
                             px-3 py-1 text-sm text-pink-500"
                             onClick={() => {
 
@@ -119,49 +130,36 @@ const ReadComponent = ({no}) => {
                 </Card>
 
                 <div className="boardButtons mt-5 flex items-center justify-between">
-
                     <button
                         type="button"
-                        className="rounded-lg border border-sky-300 bg-sky-100 px-5 py-3 text-base
-                        font-semibold text-sky-700 hover:bg-sky-200"
-                        onClick={moveToList}
+                        className="rounded-lg border border-red-200 bg-red-50 px-5 py-3 text-base
+                        font-medium text-red-500 hover:bg-red-100"
+                        onClick={() => {
+                            deleteOne(no)
+                                .then(result => {
+                                    console.log("삭제 완료:", result);
+                                    moveToList();
+                                })  
+                                .catch(e => {
+                                    console.error(e);
+                                });
+                        }}
                     >
-                        목록보기
+                        삭제하기
                     </button>
-
-                    <div className="flex gap-3">
-
-                        <button
-                            type="button"
-                            className="rounded-lg border border-blue-200 bg-blue-50 px-5 py-3 text-base
-                            font-medium text-blue-600 hover:bg-blue-100"
-                            onClick={() => moveToModify(no)}
-                        >
-                            수정하기
-                        </button>
-                
-                        <button
-                            type="button"
-                            className="rounded-lg border border-red-200 bg-red-50 px-5 py-3 text-base
-                            font-medium text-red-500 hover:bg-red-100"
-                            onClick={() => {
-                                deleteOne(no)
-                                    .then(result => {
-                                        console.log("삭제 완료:", result);
-                                        moveToList();
-                                    })  
-                                    .catch(e => {
-                                        console.error(e);
-                                    });
-                            }}
-                        >
-                            삭제하기
-                        </button>
-                    </div>
+                    
+                    <button
+                        type="button"
+                        className="rounded-lg border border-blue-200 bg-blue-50 px-5 py-3 text-base
+                        font-medium text-blue-600 hover:bg-blue-100"
+                        onClick={() => moveToModify(no)}
+                    >
+                        수정하기
+                    </button>
                 </div>
             </div>
 
-            <div>
+            <div className="rounded-lg border border-blue-100 p-5">
                 <h3>댓글</h3>
 
                 <div>
