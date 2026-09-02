@@ -5,7 +5,7 @@ import NewsCard from '../components/NewsCard';
 import BlogCard from '../components/BlogCard';
 import { useState, useEffect } from 'react';
 import { HiRefresh } from 'react-icons/hi';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 const DrawPage = () => {
     const [card, setCard] = useState(null);
@@ -47,7 +47,7 @@ const DrawPage = () => {
                 <div className='button-container'>
                     <button type="button" className='-translate-y-[4px] head-text bg-blue-800 text-white
                     px-2 py-1 rounded-lg hover:bg-blue-700 transition-colors mr-2'
-                        onClick={() => navigate('holoddam/cards')}>
+                        onClick={() => navigate('/holoddam/cards')}>
                         지금까지 봤던 카드들 보러가기</button>
                     <button
                         type="button"
