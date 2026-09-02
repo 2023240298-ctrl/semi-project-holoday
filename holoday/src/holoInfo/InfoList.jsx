@@ -26,30 +26,40 @@ const InfoList = () => {
   const movePage = ({ page }) => {
     getList({
         page: page,
-        size: 9
+        size: 9,
+        categoryNo: selectedCategory
     }).then((result) => {
         setServerData(result);
     });
   };
+
   
-  useEffect(() => {
+  const moveCategory = (categoryNo) => {
+    setSelectedCategory(categoryNo);
+
     getList({
         page: 1,
-        size: 9
+        size: 9,
+        categoryNo: categoryNo
     }).then((result) => {
         setServerData(result);
     });
-  },[]);
+  };
+
+  useEffect(() => {
+  getList({
+    page: 1,
+    size: 9
+  }).then((result) => {
+    setServerData(result);
+  });
+}, []);
+
+  
 
   if (!serverData) {
     return <div>Loading...</div>;
     }
-    
-    const filteredList = selectedCategory === 0
-        ? serverData.dtoList
-        : serverData.dtoList.filter(
-            (info) => info.categoryNo === selectedCategory
-          );
 
     return (
         <div className="info-list holo-text">
@@ -60,23 +70,26 @@ const InfoList = () => {
             </div>
 
             <div className="info-category">
-                <button onClick={() => setSelectedCategory(0)}>전체 보기</button>
-                <button onClick={() => setSelectedCategory(1)}>홀로 휴식</button>
-                <button onClick={() => setSelectedCategory(2)}>홀로 문화</button>
-                <button onClick={() => setSelectedCategory(3)}>홀로 체험</button>
+                <button onClick={() => moveCategory(0)}>전체 보기</button>
+                <button onClick={() => moveCategory(1)}>홀로 휴식</button>
+                <button onClick={() => moveCategory(2)}>홀로 문화</button>
+                <button onClick={() => moveCategory(3)}>홀로 체험</button>
             </div>
 
             {isAdmin && (
-                <button
-                    type="button"
-                    onClick={() => navigate("/holoinfo/new")}
-                >
-                    등록
-                </button>
-                )}
+                <div className="info-add-btn-area">
+                    <button
+                        type="button"
+                        className="info-add-btn"
+                        onClick={() => navigate("/holoinfo/new")}
+                    >
+                        등록
+                    </button>
+                </div>
+            )}
 
             <div className="info-cards">
-                {filteredList.map((info) => (
+                {serverData.dtoList.map((info) => (
                 <div
                     className="info-card-overlay"
                     key={info.infoNo}

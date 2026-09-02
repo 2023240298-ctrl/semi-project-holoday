@@ -98,4 +98,7 @@ public class Info {
     public void changeInfoSimg(String infoSimg) {
         this.infoSimg = infoSimg;
     }
+    public void increaseInfoHit() {
+        this.infoHit++;
+    }
 }

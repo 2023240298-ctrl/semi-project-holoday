@@ -19,6 +19,8 @@ const InfoModify = () => {
   const [info, setInfo] = useState(initState);
   const [file, setFile] = useState(null);
 
+  const isAdmin = localStorage.getItem("userIsAdmin") === "true";
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -130,20 +132,23 @@ const InfoModify = () => {
                     placeholder="상세주소를 입력하세요"
                 />
             </div>
+            {isAdmin && (
+            <div className="info-add-btn-area">
+                <button 
+                    type="button"
+                    onClick={handleClickModify}
+                    className="info-add-btn">
+                        수정
+                    </button>
 
-            <button 
-              type="button"
-              onClick={handleClickModify}
-            >
-                수정
-            </button>
-
-            <button 
-              type="button"
-              onClick={handleClickDelete}
-            >
-                삭제
-            </button>
+                    <button 
+                    type="button"
+                    onClick={handleClickDelete}
+                    className="info-add-btn">
+                        삭제
+                    </button>
+                </div>
+            )}
         </div>
     );
 };

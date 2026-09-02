@@ -10,10 +10,19 @@ export const getOne = async (infoNo) => {
 };
 
 export const getList = async (pageParam) => {
-    const {page, size} = pageParam;
+    const { page, size, categoryNo } = pageParam;
+
+    const params = {
+        page,
+        size,
+    };
+
+    if (categoryNo) {
+        params.categoryNo = categoryNo;
+    }
 
     const response = await axios.get(prefix, {
-        params: {page,size},
+        params,
     });
 
     return response.data;

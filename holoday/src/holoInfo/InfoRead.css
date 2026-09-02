@@ -99,3 +99,25 @@
     border-radius: 16px;
     color: #999;
 }
+
+.info-add-btn-area {
+    display: flex;
+    justify-content: flex-end;
+}
+.info-add-btn {
+  padding: 8px 16px;
+
+  border: 1px solid #cec9c9;
+  border-radius: 8px;
+  background-color: white;
+
+  color: black;
+  font-size: 15px; 
+  cursor: pointer;
+  margin: 10px 5px;
+  letter-spacing: 2px;
+}
+
+.info-add-btn:hover {
+  background-color: #bdd7ff;
+}

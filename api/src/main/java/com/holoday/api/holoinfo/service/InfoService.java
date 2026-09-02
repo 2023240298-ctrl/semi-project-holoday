@@ -9,5 +9,5 @@ public interface InfoService {
     InfoDTO get (Long infoNo);
     void modify (InfoDTO infoDTO);
     void remove(Long infoNo);
-    PageResponseDTO<InfoDTO> list(PageRequestDTO pageRequestDTO);
+    PageResponseDTO<InfoDTO> list(PageRequestDTO pageRequestDTO, Long categoryNo);
 }
