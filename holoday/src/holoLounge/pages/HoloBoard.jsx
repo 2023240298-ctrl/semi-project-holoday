@@ -10,11 +10,8 @@ const HoloBoard = () => {
             <Card className="w-full max-w-6xl border-0 shadow-none">
 
                 <h1 className="logo-text text-blue-400 [-webkit-text-stroke:1px_#1e40af] mb-8 text-center text-3xl">
-
                     Holo Lounge
-
                 </h1>
-
                 <ListComponent />
 
             </Card>
