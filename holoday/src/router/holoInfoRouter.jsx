@@ -29,6 +29,16 @@ const holoInfoRouter = () => {
             },
 
         },
+         {
+            path: "edit/:infoNo",
+            HydrateFallback: () => <div>Loading...</div>,
+            lazy: async () => {
+                const { default: Component } =
+                    await import("../holoInfo/InfoModify");
+
+                return { Component };
+            },
+        },
         
     ];
 };

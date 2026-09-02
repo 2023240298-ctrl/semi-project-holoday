@@ -24,9 +24,17 @@
 
 .info-read-meta {
     display: flex;
-    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+
     color: #777;
     font-size: 15px;
+}
+
+.info-read-meta-left {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
 .info-read-image {
@@ -98,4 +106,26 @@
     background-color: #f5f5f5;
     border-radius: 16px;
     color: #999;
+}
+
+.info-add-btn-area {
+    display: flex;
+    justify-content: flex-end;
+}
+.info-add-btn {
+  padding: 8px 16px;
+
+  border: 1px solid #cec9c9;
+  border-radius: 8px;
+  background-color: white;
+
+  color: black;
+  font-size: 15px; 
+  cursor: pointer;
+  margin: 10px 5px;
+  letter-spacing: 2px;
+}
+
+.info-add-btn:hover {
+  background-color: #bdd7ff;
 }

@@ -1,17 +1,24 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import "./InfoRead.css";
-import { getOne } from "./api/infoApi";
+import { getOne, deleteOne } from "./api/infoApi";
 import { useEffect, useState } from "react";
+
+const categoryName = {
+  1: "홀로 휴식",
+  2: "홀로 문화",
+  3: "홀로 체험",
+};
 
 const InfoRead = () => {
   const {infoNo} = useParams();
   const [info, setInfo] = useState(null);
+  const isAdmin = localStorage.getItem("userIsAdmin") === "true";
+  const navigate = useNavigate();
 
   {/*상세 데이터 */}
   useEffect(()=> {
     
     getOne(infoNo).then((result)=> {
-        console.log("상세 결과 =",result);
         setInfo(result);
     })
      .catch((error) => {
@@ -61,30 +68,43 @@ const InfoRead = () => {
     
   }, [info]);
 
-
-  if (!info) {
-    return <div>Loading...</div>;
-  }
-
-
   if (!info) {
     return <div>Loading...</div>;
     }
+
+    const handleClickDelete = () => {
+      if(window.confirm("삭제하시겠습니까?")){
+          deleteOne(infoNo).then(()=> {
+              navigate("/holoinfo");
+          });
+      }
+    };
 
     return(
         <div className="info-read holo-text">
           <div className="info-read-header">
 
             <span className="info-read-category">
-                홀로 체험
+                {categoryName[info.categoryNo]}
             </span>
 
             <h2>{info.infoTitle}</h2>
 
             <div className="info-read-meta">
+              <div className="info-read-meta-left">
+                <span>
+                    {new Date(info.infoDate).toLocaleDateString()}
+                </span>
+                <span>·</span>
                 <span>{info.infoPlace}</span>
                 <span>·</span>
                 <span>{info.infoAddress}</span>
+                </div>
+                
+                <span className="info-read-hit">
+                  조회수 {info.infoHit}
+                </span>
+                
             </div>
 
           </div>
@@ -119,6 +139,37 @@ const InfoRead = () => {
                 id="map"
                 >
                 
+              </div>
+              <div className="info-add-btn-area">
+
+                <button
+                  type="button"
+                  className="info-add-btn"
+                  onClick={() => navigate("/holoinfo")}
+                >
+                  목록
+                </button>
+
+                {isAdmin && (
+                  <>
+                    <button
+                      type="button"
+                      className="info-add-btn"
+                      onClick={() => navigate(`/holoinfo/edit/${infoNo}`)}
+                    >
+                      수정
+                    </button>
+
+                    <button
+                      type="button"
+                      className="info-add-btn"
+                      onClick={handleClickDelete}
+                    >
+                      삭제
+                    </button>
+                  </>
+                )}
+
               </div>
 
             </div>

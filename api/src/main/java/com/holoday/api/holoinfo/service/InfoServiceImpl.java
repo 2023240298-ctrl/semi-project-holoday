@@ -48,6 +48,8 @@ public class InfoServiceImpl implements InfoService {
     @Override
     public InfoDTO get (Long infoNo){
         Info info = getInfo(infoNo);
+
+        info.increaseInfoHit();
         return infoMapper.toDTO(info);
     }
 
@@ -76,22 +78,29 @@ public class InfoServiceImpl implements InfoService {
 
     @Transactional(readOnly = true)
     @Override
-    public PageResponseDTO<InfoDTO> list(PageRequestDTO pageRequestDTO, Long categoryNo){
+    public PageResponseDTO<InfoDTO> list(
+            PageRequestDTO pageRequestDTO,
+            Long categoryNo
+    ) {
         Pageable pageable = pageRequestDTO.getPageable("infoNo");
+
         Page<Info> infoPage;
 
         if (categoryNo == null) {
             infoPage = infoRepository.findAll(pageable);
-        }  else {
-            // 카테고리를 선택했으면 해당 카테고리만 조회
+        } else {
             infoPage = infoRepository.findByCategoryNo(categoryNo, pageable);
         }
-
 
         List<InfoDTO> dtoList = infoPage.getContent()
                 .stream()
                 .map(infoMapper::toDTO)
                 .toList();
-        return new PageResponseDTO<>(dtoList,pageRequestDTO,infoPage.getTotalElements());
+
+        return new PageResponseDTO<>(
+                dtoList,
+                pageRequestDTO,
+                infoPage.getTotalElements()
+        );
     }
 }
