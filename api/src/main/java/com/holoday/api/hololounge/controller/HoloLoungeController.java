@@ -1,5 +1,7 @@
 package com.holoday.api.hololounge.controller;
 
+import com.holoday.api.common.file.FileUtil;
+import com.holoday.api.common.file.dto.FileDTO;
 import com.holoday.api.common.pagination.*;
 import com.holoday.api.hololounge.dto.HoloLoungeDTO;
 import com.holoday.api.hololounge.service.HoloLoungeService;
@@ -8,9 +10,9 @@ import io.swagger.v3.oas.annotations.responses.*;
 import org.springframework.http.*;
 import lombok.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.*;
-import java.nio.channels.FileChannel;
 import java.util.Map;
 
 @RestController
@@ -19,6 +21,7 @@ import java.util.Map;
 public class HoloLoungeController {
 
     private final HoloLoungeService holoLoungeService;
+    private final FileUtil fileUtil;
 
     @GetMapping(value = "/{no}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
@@ -61,9 +64,22 @@ public class HoloLoungeController {
 
     @PostMapping
     @Operation(hidden = true)
-    public ResponseEntity<Map<String, Long>> register(@RequestBody HoloLoungeDTO holoLoungeDTO) {
+    public ResponseEntity<Map<String, Long>> register(
+            @RequestPart("board") HoloLoungeDTO holoLoungeDTO,
+            @RequestPart(value = "file", required = false)MultipartFile file
+    ) {
+        FileDTO fileDTO = fileUtil.saveFile(file);
+
+        if(fileDTO != null) {
+            holoLoungeDTO.setBoardImg(fileDTO.getSavedName());
+            holoLoungeDTO.setBoardSimg(fileDTO.getThumbnailName());
+        }
+
         Long no = holoLoungeService.register(holoLoungeDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("boardNo", no));
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(Map.of("boardNo", no));
     }
 
     @PatchMapping("/{no}")

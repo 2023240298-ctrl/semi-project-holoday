@@ -48,7 +48,7 @@ public class HoloLoungeRepositoryTests {
 
     @Test
     public void testRead() {
-        Long no = 209L;
+        Long no = 240L;
         HoloLounge holoLounge = holoLoungeRepository.findById(no)
                 .orElseThrow(()->
                         new IllegalArgumentException(no + "번 게시글이 존재하지 않습니다."));
@@ -61,7 +61,7 @@ public class HoloLoungeRepositoryTests {
     @Test
     @Commit
     public void testUpdate() {
-        Long no = 302L;
+        Long no = 240L;
         HoloLounge holoLounge = holoLoungeRepository.findById(no)
                 .orElseThrow(()->
                         new IllegalArgumentException(no + "번 게시글이 존재하지 않습니다."));

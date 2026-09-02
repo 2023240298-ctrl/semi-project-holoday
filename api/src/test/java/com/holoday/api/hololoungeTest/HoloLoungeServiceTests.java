@@ -51,7 +51,7 @@ public class HoloLoungeServiceTests {
     @Test
     @Commit
     public void testGet() {
-        Long no = 302L;
+        Long no = 240L;
         HoloLoungeDTO holoLoungeDTO = holoLoungeService.get(no);
         printHoloLounge(holoLoungeDTO);
     }
@@ -59,7 +59,7 @@ public class HoloLoungeServiceTests {
     @Test
     @Commit
     public void testModify() {
-        Long no = 299L;
+        Long no = 233L;
         HoloLoungeDTO holoLoungeDTO = holoLoungeService.get(no);
 
         holoLoungeDTO.setCategoryNo(2L);
@@ -76,7 +76,7 @@ public class HoloLoungeServiceTests {
     @Test
     @Commit
     public void testRemove() {
-        Long no = 297L;
+        Long no = 231L;
         holoLoungeService.remove(no);
     }
 
