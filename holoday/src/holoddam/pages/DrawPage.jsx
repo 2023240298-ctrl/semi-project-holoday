@@ -58,6 +58,8 @@ const DrawPage = () => {
 
     return (
         <>
+            <h1 className="head-text text-5xl font-bold mb-4">홀로 땜 페이지</h1>
+            <h2 className="holo-text text-xl text-gray-600 mb-8">혼자서도 재미있고 유익하게 시간을 때워요</h2>
             {card.cardCategory == 'VIDEO' ? <VideoCard card={card} /> :
                 card.cardCategory == 'NEWS' ? <NewsCard card={card} /> :
                     <BlogCard card={card} />}

@@ -42,7 +42,7 @@ public class CardFacadeServiceImpl implements CardFacadeService {
                         ? crawlResult.getContent() : item.getDescription();
                 String imageUrl = (crawlResult != null) ? crawlResult.getImageUrl() : "";
 
-                String summary = openApiService.summarize(rawContent);
+                String summary = openApiService.summarize(cleanText(rawContent));
 
                 Card card = Card.builder()
                         .cardCategory("NEWS")
@@ -75,7 +75,7 @@ public class CardFacadeServiceImpl implements CardFacadeService {
                 String title = (crawlResult != null && crawlResult.getTitle() != null && !crawlResult.getTitle().isBlank())
                         ? crawlResult.getTitle() : item.getTitle();
                 String imageUrl = (crawlResult != null) ? crawlResult.getImageUrl() : "";
-                String summary = openApiService.summarize(rawContent);
+                String summary = openApiService.summarize(cleanText(rawContent));
 
                 Card card = Card.builder()
                         .cardCategory("BLOG")
