@@ -1,16 +1,25 @@
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 import ListComponent from "../components/ListComponent";
+import { Card } from "flowbite-react";
 
 const HoloBoard = () => {
     const {moveToRegister} = useBoardCustomMove();
 
     return (
-        <>
-            <div>
-                홀로라운지 게시판 목록 조회 페이지
-            </div>
-            <ListComponent />
-        </>
+        <div className="flex jestify-center">
+            <Card className="w-full max-w-6xl">
+
+                <h1 className="mb-8 text-center text-3xl font-bold">
+
+                    Holo Lounge
+
+                </h1>
+
+                <ListComponent />
+
+            </Card>
+        
+        </div>
     );
 };
 
