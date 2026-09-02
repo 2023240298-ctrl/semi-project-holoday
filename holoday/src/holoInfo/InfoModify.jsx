@@ -137,14 +137,14 @@ const InfoModify = () => {
                 <button 
                     type="button"
                     onClick={handleClickModify}
-                    className="info-add-btn">
+                    className="info-add-btn modify-action-btn">
                         수정
                     </button>
 
                     <button 
                     type="button"
                     onClick={handleClickDelete}
-                    className="info-add-btn">
+                    className="info-add-btn modify-action-btn">
                         삭제
                     </button>
                 </div>

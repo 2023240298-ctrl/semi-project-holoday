@@ -24,9 +24,17 @@
 
 .info-read-meta {
     display: flex;
-    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+
     color: #777;
     font-size: 15px;
+}
+
+.info-read-meta-left {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
 .info-read-image {

@@ -91,6 +91,7 @@ const InfoRead = () => {
             <h2>{info.infoTitle}</h2>
 
             <div className="info-read-meta">
+              <div className="info-read-meta-left">
                 <span>
                     {new Date(info.infoDate).toLocaleDateString()}
                 </span>
@@ -98,8 +99,9 @@ const InfoRead = () => {
                 <span>{info.infoPlace}</span>
                 <span>·</span>
                 <span>{info.infoAddress}</span>
+                </div>
                 
-                <span className="info-read-like">
+                <span className="info-read-hit">
                   조회수 {info.infoHit}
                 </span>
                 
@@ -139,28 +141,36 @@ const InfoRead = () => {
                 
               </div>
               <div className="info-add-btn-area">
-                <button className="info-add-btn">
+
+                <button
+                  type="button"
+                  className="info-add-btn"
+                  onClick={() => navigate("/holoinfo")}
+                >
                   목록
                 </button>
-              </div>
 
-              {isAdmin && (
-
-                <div className="info-add-btn-area">
-                  <button 
-                    type="button"
-                    className="info-add-btn"
-                    onClick={() => navigate(`/holoinfo/edit/${infoNo}`)}>
+                {isAdmin && (
+                  <>
+                    <button
+                      type="button"
+                      className="info-add-btn"
+                      onClick={() => navigate(`/holoinfo/edit/${infoNo}`)}
+                    >
                       수정
-                  </button>
-                  <button 
-                    type="button"
-                    onClick={handleClickDelete}
-                    className="info-add-btn">
+                    </button>
+
+                    <button
+                      type="button"
+                      className="info-add-btn"
+                      onClick={handleClickDelete}
+                    >
                       삭제
-                  </button>
-                </div>
-              )}
+                    </button>
+                  </>
+                )}
+
+              </div>
 
             </div>
 
