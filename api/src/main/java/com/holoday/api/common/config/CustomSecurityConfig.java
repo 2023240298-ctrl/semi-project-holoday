@@ -73,8 +73,11 @@ public class CustomSecurityConfig {
                                 "/upload/**"
 
                         ).permitAll()
-
-
+                        .requestMatchers(
+                                HttpMethod.GET,
+                                "/api/holoday/card",
+                                "/api/holoday/card/history"
+                        ).authenticated()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(
