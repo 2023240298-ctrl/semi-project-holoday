@@ -89,6 +89,7 @@ public class JWTCheckFilter extends OncePerRequestFilter {
 
         return method.equals("OPTIONS")
                 || path.equals("/api/holoday/login")
+                || path.equals("/api/holoday/refresh")
                 || path.equals("/api/holoday/signup")
                 || path.equals("/api/holoday/checkId")
                 || path.equals("/api/holoday/checkEmail")

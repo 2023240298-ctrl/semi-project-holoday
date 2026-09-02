@@ -13,7 +13,7 @@
 }
 
 
-.video .card-box-container {
+.news .card-box-container {
     display: flex;
     flex-direction: column;
     height: 530px;
@@ -21,31 +21,10 @@
     background-color: aliceblue;
 }
 
-.video .card-title {
-    font-family: 'KoreaInstituteOfMachineryAndMaterials' !important;
+.news .card-title {
+    font-family: 'KoreaInstituteOfMachineryAndMaterials';
     font-weight: 700;
-    text-align: center;
-    width: 100%;
-    text-align: center;
     font-size: 30px;
-    background: rgb(212, 226, 255);
-    background: linear-gradient(0deg, rgba(240, 248, 255), rgb(212, 226, 255) 30%);
-}
-
-.video .card-title-forlong {
-    font-size: 20px !important;
-}
-
-iframe {
-    height: 350px;
-    width: 900px;
-}
-
-.video .font {
-    font-family: 'KoreaInstituteOfMachineryAndMaterials' !important;
-}
-
-.video .card-url {
-    color: rgb(9, 9, 211);
-    text-decoration: underline;
+    background: rgb(50, 103, 211);
+    color: white;
 }

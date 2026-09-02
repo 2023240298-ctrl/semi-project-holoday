@@ -51,9 +51,6 @@ public class OpenApiService {
 
             if (response !=null && response.getChoices() != null && !response.getChoices().isEmpty()){
                 String summary = response.getChoices().get(0).getMessage().getContent();
-                if (summary != null && summary.length()>500){
-                    summary = summary.substring(0, 496)+"...";
-                }
                 return summary;
             }
             return null;
