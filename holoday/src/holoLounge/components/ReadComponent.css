@@ -1,10 +1,6 @@
-.readBox > div:last-child {
-   flex: 1;
-}
-
 .readBox {
    display: flex;
-   gap: 30px;
+   gap: 60px;
 }
 
 .boardArea {

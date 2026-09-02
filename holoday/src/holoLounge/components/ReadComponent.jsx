@@ -3,6 +3,7 @@ import { getOne, deleteOne, likeBoard, unLikeBoard, getCommentList, postComment,
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 import "../components/ReadComponent.css"
 import { Card, Badge } from "flowbite-react";
+import PagiNation from "../../components/common/PagiNation";
 
 const initState = {
     categoryNo: null,
@@ -20,8 +21,15 @@ const initState = {
 const commentInitState = {
     dtoList: [],
     page: 1,
-    size: 5,
+    size: 4,
     totalCount: 0,
+    currentPage: 1,
+    next: false,
+    nextPage: 0,
+    pageNumberList: [1],
+    prev: false,
+    prevPage: 0,
+    totalPage: 1,
 };
 
 const ReadComponent = ({no}) => {
@@ -42,7 +50,7 @@ const ReadComponent = ({no}) => {
     useEffect(() => {
         getCommentList(no, {
             page: 1,
-            size: 5,
+            size: 4,
         }).then((data) => {
             console.log("댓글:", data);
             setComments(data);
@@ -58,7 +66,7 @@ const ReadComponent = ({no}) => {
                     <div className="flex justify-end">
                         <button
                             type="button"
-                            className="border border-orange-300 px-2 py-1 text-xl text-orange-500 hover:bg-orange-50"
+                            className="holo-text border border-orange-300 px-2 py-1 text-xl text-orange-500 hover:bg-orange-50"
                             onClick={moveToList}
                         >
                             X
@@ -82,7 +90,7 @@ const ReadComponent = ({no}) => {
                     </div>
                     
 
-                    <p className="boardContent max-h-80 min-h-40 overflow-y-auto rounded-lg 
+                    <p className="boardContent max-h-96 min-h-56 overflow-y-auto rounded-lg 
                     bg-blue-50 px-5 py-4 leading-7 text-gray-600">
                         {holoboard.boardContent}
                     </p>
@@ -92,7 +100,7 @@ const ReadComponent = ({no}) => {
                             <img
                                 src={holoboard.boardImg}
                                 alt="게시판 이미지"
-                                className="h-80 w-3/4 rounded-lg border border-blue-100"
+                                className="h-72 w-72 rounded-lg border border-blue-100 object-cover"
                             />
                         )}
                     </div>
@@ -123,7 +131,7 @@ const ReadComponent = ({no}) => {
                                     });
                             }}
                         >
-                            LIKE {holoboard.boardLike}
+                            LIKE♡ {holoboard.boardLike}
                         </button>
                     </div>
 
@@ -159,146 +167,23 @@ const ReadComponent = ({no}) => {
                 </div>
             </div>
 
-            <div className="rounded-lg border border-blue-100 p-5">
-                <h3>댓글</h3>
-
-                <div>
-                    <textarea
-                        value={commentContent}
-                        onChange={(e) => setCommentContent(e.target.value)}
-                        placeholder="댓글을 입력하세요."
-                    />
-
-                    <button
-                        type="button"
-                        onClick={() => {
-                            const accessToken = localStorage.getItem("accessToken");
-
-                            if(!accessToken) {
-                                alert("로그인 후 이용해 주세요.");
-                                return;
-                            }
-
-                            const content = commentContent.trim();
-
-                            if(!content){
-                                alert("댓글 내용을 입력해 주세요.");
-                                return;
-                            }
-
-                            postComment(no, {
-                                commentContent: content
-                            })
-                                .then((result) => {
-                                    console.log("댓글 등록:", result);
-                                    setCommentContent("");
-
-                                    getCommentList(no, {
-                                        page: 1,
-                                        size: 5,
-                                    }).then((data) => {
-                                        setComments(data);
-                                    });
-                                })
-                                .catch((e) => {
-                                    console.error(e);
-                                });
-                        }}
-                    >
-                        댓글 등록
-                    </button>
-                </div>
-
-                {comments.dtoList.map((comment) => (
-                    <div key={comment.commentNo}>
-
-                        <div>
-                            작성일: {comment.commentDate}
-                        </div>
-                        <div>
-                            작성자: {comment.userId}
-                        </div>
-
-                        {editingCommentNo === comment.commentNo ? (
-                            <div>
-                                <input
-                                    type="text"
-                                    value={editContent}
-                                    onChange={(e) => setEditContent(e.target.value)}
-                                />
-
-                                <button
-                                    type="button"
-                                    onClick={()=>{
-                                        putComment({
-                                            commentNo: comment.commentNo,
-                                            commentContent: editContent
-                                        })
-                                            .then(() => {
-                                                setComments((prev) => ({
-                                                    ...prev,
-                                                    dtoList: prev.dtoList.map((item) =>
-                                                    item.commentNo === comment.commentNo
-                                                        ? {
-                                                            ...item,
-                                                            commentContent: editContent
-                                                        }
-                                                        : item
-                                                    )
-                                                }));
-
-                                                setEditingCommentNo(null);
-                                                setEditContent("");
-                                            })
-                                            .catch((e) => {
-                                                console.error(e);
-                                            });
-                                    }}
-                            >
-                                저장하기
-                            </button>
-
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setEditingCommentNo(null);
-                                    setEditContent("");
-                                }}
-                            >
-                                취소하기
-                            </button>
-                        </div>
-                        ) : (
-                            <div>
-                                내용: {comment.commentContent}
-                            </div>
-                        )}
-
-                        <div>
-                            좋아요: {comment.commentLike}
-                        </div>
-
-                        {editingCommentNo !== comment.commentNo && (
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    const accessToken = localStorage.getItem("accessToken");
-
-                                    if(!accessToken) {
-                                        alert("로그인 후 이용해 주세요.");
-                                        return;
-                                    }
-
-                                    setEditingCommentNo(comment.commentNo);
-                                    setEditContent(comment.commentContent);
-                                }}
-                            >
-                                수정하기
-                            </button>
-                        )}
+            <div className="self-start">
+                <div className="rounded-lg border border-blue-100 p-5 pb-2">
+                    <div>
+                        <textarea
+                            value={commentContent}
+                            onChange={(e) => setCommentContent(e.target.value)}
+                            className="h-24 w-full resize-none rounded-lg border border-blue-100
+                            bg-blue-50 px-4 py-3 text-sm text-gray-700
+                            placeholder:text-gray-400 focus:border-blue-300 focus:ring-blue-200"
+                            placeholder="댓글을 입력하세요."
+                        />
 
                         <button
                             type="button"
+                            className="rounded-lg border border-blue-200 bg-blue-50
+                            px-4 py-2 text-sm font-medium text-blue-600
+                            hover:bg-blue-100"
                             onClick={() => {
                                 const accessToken = localStorage.getItem("accessToken");
 
@@ -307,27 +192,175 @@ const ReadComponent = ({no}) => {
                                     return;
                                 }
 
-                                deleteComment(comment.commentNo)
-                                    .then(() => {
-                                        setComments((prev) => ({
-                                            ...prev,
-                                            dtoList: prev.dtoList.filter(
-                                                (item) => item.commentNo !== comment.commentNo
-                                            )
-                                        }));
+                                const content = commentContent.trim();
+
+                                if(!content){
+                                    alert("댓글 내용을 입력해 주세요.");
+                                    return;
+                                }
+
+                                postComment(no, {
+                                    commentContent: content
+                                })
+                                    .then((result) => {
+                                        console.log("댓글 등록:", result);
+                                        setCommentContent("");
+
+                                        getCommentList(no, {
+                                            page: 1,
+                                            size: 4,
+                                        }).then((data) => {
+                                            setComments(data);
+                                        });
                                     })
                                     .catch((e) => {
                                         console.error(e);
                                     });
                             }}
                         >
-                            삭제하기
+                            댓글 등록
                         </button>
-
-                        <hr />
-
                     </div>
-                ))}
+
+                    {comments.dtoList.map((comment) => (
+                        <div
+                            key={comment.commentNo}
+                            className="mt-4 rounded-lg border border-blue-100 bg-blue-50/50 p-4"
+                        >
+
+                            <div>
+                    
+                            </div>
+                            <div className="flex items-center justify-between text-sm text-gray-500">
+                                <span>작성자: {comment.userId}</span>
+                                <span>{comment.commentDate}</span>
+                            </div>
+
+                            {editingCommentNo === comment.commentNo ? (
+                                <div className="flex flex-wrap items-center gap-2">
+                                    <input
+                                        type="text"
+                                        value={editContent}
+                                        onChange={(e) => setEditContent(e.target.value)}
+                                    />
+
+                                    <button
+                                        type="button"
+                                        onClick={()=>{
+                                            putComment({
+                                                commentNo: comment.commentNo,
+                                                commentContent: editContent
+                                            })
+                                                .then(() => {
+                                                    setComments((prev) => ({
+                                                        ...prev,
+                                                        dtoList: prev.dtoList.map((item) =>
+                                                        item.commentNo === comment.commentNo
+                                                            ? {
+                                                                ...item,
+                                                                commentContent: editContent
+                                                            }
+                                                            : item
+                                                        )
+                                                    }));
+
+                                                    setEditingCommentNo(null);
+                                                    setEditContent("");
+                                                })
+                                                .catch((e) => {
+                                                    console.error(e);
+                                                });
+                                        }}
+                                >
+                                    저장하기
+                                </button>
+
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setEditingCommentNo(null);
+                                        setEditContent("");
+                                    }}
+                                >
+                                    취소하기
+                                </button>
+                            </div>
+                            ) : (
+                                <div className="mt-3 rounded-lg bg-white px-3 py-2 text-sm leading-6
+                                text-gray-600 line-clamp-3">
+                                    {comment.commentContent}
+                                </div>
+                            )}
+
+                            <div className="mt-2 flex items-center justify-end">
+                                <div className="flex gap-1">
+                                {editingCommentNo !== comment.commentNo && (
+                                    <button
+                                        type="button"
+                                        className="holo-text rounded-lg border border-blue-200 bg-blue-50
+                                        px-2 py-1 text-xs text-blue-600"
+                                        onClick={() => {
+                                            const accessToken = localStorage.getItem("accessToken");
+
+                                            if(!accessToken) {
+                                                alert("로그인 후 이용해 주세요.");
+                                                return;
+                                            }
+                                            setEditingCommentNo(comment.commentNo);
+                                            setEditContent(comment.commentContent);
+                                        }}
+                                    >
+                                        수정하기
+                                    </button>
+                                )}
+
+                                <button
+                                    type="button"
+                                    className="holo-text rounded-lg border border-red-200 bg-red-50
+                                    px-2 py-1 text-xs text-red-500"
+                                    onClick={() => {
+                                        const accessToken = localStorage.getItem("accessToken");
+
+                                        if(!accessToken) {
+                                            alert("로그인 후 이용해 주세요.");
+                                            return;
+                                        }
+
+                                        deleteComment(comment.commentNo)
+                                            .then(() => {
+                                                setComments((prev) => ({
+                                                    ...prev,
+                                                    dtoList: prev.dtoList.filter(
+                                                        (item) => item.commentNo !== comment.commentNo
+                                                    )
+                                                }));
+                                            })
+                                            .catch((e) => {
+                                                console.error(e);
+                                            });
+                                    }}
+                                >
+                                    삭제하기
+                                </button>
+                            </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="mt-2 flex justify-center">
+                    <PagiNation
+                        serverData={comments}
+                        movePage={({page}) => {
+                            getCommentList(no, {
+                                page,
+                                size: 4,
+                            }).then((data) => {
+                                setComments(data);
+                            });
+                        }}
+                    />
+                </div>
             </div>
         </div>
     );
