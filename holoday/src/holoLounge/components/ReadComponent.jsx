@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getOne, deleteOne, likeBoard, unLikeBoard, getCommentList, postComment, putComment, deleteComment } from "../js/HoloBoardApi";
+import { getOne, deleteOne, likeBoard, unLikeBoard, getCommentList, postComment, putComment, deleteComment, getCategoryList } from "../js/HoloBoardApi";
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 import "../components/ReadComponent.css"
 import { Card, Badge } from "flowbite-react";
@@ -34,6 +34,7 @@ const commentInitState = {
 
 const ReadComponent = ({no}) => {
     const [holoboard, setHoloboard] = useState(initState);
+    const [categories, setCategories] = useState([]);
     const [comments, setComments] = useState(commentInitState);
     const [editingCommentNo, setEditingCommentNo] = useState(null);
     const [editContent, setEditContent] = useState("");
@@ -46,6 +47,16 @@ const ReadComponent = ({no}) => {
             setHoloboard(data);
         });
     }, [no]);
+
+    useEffect(() => {
+        getCategoryList()
+            .then((data) => {
+                setCategories(data);
+            })
+            .catch((e) => {
+                console.error("카테고리 조회 오류:", e);
+            });
+    }, []);
 
     useEffect(() => {
         getCommentList(no, {
@@ -74,7 +85,11 @@ const ReadComponent = ({no}) => {
                     </div>
 
                     <div className="boardMeta holo-text flex items-center justify-between text-sm text-blue-800">
-                        <span>{holoboard.categoryNo}</span>
+                        <span className="flex h-8 w-24 items-center justify-center rounded-md bg-blue-100 text-blue-700 font-medium">
+                            {categories.find(
+                                (category) => category.categoryNo === holoboard.categoryNo
+                            )?.categoryName}
+                        </span>
                         <span>{holoboard.boardDate}</span>
                     </div>
                     
