@@ -15,7 +15,7 @@ const root = createBrowserRouter([
             children: holoddamRouter(),
          },
          {
-            path: "/holoboard",
+            path: "holoboard",
             children: holoBoardRouter(),
          },
       ]

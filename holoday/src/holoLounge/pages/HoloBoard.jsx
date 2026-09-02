@@ -9,7 +9,7 @@ const HoloBoard = () => {
         <div className="flex jestify-center">
             <Card className="w-full max-w-6xl">
 
-                <h1 className="head-text mb-8 text-center text-3xl">
+                <h1 className="logo-text mb-8 text-center text-3xl">
 
                     Holo Lounge
 
