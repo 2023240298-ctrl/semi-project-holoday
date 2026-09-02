@@ -31,6 +31,11 @@ export const unLikeBoard = async (no) => {
     return response.data;
 };
 
+export const getCategoryList = async () => {
+    const response = await customAxios.get("/api/holoday/categories");
+    return response.data;
+};
+
 export const postAdd = async(holoLounge) => {
     const response = await customAxios.post(prefix, holoLounge);
 
