@@ -2,33 +2,34 @@
 const holoInfoRouter = () => {
     return [
          {
-            path:"holoinfo",
-            HydrateFallback: () => <div>Loadig...</div>,
+            index: true,
+            HydrateFallback: () => <div>Loading...</div>,
             lazy: async () => {
-                const { default: Component} = await import("../InfoList");
+                const { default: Component} = await import("../holoInfo/InfoList");
                 return{Component};
             },
         },
         {
-            path: "holoinfo/:infoNo",
+            path: ":infoNo",
             HydrateFallback: () => <div>Loading...</div>,
             lazy: async () => {
-                const {default: Component} = await import("../InfoRead");
+                const {default: Component} = await import("../holoInfo/InfoRead");
                 return {Component};
 
             },
 
         },
         {
-            path: "holoinfo/new",
+            path: "new",
             HydrateFallback: () => <div>Loading...</div>,
             lazy: async () => {
-                const {default: Component} = await import("../InfoAdd");
+                const {default: Component} = await import("../holoInfo/InfoAdd");
                 return {Component};
 
             },
 
         },
+        
     ];
 };
 
