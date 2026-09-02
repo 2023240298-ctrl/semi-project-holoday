@@ -8,21 +8,23 @@ const root = createBrowserRouter([
    {
       path: "/",
       element: <App />,
-      children: memberRouter(),
-   },
-   {
-      path: "/holoddam",
-      HydrateFallback: () => <div>Loading...</div>,
-      lazy: async () => {
-         const { default: Component } = await import('../holoddam/pages/DrawPage');
-         return { Component };
-      },
-      children: holoddamRouter(),
-   },
-   {
-      path: "/holoboard",
-      children: holoBoardRouter(),
-   },
+      children: [
+         memberRouter(),
+         {
+            path: "/holoddam",
+            HydrateFallback: () => <div>Loading...</div>,
+            lazy: async () => {
+               const { default: Component } = await import('../holoddam/pages/DrawPage');
+               return { Component };
+            },
+            children: holoddamRouter(),
+         },
+         {
+            path: "/holoboard",
+            children: holoBoardRouter(),
+         },
+      ]
+   }
 ]);
 
 export default root;
