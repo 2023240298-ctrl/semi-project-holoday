@@ -9,7 +9,7 @@ const root = createBrowserRouter([
       path: "/",
       element: <App />,
       children: [
-         memberRouter(),
+         ...memberRouter(),
          {
             path: "holoddam",
             HydrateFallback: () => <div>Loading...</div>,
@@ -20,7 +20,7 @@ const root = createBrowserRouter([
             children: holoddamRouter(),
          },
          {
-            path: "/holoboard",
+            path: "holoboard",
             children: holoBoardRouter(),
          },
       ]
