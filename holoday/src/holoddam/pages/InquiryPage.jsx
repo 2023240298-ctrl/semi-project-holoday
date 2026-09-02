@@ -11,7 +11,7 @@ const InquiryPage = () => {
     const currentCard = cards[currentIndex]
 
     const invisibleButton = (
-        <button type='button' className='w-20 h-full opacity-0 cursor-pointer absolute inset-y-0' />
+        <span className='w-20 h-full opacity-0 cursor-pointer absolute inset-y-0' />
     );
 
     useEffect(() => {
@@ -29,9 +29,10 @@ const InquiryPage = () => {
     }, []);
 
     return (
-        <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 w-full max-w-xl mx-auto mt-10">
-            <Carousel indicators={false}
-                leftControl={invisibleButton} rightControl={invisibleButton}>
+        <div className="h-[600px] w-full max-w-xl mx-auto">
+            <Carousel indicators={false} className="!h-full !w-full" slide={false}
+                leftControl={invisibleButton} rightControl={invisibleButton}
+            >
                 {cards.map((card) => (
                     <HistoryCard key={card.cardNo} card={card} />
                 ))}

@@ -1,4 +1,4 @@
-
+import { jwtDecode } from "jwt-decode";
 import { formatDate } from '../util/formatDate';
 
 
@@ -6,13 +6,38 @@ import { formatDate } from '../util/formatDate';
 
 const HistoryCard = ({ card: { cardNo, cardOriginDate, cardTitle, cardSumm, cardOriginUrl, cardImageUrl } }) => {
 
+    const isAdmin = sessionStorage.getItem("isAdmin") === "true";
+
     return (
-        <div>
-            <div className='delete-button col-start-1 row-start-1 bg-blue-500/80 p-4 z-10 flex justify-between items-center'>
-                <h1 className="text-white font-bold">cardno: {cardNo}</h1>
-                <button type='button' className="text-white font-bold bg-red-500 px-3 py-1 rounded hover:bg-red-600">
-                    ×
-                </button>
+        <div className="w-full h-full bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+            <div className='bg-blue-500/80 p-4 z-10 flex justify-between items-center shrink-0'>
+                <h1 className="text-white font-bold">카드 번호: {cardNo}</h1>
+                {isAdmin && (
+                    <button type='button' className="text-white font-bold bg-red-500 px-3 py-1 rounded hover:bg-red-600">
+                        ×
+                    </button>
+                )}
+            </div>
+
+            {/* 상단 고정 영역 (스크롤 안 됨) */}
+            <div className="p-4 shrink-0">
+                <h1 className="font-bold text-lg">{cardTitle}</h1>
+            </div>
+
+            <div className="flex flex-row gap-4 px-4 pb-2 shrink-0 text-sm text-gray-500">
+                <h1>{formatDate(cardOriginDate)}</h1>
+                <a href={cardOriginUrl} className="text-blue-500 underline">원본 링크 이동!</a>
+            </div>
+
+            {/* 💡 이 박스(이미지 + 내용) 안에서만 스크롤이 발생함 */}
+            <div className="flex flex-col gap-2 overflow-y-auto flex-1 min-h-0 p-4">
+                <div>
+                    <img src={cardImageUrl} className="w-full object-cover rounded" />
+                </div>
+                <div>
+                    <h1 className="text-gray-700 whitespace-pre-wrap">{cardSumm}</h1>
+                    <br />
+                </div>
             </div>
         </div>
     );
