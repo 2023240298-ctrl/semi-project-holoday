@@ -7,6 +7,7 @@ const InfoRead = () => {
   const {infoNo} = useParams();
   const [info, setInfo] = useState(null);
 
+  {/*상세 데이터 */}
   useEffect(()=> {
     
     getOne(infoNo).then((result)=> {
@@ -18,6 +19,52 @@ const InfoRead = () => {
         });
 
   }, [infoNo]);
+
+  {/* 지도 */}
+  useEffect(() => {
+
+    if (!info) {return;}
+
+    const container = document.getElementById("map");//지도를 담을 영역의 DOM 레퍼런스
+
+    const options = {//지도를 생성할 때 필요한 기본 옵션
+      center: new window.kakao.maps.LatLng(37.5665, 126.9780),
+      level: 3, //지도의 레벨 (확대, 축소)
+    };
+
+    const map = new window.kakao.maps.Map(container, options);//지도 생성 및 객체 리턴
+
+      // 주소를 좌표로 변환하기 위한 객체
+    const geocoder = new window.kakao.maps.services.Geocoder();
+
+    // DB에서 가져온 주소로 좌표 검색
+    geocoder.addressSearch(info.infoAddress, (result, status) =>{
+       
+      if (status === window.kakao.maps.services.Status.OK) {
+
+      // 검색된 주소의 위도, 경도로 좌표 생성
+      const coords = new window.kakao.maps.LatLng(
+        result[0].y,
+        result[0].x
+      );
+
+      // 해당 위치에 마커 생성
+      const marker = new window.kakao.maps.Marker({
+        map: map,
+        position: coords,
+      });
+
+      // 지도 중심을 해당 주소로 이동
+      map.setCenter(coords);
+    }
+  });
+    
+  }, [info]);
+
+
+  if (!info) {
+    return <div>Loading...</div>;
+  }
 
 
   if (!info) {
