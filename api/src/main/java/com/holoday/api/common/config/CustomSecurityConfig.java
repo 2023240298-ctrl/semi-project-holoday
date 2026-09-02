@@ -68,9 +68,11 @@ public class CustomSecurityConfig {
                                 "/api/holoday/board/*",
                                 "/api/holoday/board/*/comments",
                                 "/api/holoday/info",
-                                "/api/holoday/info/*"
+                                "/api/holoday/info/*",
+                                "/upload/**"
 
                         ).permitAll()
+
 
                         .anyRequest().authenticated()
                 )
