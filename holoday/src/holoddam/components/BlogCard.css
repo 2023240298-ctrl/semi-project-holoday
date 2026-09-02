@@ -12,40 +12,28 @@
     font-display: swap;
 }
 
-
-.video .card-box-container {
+.blog .card-box-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     height: 530px;
     width: 1000px;
     background-color: aliceblue;
 }
 
-.video .card-title {
+.font {
     font-family: 'KoreaInstituteOfMachineryAndMaterials' !important;
+}
+
+.blog .card-title {
     font-weight: 700;
-    text-align: center;
-    width: 100%;
-    text-align: center;
-    font-size: 30px;
-    background: rgb(212, 226, 255);
-    background: linear-gradient(0deg, rgba(240, 248, 255), rgb(212, 226, 255) 30%);
+    font-size: 25px;
 }
 
-.video .card-title-forlong {
-    font-size: 20px !important;
+.blog .card-url {
+    background-color: #8188eb;
+    color: white;
 }
 
-iframe {
-    height: 350px;
-    width: 900px;
-}
-
-.video .font {
-    font-family: 'KoreaInstituteOfMachineryAndMaterials' !important;
-}
-
-.video .card-url {
-    color: rgb(9, 9, 211);
-    text-decoration: underline;
+.blog .card-date {
+    color: rgb(231, 231, 225);
 }

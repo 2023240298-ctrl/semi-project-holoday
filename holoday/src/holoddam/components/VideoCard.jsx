@@ -1,5 +1,6 @@
-import { useState } from 'react';
+
 import './VideoCard.css';
+import { formatDate } from '../util/formatDate';
 
 
 const VideoCard = ({ card: { cardNo, cardOriginDate, cardTitle, cardSumm, cardOriginUrl, cardImageUrl } }) => {
@@ -11,48 +12,47 @@ const VideoCard = ({ card: { cardNo, cardOriginDate, cardTitle, cardSumm, cardOr
     };
 
     return (
-        <>
-            <div className='card-box-container'>
+        <div className='video'>
+            <div className='card-box-container font rounded-xl overflow-hidden'>
                 <div className='title-container grid relative group'>
 
-                    <div className='card-title col-start-1 row-start-1 bg-gray-200 p-4 z-0'>
-                        <h1 className="truncate">{cardTitle}</h1>
-                    </div>
-                    <div className='delete-button col-start-1 row-start-1 bg-blue-500/80 p-4 z-10 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-200'>
-                        <h1 className="text-white font-bold">cardno: {cardNo}</h1>
-                        <button type='button' className="text-white font-bold bg-red-500 px-2 py-1 rounded hover:bg-red-600">
-                            X
-                        </button>
+                    <div className='card-title col-start-1 row-start-1 p-4 z-0'>
+                        <h1 className={`whitespace-pre-line ${(cardTitle?.length || 0) >= 40 ? 'card-title-forlong' : ''}`}>
+                            {cardTitle && cardTitle.length > 40 ?
+                                `${cardTitle.slice(0, 40)}\n${cardTitle.slice(40)}`
+                                : cardTitle
+                            }
+                        </h1>
                     </div>
 
                 </div>
 
                 <div className='card-main-content flex justify-center items-center'>
                     <iframe
-                        src={getEmbedUrl(cardOriginUrl)} title={cardTitle} frameBorder="0"
+                        src={getEmbedUrl(cardOriginUrl)} title={cardTitle}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                     ></iframe>
                 </div>
 
 
-                <div className='card-subtitle-box'>
-                    <div className='card-subtitle'>
-                        <h1>asdf</h1>
+                <div className='card-subtitle-box flex gap-3 flex-1'>
+                    <div className='card-subtitle flex-1 min-w-0 w-[600px] ml-4 mt-2 break-words'>
+                        <h1>{cardSumm}</h1>
                     </div>
-                    <div className='card-detail-box'>
+                    <div className='card-detail-box ml-auto flex flex-col justify-between items-end mr-4'>
 
                         <div className='card-date'>
-                            <h1>adf</h1>
+                            <h1>{formatDate(cardOriginDate)}</h1>
                         </div>
-                        <div className='card-url'>
-                            <h1>asdf</h1>
+                        <div className='card-url mb-4'>
+                            <a href={cardOriginUrl}>유튜브에서 영상을 시청하세요!</a>
                         </div>
 
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
