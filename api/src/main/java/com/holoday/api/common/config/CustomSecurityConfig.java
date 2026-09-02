@@ -74,7 +74,7 @@ public class CustomSecurityConfig {
                         .requestMatchers(
                                 HttpMethod.GET,
                                 "/api/holoday/card",
-                                "/api/holoday/history"
+                                "/api/holoday/card/history"
                         ).authenticated()
                         .anyRequest().authenticated()
                 )
