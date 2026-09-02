@@ -15,6 +15,9 @@ const InfoList = () => {
   const[serverData, setServerData] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(0);
   const navigate = useNavigate();
+  
+  const isAdmin =
+  localStorage.getItem("userIsAdmin") === "true";
 
   const moveToRead = (infoNo) => {
     navigate(`/holoinfo/${infoNo}`);
@@ -62,6 +65,15 @@ const InfoList = () => {
                 <button onClick={() => setSelectedCategory(2)}>홀로 문화</button>
                 <button onClick={() => setSelectedCategory(3)}>홀로 체험</button>
             </div>
+
+            {isAdmin && (
+                <button
+                    type="button"
+                    onClick={() => navigate("/holoinfo/new")}
+                >
+                    등록
+                </button>
+                )}
 
             <div className="info-cards">
                 {filteredList.map((info) => (
