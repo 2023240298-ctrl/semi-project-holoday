@@ -76,9 +76,17 @@ public class InfoServiceImpl implements InfoService {
 
     @Transactional(readOnly = true)
     @Override
-    public PageResponseDTO<InfoDTO> list(PageRequestDTO pageRequestDTO){
+    public PageResponseDTO<InfoDTO> list(PageRequestDTO pageRequestDTO, Long categoryNo){
         Pageable pageable = pageRequestDTO.getPageable("infoNo");
-        Page<Info> infoPage = infoRepository.findAll(pageable);
+        Page<Info> infoPage;
+
+        if (categoryNo == null) {
+            infoPage = infoRepository.findAll(pageable);
+        }  else {
+            // 카테고리를 선택했으면 해당 카테고리만 조회
+            infoPage = infoRepository.findByCategoryNo(categoryNo, pageable);
+        }
+
 
         List<InfoDTO> dtoList = infoPage.getContent()
                 .stream()

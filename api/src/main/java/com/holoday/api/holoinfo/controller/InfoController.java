@@ -50,8 +50,9 @@ public class InfoController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "조회 성공")
     })
-    public ResponseEntity<PageResponseDTO<InfoDTO>> list(PageRequestDTO pageRequestDTO) {
-        PageResponseDTO<InfoDTO> responseDTO = infoService.list(pageRequestDTO);
+    public ResponseEntity<PageResponseDTO<InfoDTO>> list(PageRequestDTO pageRequestDTO,
+                                                         @RequestParam(required = false) Long categoryNo) {
+        PageResponseDTO<InfoDTO> responseDTO = infoService.list(pageRequestDTO, categoryNo);
         return ResponseEntity.ok(responseDTO);
     }
 
