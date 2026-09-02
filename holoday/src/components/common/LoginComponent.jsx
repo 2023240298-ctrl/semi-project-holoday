@@ -31,6 +31,8 @@ const LoginComponent = () => {
 
          console.log("로그인 성공:", response.data);
          localStorage.setItem("accessToken", response.data.accessToken);
+         localStorage.setItem("refreshToken", response.data.refreshToken);
+         localStorage.setItem("userIsAdmin", response.data.userIsAdmin);
 
          navigate("/");
          window.location.reload();
