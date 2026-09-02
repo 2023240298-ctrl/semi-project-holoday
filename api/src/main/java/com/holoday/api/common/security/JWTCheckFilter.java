@@ -95,6 +95,7 @@ public class JWTCheckFilter extends OncePerRequestFilter {
                 || path.equals("/api/holoday/send")
                 || path.equals("/api/holoday/authenticate")
                 || (method.equals("GET") && path.startsWith("/api/holoday/board"))
-                || (method.equals("GET") && path.startsWith("/api/holoday/info"));
+                || (method.equals("GET") && path.startsWith("/api/holoday/info"))
+                || (method.equals("GET") && path.startsWith("/upload/"));
     }
 }
