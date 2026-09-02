@@ -30,8 +30,8 @@ const LoginComponent = () => {
          );
 
          console.log("로그인 성공:", response.data);
-         sessionStorage.setItem("isAdmin", response.data.userIsAdmin);
          localStorage.setItem("accessToken", response.data.accessToken);
+         localStorage.setItem("userIsAdmin", response.data.userIsAdmin);
 
          navigate("/");
          window.location.reload();
