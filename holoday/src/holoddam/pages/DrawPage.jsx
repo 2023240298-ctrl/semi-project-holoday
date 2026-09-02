@@ -5,11 +5,13 @@ import NewsCard from '../components/NewsCard';
 import BlogCard from '../components/BlogCard';
 import { useState, useEffect } from 'react';
 import { HiRefresh } from 'react-icons/hi';
+import { useNavigate } from 'react-router';
 
 const DrawPage = () => {
     const [card, setCard] = useState(null);
     const [loading, setLoading] = useState(true);
     const [isRotate, setIsRotate] = useState(false);
+    const navigate = useNavigate();
 
     const fetchRandomCard = async () => {
         setLoading(true);
@@ -42,17 +44,24 @@ const DrawPage = () => {
             <h1 className="head-text text-5xl font-bold mb-4">홀로 땜 페이지</h1>
             <div className='button-box flex flex-row justify-between w-[1000px] items-end'>
                 <h2 className="holo-text text-xl text-gray-600 mb-8">혼자서도 재미있고 유익하게 시간을 때워요!</h2>
-                <button type="button">지금까지 봤던 카드들 보러가기</button>
-                <button
-                    type="button"
-                    onClick={handleRefreshClick}
-                    className="p-2 mb-1 text-gray-600 hover:text-gray-900 hover:bg-gray-200/60 rounded-full transition-colors"
-                >
-                    <HiRefresh className={`w-5 h-5 transition-transform duration-500 ease-in-out 
-                           ${isRotate ?
-                            'transition-transform duration-500 ease-in-out rotate-[-360deg]'
-                            : 'duration-0 rotate-0'}`} />
-                </button>
+                <div className='button-container'>
+                    <button type="button" className='-translate-y-[4px] head-text bg-blue-800 text-white
+                    px-2 py-1 rounded-lg hover:bg-blue-700 transition-colors mr-2'
+                        onClick={() => navigate('/holoddam/cards')}>
+                        지금까지 봤던 카드들 보러가기</button>
+                    <button
+                        type="button"
+                        onClick={handleRefreshClick}
+                        className="p-2 mb-1 text-gray-600 hover:text-gray-900 hover:bg-gray-200/60 rounded-full transition-colors"
+                    >
+                        <HiRefresh className={`w-5 h-5 transition-transform duration-500 ease-in-out`}
+                            style={{
+                                transform: isRotate ? 'rotate(-360deg)' : 'rotate(0deg)',
+                                transition: isRotate ? 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
+                            }}
+                        />
+                    </button>
+                </div>
             </div>
             {loading ? (
                 <div className="w-full mt-48">
