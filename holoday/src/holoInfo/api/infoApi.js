@@ -48,4 +48,48 @@ export const postAdd = async (info,file) => {
     return response.data;
 };
 
+export const patchModify = async (infoNo, info, file) => {
+    const formData = new FormData();
+
+    const infoBlob = new Blob(
+        [JSON.stringify(info)],
+        { type: "application/json" }
+    );
+
+    formData.append("info", infoBlob);
+
+    if (file) {
+        formData.append("file", file);
+    }
+
+    const accessToken = localStorage.getItem("accessToken");
+
+    const response = await axios.patch(
+        `${prefix}/${infoNo}`,
+        formData,
+        {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        }
+    );
+
+    return response.data;
+};
+
+export const deleteOne = async (infoNo) => {
+    const accessToken = localStorage.getItem("accessToken");
+
+    const response = await axios.delete(
+        `${prefix}/${infoNo}`,
+        {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        }
+    );
+
+    return response.data;
+};
+
 

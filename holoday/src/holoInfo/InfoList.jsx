@@ -4,6 +4,11 @@ import { useNavigate } from "react-router";
 import "./InfoList.css";
 import PagiNation from "../components/common/PagiNation";
 
+const categoryName = {
+  1: "홀로 휴식",
+  2: "홀로 문화",
+  3: "홀로 체험",
+};
 
 const InfoList = () => {
   const[serverData, setServerData] = useState(null);
@@ -63,7 +68,7 @@ const InfoList = () => {
                 />
 
                 <div className="info-overlay-text">
-                    <span>홀로 체험</span>
+                    <span>{categoryName[info.categoryNo]}</span>
                     <h3>{info.infoTitle}</h3>
                     <p>{info.infoPlace}</p>
                 </div>   

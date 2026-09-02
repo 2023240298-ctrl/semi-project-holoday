@@ -3,6 +3,12 @@ import "./InfoRead.css";
 import { getOne } from "./api/infoApi";
 import { useEffect, useState } from "react";
 
+const categoryName = {
+  1: "홀로 휴식",
+  2: "홀로 문화",
+  3: "홀로 체험",
+};
+
 const InfoRead = () => {
   const {infoNo} = useParams();
   const [info, setInfo] = useState(null);
@@ -11,7 +17,6 @@ const InfoRead = () => {
   useEffect(()=> {
     
     getOne(infoNo).then((result)=> {
-        console.log("상세 결과 =",result);
         setInfo(result);
     })
      .catch((error) => {
@@ -61,12 +66,6 @@ const InfoRead = () => {
     
   }, [info]);
 
-
-  if (!info) {
-    return <div>Loading...</div>;
-  }
-
-
   if (!info) {
     return <div>Loading...</div>;
     }
@@ -76,7 +75,7 @@ const InfoRead = () => {
           <div className="info-read-header">
 
             <span className="info-read-category">
-                홀로 체험
+                <span>{categoryName[info.categoryNo]}</span>
             </span>
 
             <h2>{info.infoTitle}</h2>

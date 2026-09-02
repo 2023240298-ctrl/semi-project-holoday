@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { postAdd } from "./api/infoApi";
-import { useNavigate } from "react-router";
-import { FileInput, Label} from "flowbite-react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import { FileInput, Label } from "flowbite-react";
+
+import { getOne, patchModify , deleteOne} from "./api/infoApi";
 import "./InfoAdd.css";
 
 const initState = {
@@ -12,11 +13,19 @@ const initState = {
     infoContent: "",
     
 };
+const InfoModify = () => {
+  const {infoNo} = useParams();
 
-const InfoAdd = () => {
   const [info, setInfo] = useState(initState);
-  const [file,setFile] = useState(null);
+  const [file, setFile] = useState(null);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getOne(infoNo).then((result)=> {
+        setInfo(result);
+    });
+  },[infoNo]);
 
 
   const handleChange = (e) => {
@@ -31,15 +40,23 @@ const InfoAdd = () => {
     });
   };
 
-  const handleClickAdd = () => {
-    postAdd(info, file).then((result)=> {
-        navigate(`/holoinfo/${result.infoNo}`);
+  const handleClickModify = () => {
+    patchModify(infoNo,info,file).then(()=> {
+        navigate(`/holoinfo/${infoNo}`);
     });
   };
   
+  const handleClickDelete = () => {
+    if(window.confirm("삭제하시겠습니까?")){
+        deleteOne(infoNo).then(()=> {
+            navigate("/holoinfo");
+        });
+    }
+  };
+
     return (
          <div className="info-add holo-text">
-            <h2>홀로 알림 등록</h2>
+            <h2>홀로 알림 수정</h2>
 
 
             <div className="info-add-select">
@@ -116,12 +133,18 @@ const InfoAdd = () => {
 
             <button 
               type="button"
-              onClick={handleClickAdd}
+              onClick={handleClickModify}
             >
-                등록
+                수정
+            </button>
+
+            <button 
+              type="button"
+              onClick={handleClickDelete}
+            >
+                삭제
             </button>
         </div>
     );
-}
-
-export default InfoAdd;
+};
+export default InfoModify;
