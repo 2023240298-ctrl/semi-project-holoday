@@ -82,7 +82,7 @@ const ReadComponent = ({no}) => {
                         {holoboard.boardTitle}
                     </div>
 
-                    <div className="boardWriter holo-text flex items-center justify-between text-left">
+                    <div className="holo-text boardWriter holo-text flex items-center justify-between text-left">
                         <div>작성자: {holoboard.userId}</div>
                         <div className="holo-text mt-1 text-sm text-gray-500">
                             조회수 {holoboard.boardHit}
@@ -140,7 +140,7 @@ const ReadComponent = ({no}) => {
                 <div className="boardButtons mt-5 flex items-center justify-between">
                     <button
                         type="button"
-                        className="rounded-lg border border-red-200 bg-red-50 px-5 py-3 text-base
+                        className="holo-text rounded-lg border border-red-200 bg-red-50 px-5 py-3 text-base
                         font-medium text-red-500 hover:bg-red-100"
                         onClick={() => {
                             deleteOne(no)
@@ -158,7 +158,7 @@ const ReadComponent = ({no}) => {
                     
                     <button
                         type="button"
-                        className="rounded-lg border border-blue-200 bg-blue-50 px-5 py-3 text-base
+                        className="holo-text rounded-lg border border-blue-200 bg-blue-50 px-5 py-3 text-base
                         font-medium text-blue-600 hover:bg-blue-100"
                         onClick={() => moveToModify(no)}
                     >
@@ -173,7 +173,7 @@ const ReadComponent = ({no}) => {
                         <textarea
                             value={commentContent}
                             onChange={(e) => setCommentContent(e.target.value)}
-                            className="h-24 w-full resize-none rounded-lg border border-blue-100
+                            className="holo-text h-24 w-full resize-none rounded-lg border border-blue-100
                             bg-blue-50 px-4 py-3 text-sm text-gray-700
                             placeholder:text-gray-400 focus:border-blue-300 focus:ring-blue-200"
                             placeholder="댓글을 입력하세요."
@@ -231,7 +231,7 @@ const ReadComponent = ({no}) => {
                             <div>
                     
                             </div>
-                            <div className="flex items-center justify-between text-sm text-gray-500">
+                            <div className="holo-text holo-text flex items-center justify-between text-sm text-gray-500">
                                 <span>작성자: {comment.userId}</span>
                                 <span>{comment.commentDate}</span>
                             </div>
@@ -286,7 +286,7 @@ const ReadComponent = ({no}) => {
                                 </button>
                             </div>
                             ) : (
-                                <div className="mt-3 rounded-lg bg-white px-3 py-2 text-sm leading-6
+                                <div className="holo-text mt-3 rounded-lg bg-white px-3 py-2 text-sm leading-6
                                 text-gray-600 line-clamp-3">
                                     {comment.commentContent}
                                 </div>
