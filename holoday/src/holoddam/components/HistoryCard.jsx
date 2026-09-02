@@ -13,7 +13,7 @@ const HistoryCard = ({ card: { cardNo, cardOriginDate, cardTitle, cardSumm, card
                 onDeleteSuccess(targetCardNo);
             }
         } catch (e) {
-            console.error("fail to delete card");
+            console.error("fail to delete card", e);
         }
     }
 

@@ -20,5 +20,7 @@ public interface HistoryRepository extends JpaRepository<History, Long> {
     @Query(value = "TRUNCATE TABLE h_history", nativeQuery = true)
     void truncateHistory();
 
-    void deleteByCardNo(Long cardNo);
+    @Modifying
+    @Query("DELETE FROM History h where h.card.cardNo = :cardNo")
+    void deleteByCardNo(@Param("cardNo") Long cardNo);
 }
