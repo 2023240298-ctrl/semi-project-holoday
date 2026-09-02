@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router";
-import InfoRouter from "./infoRouter";
+import holoInfoRouter from "./holoInfoRouter";
 
 const root = createBrowserRouter([
-    ...InfoRouter(),
+    ...holoInfoRouter(),
 ]);
 
 export default root;

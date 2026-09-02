@@ -10,9 +10,13 @@ const InfoRead = () => {
   useEffect(()=> {
     
     getOne(infoNo).then((result)=> {
-        console.log(result);
+        console.log("상세 결과 =",result);
         setInfo(result);
-    });
+    })
+     .catch((error) => {
+            console.log("상세 조회 오류 =", error);
+        });
+        
   }, [infoNo]);
 
 

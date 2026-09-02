@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { postAdd } from "./api/infoApi";
 import { useNavigate } from "react-router";
+import { FileInput, Label} from "flowbite-react";
 import "./InfoAdd.css";
 
 const initState = {
@@ -28,14 +29,13 @@ const InfoAdd = () => {
   };
 
   const handleClickAdd = () => {
-
     postAdd(info, file).then((result)=> {
-        navigate(`/holoinfo/${result.info}`);
+        navigate(`/holoinfo/${result.infoNo}`);
     });
   };
   
     return (
-         <div className="info-add">
+         <div className="info-add holo-text">
             <h2>홀로 알림 등록</h2>
 
 
@@ -61,6 +61,7 @@ const InfoAdd = () => {
                     name="infoTitle"
                     value={info.infoTitle}
                     onChange={handleChange}
+                    placeholder="제목을 입력하세요"
                 />
             </div>
 
@@ -70,13 +71,19 @@ const InfoAdd = () => {
                     name="infoContent"
                     value={info.infoContent}
                     onChange={handleChange}
+                    placeholder="내용을 입력하세요"
                 />
             </div>
 
-            <div className="info-input">
-                <label>이미지</label>
-                <input
-                    type="file"
+            <div className="info-add-file">
+                <Label
+                    className="mb-2 block"
+                    htmlFor="file-upload"
+                    value="이미지"
+                />
+
+                <FileInput
+                    id="file-upload"
                     accept="image/*"
                     onChange={(e) => setFile(e.target.files[0])}
                 />
@@ -89,6 +96,7 @@ const InfoAdd = () => {
                     name="infoPlace"
                     value={info.infoPlace}
                     onChange={handleChange}
+                    placeholder="장소명을 입력하세요"
                 />
             </div>
 
@@ -99,6 +107,7 @@ const InfoAdd = () => {
                     name="infoAddress"
                     value={info.infoAddress}
                     onChange={handleChange}
+                    placeholder="상세주소를 입력하세요"
                 />
             </div>
 

@@ -37,11 +37,13 @@ export const postAdd = async (info,file) => {
 
     const response = await axios.post(
         prefix, 
-        formData,{
+        formData,
+        {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
-        });
+        }
+    );
 
     return response.data;
 };

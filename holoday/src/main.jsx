@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import memberRouter from './router/memberRouter.jsx'
 import holoBoardRouter from "./holoLounge/router/holoBoardRouter.jsx";
 import holoddamRouter from './router/holoddamRouter.jsx'
+import holoInfoRouter from './holoInfo/router/holoInfoRouter.jsx'
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       ...memberRouter(),
       ...holoBoardRouter(),
       ...holoddamRouter(),
+      ...holoInfoRouter(),
     ],
   },
 ])
