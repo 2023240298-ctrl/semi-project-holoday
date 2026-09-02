@@ -36,16 +36,42 @@ export const getCategoryList = async () => {
     return response.data;
 };
 
-export const postAdd = async(holoLounge) => {
-    const response = await customAxios.post(prefix, holoLounge);
+export const postAdd = async(holoLounge, file) => {
+    const formData = new FormData();
+
+    formData.append(
+        "board",
+        new Blob([JSON.stringify(holoLounge)], {
+            type: "application/json",
+        })
+    );
+
+    if(file) {
+        formData.append("file", file);
+    }
+
+    const response = await customAxios.post(prefix, formData);
 
     return response.data;
 };
 
-export const putOne = async(holoLounge) => {
+export const putOne = async(holoLounge, file) => {
+    const formData = new FormData();
+
+    formData.append(
+        "board",
+        new Blob([JSON.stringify(holoLounge)], {
+            type: "application/json",
+        })
+    );
+
+    if(file) {
+        formData.append("file", file);
+    }
+
     const response = await customAxios.patch(
         `${prefix}/${holoLounge.boardNo}`,
-        holoLounge
+        formData
     );
 
     return response.data;

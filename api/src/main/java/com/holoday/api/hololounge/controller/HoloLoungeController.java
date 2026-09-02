@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.*;
+import java.io.File;
 import java.util.Map;
 
 @RestController
@@ -82,11 +83,21 @@ public class HoloLoungeController {
                 .body(Map.of("boardNo", no));
     }
 
-    @PatchMapping("/{no}")
+    @PatchMapping(value = "/{no}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(hidden = true)
-    public ResponseEntity<Map<String, String>> modify(@PathVariable Long no, @RequestBody HoloLoungeDTO holoLoungeDTO) {
+    public ResponseEntity<Map<String, String>> modify(@PathVariable Long no, @RequestPart("board") HoloLoungeDTO holoLoungeDTO, @RequestPart(value = "file", required = false) MultipartFile file
+    ) {
         holoLoungeDTO.setBoardNo(no);
+
+        FileDTO fileDTO = fileUtil.saveFile(file);
+
+        if(fileDTO != null) {
+            holoLoungeDTO.setBoardImg(fileDTO.getSavedName());
+            holoLoungeDTO.setBoardSimg(fileDTO.getThumbnailName());
+        }
+
         holoLoungeService.modify(holoLoungeDTO);
+
         return ResponseEntity.ok(Map.of("result", "수정되었습니다."));
     }
 

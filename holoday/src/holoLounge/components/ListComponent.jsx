@@ -51,11 +51,19 @@ const ListComponent = () => {
                   <div className="flex gap-6">
 
                      <div className="w-40 shrink-0">
-                     <img
-                        src={board.boardSimg}
-                        alt="썸네일"
-                        className="h-56 w-full rounded-lg border border-blue-100 object-cover"
-                     />                     
+                        {board.boardSimg ? (
+                           <img
+                              src={`http://localhost:8080/upload/${board.boardSimg}`}
+                              alt="썸네일"
+                              className="h-56 w-full rounded-lg border border-blue-100 object-cover"
+                           />
+                        ) : (
+                           <div className="flex h-56 w-full items-center justify-center rounded-lg border border-blue-100 
+                           bg-gray-50 text-sm text-gray-400">
+                              이미지 없음
+                           </div>      
+                        )}
+                                     
                      </div>
 
                      <div
@@ -71,9 +79,11 @@ const ListComponent = () => {
                         <p className="holo-text mb-5 text-right text-sm">
                            작성자 | {board.userId}
                         </p>
-                        <div className="mt-auto h-40 rounded-lg border border-blue-100 bg-blue-50/50 px-5 py-4">
+                        <div className="mt-auto h-32 rounded-lg border border-blue-100 bg-blue-50/50 px-5 py-4">
                            <p className="holo-text text-base leading-7 text-gray-600">
-                              {board.boardScontent}
+                              {board.boardContent.length > 70
+                                 ? board.boardContent.slice(0, 70) + "..."
+                                 : board.boardContent}
                            </p>
                         </div>
                      </div>

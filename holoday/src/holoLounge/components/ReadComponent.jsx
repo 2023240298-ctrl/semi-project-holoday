@@ -105,7 +105,7 @@ const ReadComponent = ({no}) => {
                     </div>
                     
 
-                    <p className="boardContent max-h-96 min-h-56 overflow-y-auto rounded-lg 
+                    <p className="boardContent holo-text max-h-96 min-h-56 overflow-y-auto whitespace-pre-wrap rounded-lg 
                     bg-blue-50 px-5 py-4 leading-7 text-gray-600">
                         {holoboard.boardContent}
                     </p>
@@ -113,7 +113,7 @@ const ReadComponent = ({no}) => {
                     <div className="boardImage mt-6 mb-6 flex justify-center">
                         {holoboard.boardImg && (
                             <img
-                                src={holoboard.boardImg}
+                                src={`http://localhost:8080/upload/${holoboard.boardImg}`}
                                 alt="게시판 이미지"
                                 className="h-72 w-72 rounded-lg border border-blue-100 object-cover"
                             />
