@@ -8,7 +8,6 @@ const Header = ({ isLogin, setIsLogin }) => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("userIsAdmin");
-
     setIsLogin(false);
     navigate("/");
   };
@@ -50,7 +49,7 @@ const Header = ({ isLogin, setIsLogin }) => {
             회원가입
           </button>
         )}
-      </div>
+        </div>
     </header>
   );
 

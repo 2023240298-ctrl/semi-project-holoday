@@ -10,10 +10,19 @@ export const getOne = async (infoNo) => {
 };
 
 export const getList = async (pageParam) => {
-    const {page, size} = pageParam;
+    const { page, size, categoryNo } = pageParam;
+
+    const params = {
+        page,
+        size,
+    };
+
+    if (categoryNo) {
+        params.categoryNo = categoryNo;
+    }
 
     const response = await axios.get(prefix, {
-        params: {page,size},
+        params,
     });
 
     return response.data;
@@ -38,6 +47,50 @@ export const postAdd = async (info,file) => {
     const response = await axios.post(
         prefix, 
         formData,
+        {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        }
+    );
+
+    return response.data;
+};
+
+export const patchModify = async (infoNo, info, file) => {
+    const formData = new FormData();
+
+    const infoBlob = new Blob(
+        [JSON.stringify(info)],
+        { type: "application/json" }
+    );
+
+    formData.append("info", infoBlob);
+
+    if (file) {
+        formData.append("file", file);
+    }
+
+    const accessToken = localStorage.getItem("accessToken");
+
+    const response = await axios.patch(
+        `${prefix}/${infoNo}`,
+        formData,
+        {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        }
+    );
+
+    return response.data;
+};
+
+export const deleteOne = async (infoNo) => {
+    const accessToken = localStorage.getItem("accessToken");
+
+    const response = await axios.delete(
+        `${prefix}/${infoNo}`,
         {
             headers: {
                 Authorization: `Bearer ${accessToken}`,

@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { postAdd } from "./api/infoApi";
-import { useNavigate } from "react-router";
-import { FileInput, Label} from "flowbite-react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import { FileInput, Label } from "flowbite-react";
+
+import { getOne, patchModify , deleteOne} from "./api/infoApi";
 import "./InfoAdd.css";
 
 const initState = {
@@ -12,11 +13,21 @@ const initState = {
     infoContent: "",
     
 };
+const InfoModify = () => {
+  const {infoNo} = useParams();
 
-const InfoAdd = () => {
   const [info, setInfo] = useState(initState);
-  const [file,setFile] = useState(null);
+  const [file, setFile] = useState(null);
+
+  const isAdmin = localStorage.getItem("userIsAdmin") === "true";
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getOne(infoNo).then((result)=> {
+        setInfo(result);
+    });
+  },[infoNo]);
 
 
   const handleChange = (e) => {
@@ -31,15 +42,23 @@ const InfoAdd = () => {
     });
   };
 
-  const handleClickAdd = () => {
-    postAdd(info, file).then((result)=> {
-        navigate(`/holoinfo/${result.infoNo}`);
+  const handleClickModify = () => {
+    patchModify(infoNo,info,file).then(()=> {
+        navigate(`/holoinfo/${infoNo}`);
     });
   };
   
+  const handleClickDelete = () => {
+    if(window.confirm("삭제하시겠습니까?")){
+        deleteOne(infoNo).then(()=> {
+            navigate("/holoinfo");
+        });
+    }
+  };
+
     return (
          <div className="info-add holo-text">
-            <h2>홀로 알림 등록</h2>
+            <h2>홀로 알림 수정</h2>
 
 
             <div className="info-add-select">
@@ -113,15 +132,24 @@ const InfoAdd = () => {
                     placeholder="상세주소를 입력하세요"
                 />
             </div>
+            {isAdmin && (
+            <div className="info-add-btn-area">
+                <button 
+                    type="button"
+                    onClick={handleClickModify}
+                    className="info-add-btn modify-action-btn">
+                        수정
+                    </button>
 
-            <button 
-              type="button"
-              onClick={handleClickAdd}
-            >
-                등록
-            </button>
+                    <button 
+                    type="button"
+                    onClick={handleClickDelete}
+                    className="info-add-btn modify-action-btn">
+                        삭제
+                    </button>
+                </div>
+            )}
         </div>
     );
-}
-
-export default InfoAdd;
+};
+export default InfoModify;
