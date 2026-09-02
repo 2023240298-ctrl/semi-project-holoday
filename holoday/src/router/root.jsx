@@ -18,6 +18,10 @@ const root = createBrowserRouter([
             path: "holoboard",
             children: holoBoardRouter(),
          },
+         {
+            path: "holoinfo",
+            children: holoInfoRouter(),
+         },
       ]
    }
 ]);
