@@ -9,12 +9,14 @@ import com.holoday.api.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class HistoryServiceImpl implements HistoryService{
     private final HistoryRepository historyRepository;
     private final CardRepository cardRepository;

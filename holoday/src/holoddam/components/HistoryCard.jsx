@@ -23,7 +23,7 @@ const HistoryCard = ({ card: { cardNo, cardOriginDate, cardTitle, cardSumm, card
                 <h1 className="text-white font-bold">카드 번호: {cardNo}</h1>
                 {isAdmin && (
                     <button type='button' onClick={() => handleDelete(cardNo)}
-                        className="text-white font-bold bg-red-500 px-3 py-1 rounded hover:bg-red-600">
+                        className="text-white font-bold bg-red-500 px-3 py-1 mr-2 rounded hover:bg-red-600">
                         ×
                     </button>
                 )}

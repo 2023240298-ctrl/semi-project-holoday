@@ -6,13 +6,26 @@ import { Carousel } from "flowbite-react";
 
 const InquiryPage = () => {
     const [cards, setCards] = useState([]);
+    const [currentCard, setCurrentCard] = useState(0);
 
     const invisibleButton = (
-        <span className='w-20 h-full opacity-0 cursor-pointer absolute inset-y-0' />
+        <span className='w-[50px] h-full opacity-0 cursor-pointer absolute inset-y-0' />
     );
 
     const handleCardDelete = async (deleteCardNo) => {
-        setCards((prevCards) => prevCards.filter((card) => { card.cardNo != deleteCardNo }));
+        const updateCards = cards.filter(card => card.cardNo != deleteCardNo);
+        setCards(updateCards);
+        const cardIndex = cards.findIndex(card => card.cardNo === deleteCardNo);
+
+        if (updateCards.length > 0) {
+            if (cardIndex >= updateCards.length) {
+                setCurrentCard(updateCards.length - 1);
+            } else {
+                setCurrentCard(cardIndex);
+            }
+        } else {
+            setCurrentCard(0);
+        }
     };
 
     useEffect(() => {
@@ -29,7 +42,9 @@ const InquiryPage = () => {
 
     return (
         <div className="h-[600px] w-full max-w-xl mx-auto">
-            <Carousel indicators={false} className="!h-full !w-full" slide={false}
+            <Carousel indicators={false} slide={false}
+                key={cards.length}
+                className="!h-full !w-full"
                 leftControl={invisibleButton} rightControl={invisibleButton}
             >
                 {cards.map((card) => (
