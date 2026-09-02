@@ -3,6 +3,7 @@ package com.holoday.api.common.email.authentication.service;
 import com.holoday.api.common.email.authentication.dto.AuthCode;
 import com.holoday.api.common.email.authentication.dto.EmailDTO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class EmailServiceImpl implements EmailService {
     private final JavaMailSender mailSender;
     private final Map<String, AuthCode> savedAuthCode = new ConcurrentHashMap<>();
@@ -34,7 +36,12 @@ public class EmailServiceImpl implements EmailService {
         message.setTo(email);
         message.setSubject("[Holoday] 회원 가입 이메일 인증 코드");
         message.setText("인증번호는 ["+authCode+"] 입니다.");
-        mailSender.send(message);
+        try {
+            mailSender.send(message);
+        } catch (Exception e){
+            log.error("error occurred during sending email", e);
+            throw new RuntimeException("failed to send email", e);
+        }
     }
 
     @Override
@@ -43,6 +50,9 @@ public class EmailServiceImpl implements EmailService {
         String userInput = request.getCode();
 
         AuthCode storedAuthCode = savedAuthCode.get(email);
+        if (storedAuthCode == null){
+            return false;
+        }
         if (savedAuthCode == null){
             return false;
         }

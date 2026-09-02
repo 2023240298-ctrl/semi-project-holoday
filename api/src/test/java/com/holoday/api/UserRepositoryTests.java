@@ -38,14 +38,27 @@ public class UserRepositoryTests {
         printUser(result);
     }
 
+
+    @Test
+    @Commit
+    public void testInsertUserAdmin() {
+        User user = new User(
+                "admin1234",
+                "gildong@naver.com",
+                "홍길동",
+                passwordEncoder.encode("1234"),
+                true
+        );
+
+        User result = userRepository.save(user);
+    }
+
     @Test
     public void testRead() {
         String userId = "alstn11";
 
         User user = userRepository.findByUserId(userId)
-                .orElseThrow(() ->
-                        new IllegalArgumentException("회원이 존재하지 않습니다.")
-                );
+                .orElseThrow(()->new IllegalArgumentException("doesn't exist"));
 
         printUser(user);
         log.info("isAdmin: {}", user.isUserIsAdmin());
