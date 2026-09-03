@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { getOne, deleteOne, likeBoard, unLikeBoard, getCommentList, postComment, putComment, deleteComment, getCategoryList } from "../js/HoloBoardApi";
+import { useEffect, useState, useRef } from "react";
+import { getOne, deleteOne, likeBoard, getCommentList, postComment, putComment, deleteComment, getCategoryList } from "../js/HoloBoardApi";
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 import "../components/ReadComponent.css"
-import { Card, Badge, Modal, ModalBody, ModalHeader } from "flowbite-react";
+import { Card, Modal, ModalBody, ModalHeader } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import PagiNation from "../../components/common/PagiNation";
 
@@ -40,10 +40,16 @@ const ReadComponent = ({no}) => {
     const [editingCommentNo, setEditingCommentNo] = useState(null);
     const [editContent, setEditContent] = useState("");
     const [commentContent, setCommentContent] = useState("");
+    const commentRef = useRef(null);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [openDeleteSuccessModal, setOpenDeleteSuccessModal] = useState(false);
+    const [openCommentAddModal, setOpenCommentAddModal] = useState(false);
+    const [openCommentEditModal, setOpenCommentEditModal] = useState(false);
     const [openCommentDeleteModal, setOpenCommentDeleteModal] = useState(false);
+    const [openCommentDeleteSuccessModal, setOpenCommentDeleteSuccessModal] = useState(false);
     const [deleteCommentNo, setDeleteCommentNo] = useState(null);
     const {moveToList, moveToModify} = useBoardCustomMove();
+    const [openLoginModal, setOpenLoginModal] = useState(false);
 
     useEffect(() => {
         getOne(no).then((data) => {
@@ -134,7 +140,7 @@ const ReadComponent = ({no}) => {
                                 const accessToken = localStorage.getItem("accessToken");
 
                                 if(!accessToken) {
-                                    alert("로그인 후 이용해 주세요.");
+                                    setOpenLoginModal(true);
                                     return;
                                 }
 
@@ -161,7 +167,16 @@ const ReadComponent = ({no}) => {
                         type="button"
                         className="holo-text rounded-lg border border-red-200 bg-red-50 px-5 py-3 text-base
                         font-medium text-red-500 hover:bg-red-100"
-                        onClick={() => setOpenDeleteModal(true)}
+                        onClick={() => {
+                            const accessToken = localStorage.getItem("accessToken");
+
+                            if(!accessToken) {
+                                setOpenLoginModal(true);
+                                return;
+                            }
+
+                            setOpenDeleteModal(true)
+                        }}
                     >
                         삭제하기
                     </button>
@@ -170,7 +185,16 @@ const ReadComponent = ({no}) => {
                         type="button"
                         className="holo-text rounded-lg border border-blue-200 bg-blue-50 px-5 py-3 text-base
                         font-medium text-blue-600 hover:bg-blue-100"
-                        onClick={() => moveToModify(no)}
+                        onClick={() => {
+                            const accessToken = localStorage.getItem("accessToken");
+                            
+                            if(!accessToken) {
+                                setOpenLoginModal(true);
+                                return;
+                            }
+
+                            moveToModify(no);
+                        }}
                     >
                         수정하기
                     </button>
@@ -179,14 +203,16 @@ const ReadComponent = ({no}) => {
 
             <div className="self-start">
                 <div className="rounded-lg border border-blue-100 p-5 pb-2">
-                    <div>
+                    <form>
                         <textarea
+                            ref={commentRef}
                             value={commentContent}
                             onChange={(e) => setCommentContent(e.target.value)}
                             className="holo-text h-24 w-full resize-none rounded-lg border border-blue-100
                             bg-blue-50 px-4 py-3 text-sm text-gray-700
                             placeholder:text-gray-400 focus:border-blue-300 focus:ring-blue-200"
                             placeholder="댓글을 입력하세요."
+                            required
                         />
 
                         <button
@@ -198,16 +224,16 @@ const ReadComponent = ({no}) => {
                                 const accessToken = localStorage.getItem("accessToken");
 
                                 if(!accessToken) {
-                                    alert("로그인 후 이용해 주세요.");
+                                    setOpenLoginModal(true);
+                                    return;
+                                }
+
+                                if(!commentRef.current.checkValidity()) {
+                                    commentRef.current.reportValidity();
                                     return;
                                 }
 
                                 const content = commentContent.trim();
-
-                                if(!content){
-                                    alert("댓글 내용을 입력해 주세요.");
-                                    return;
-                                }
 
                                 postComment(no, {
                                     commentContent: content
@@ -222,6 +248,8 @@ const ReadComponent = ({no}) => {
                                         }).then((data) => {
                                             setComments(data);
                                         });
+
+                                        setOpenCommentAddModal(true);
                                     })
                                     .catch((e) => {
                                         console.error(e);
@@ -230,7 +258,7 @@ const ReadComponent = ({no}) => {
                         >
                             댓글 등록
                         </button>
-                    </div>
+                    </form>
 
                     {comments.dtoList.map((comment) => (
                         <div
@@ -247,54 +275,16 @@ const ReadComponent = ({no}) => {
                             </div>
 
                             {editingCommentNo === comment.commentNo ? (
-                                <div className="flex flex-wrap items-center gap-2">
-                                    <input
-                                        type="text"
+                                <div className="mt-3">
+                                    <textarea
                                         value={editContent}
+                                        className="holo-text h-24 w-full resize-none rounded-lg border border-blue-100
+                                        bg-white px-3 py-2 text-sm leading-6 text-gray-700
+                                        focus:border-blue-300 focus:ring-blue-200"
                                         onChange={(e) => setEditContent(e.target.value)}
                                     />
-
-                                    <button
-                                        type="button"
-                                        onClick={()=>{
-                                            putComment({
-                                                commentNo: comment.commentNo,
-                                                commentContent: editContent
-                                            })
-                                                .then(() => {
-                                                    setComments((prev) => ({
-                                                        ...prev,
-                                                        dtoList: prev.dtoList.map((item) =>
-                                                        item.commentNo === comment.commentNo
-                                                            ? {
-                                                                ...item,
-                                                                commentContent: editContent
-                                                            }
-                                                            : item
-                                                        )
-                                                    }));
-
-                                                    setEditingCommentNo(null);
-                                                    setEditContent("");
-                                                })
-                                                .catch((e) => {
-                                                    console.error(e);
-                                                });
-                                        }}
-                                >
-                                    저장하기
-                                </button>
-
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        setEditingCommentNo(null);
-                                        setEditContent("");
-                                    }}
-                                >
-                                    취소하기
-                                </button>
                             </div>
+                            
                             ) : (
                                 <div className="holo-text mt-3 rounded-lg bg-white px-3 py-2 text-sm leading-6
                                 text-gray-600 line-clamp-3">
@@ -304,37 +294,89 @@ const ReadComponent = ({no}) => {
 
                             <div className="mt-2 flex items-center justify-end">
                                 <div className="flex gap-1">
-                                {editingCommentNo !== comment.commentNo && (
-                                    <button
-                                        type="button"
-                                        className="holo-text rounded-lg border border-blue-200 bg-blue-50
-                                        px-2 py-1 text-xs text-blue-600"
-                                        onClick={() => {
-                                            const accessToken = localStorage.getItem("accessToken");
+                                {editingCommentNo == comment.commentNo ? (
+                                    <>
+                                        <button
+                                            type="button"
+                                            className="holo-text rounded-lg border border-blue-200 bg-blue-50
+                                            px-2 py-1 text-xs text-blue-600"
+                                            onClick={() => {
+                                                putComment({
+                                                    commentNo: comment.commentNo,
+                                                    commentContent: editContent
+                                                })
+                                                    .then(() => {
+                                                        setComments((prev) => ({
+                                                            ...prev,
+                                                            dtoList: prev.dtoList.map((item) =>
+                                                                item.commentNo === comment.commentNo
+                                                                    ? {
+                                                                        ...item,
+                                                                        commentContent: editContent
+                                                                    }
+                                                                    : item
+                                                                )
+                                                        }));
 
-                                            if(!accessToken) {
-                                                alert("로그인 후 이용해 주세요.");
-                                                return;
-                                            }
-                                            setEditingCommentNo(comment.commentNo);
-                                            setEditContent(comment.commentContent);
-                                        }}
-                                    >
-                                        수정하기
-                                    </button>
+                                                        setEditingCommentNo(null);
+                                                        setEditContent("");
+                                                        setOpenCommentEditModal(true);
+                                                    })
+                                                    .catch((e) => {
+                                                        console.error(e);
+                                                    });
+                                            }}
+                                        >
+                                            저장하기
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            className="holo-text rounded-lg border border-gray-200 bg-white
+                                            px-2 py-1 text-xs text-gray-600"
+                                            onClick={() => {
+                                                setEditingCommentNo(null);
+                                                setEditContent("");
+                                            }}
+                                        >
+                                            취소하기
+                                        </button>
+                                    </>
+                                ) : (
+                                    <>
+
+                                        <button
+                                            type="button"
+                                            className="holo-text rounded-lg border border-blue-200 bg-blue-50
+                                            px-2 py-1 text-xs text-blue-600"
+                                            onClick={() => {
+                                                const accessToken = localStorage.getItem("accessToken");
+
+                                                if(!accessToken) {
+                                                    alert("로그인 후 이용해 주세요.");
+                                                    return;
+                                                }
+
+                                                setEditingCommentNo(comment.commentNo);
+                                                setEditContent(comment.commentContent);
+                                            }}
+                                        >
+                                            수정하기
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            className="holo-text rounded-lg border border-red-200 bg-red-50
+                                            px-2 py-1 text-xs text-red-500"
+                                            onClick={() => {
+                                                setDeleteCommentNo(comment.commentNo);
+                                                setOpenCommentDeleteModal(true);
+                                            }}
+                                        >
+                                            삭제하기
+                                        </button>
+                                    </>
                                 )}
-
-                                <button
-                                    type="button"
-                                    className="holo-text rounded-lg border border-red-200 bg-red-50
-                                    px-2 py-1 text-xs text-red-500"
-                                    onClick={() => {
-                                        setDeleteCommentNo(comment.commentNo);
-                                        setOpenCommentDeleteModal(true);
-                                    }}
-                                >
-                                    삭제하기
-                                </button>
                             </div>
                             </div>
                         </div>
@@ -380,7 +422,7 @@ const ReadComponent = ({no}) => {
                                             .then((result) => {
                                                 console.log("삭제 완료:", result);
                                                 setOpenDeleteModal(false);
-                                                moveToList();
+                                                setOpenDeleteSuccessModal(true);
                                             })
                                             .catch((e) => {
                                                 console.error(e);
@@ -433,6 +475,8 @@ const ReadComponent = ({no}) => {
                                                 }).then((data) => {
                                                     setComments(data);
                                                 });
+
+                                                setOpenCommentDeleteSuccessModal(true);
                                             })
                                             .catch((e) => {
                                                 console.error(e);
@@ -451,6 +495,145 @@ const ReadComponent = ({no}) => {
                                     }}
                                 >
                                     취소
+                                </button>
+                            </div>
+                        </div>
+                    </ModalBody>
+                </Modal>
+
+                <Modal
+                    show={openDeleteSuccessModal}
+                    size="md"
+                    onClose={() => setOpenDeleteSuccessModal(false)}
+                    popup
+                >
+                    <ModalHeader />
+                    <ModalBody>
+                        <div className="text-center">
+                            <h3 className="mb-5 text-lg font-normal text-gray-500">
+                                삭제가 완료되었습니다.
+                            </h3>
+                            <div className="flex justify-center">
+                                <button
+                                    type="button"
+                                    className="rounded-lg border border-blue-200 bg-blue-100 px-5 py-2.5
+                                    text-sm font-medium text-blue-600 hover:bg-blue-200"
+                                    onClick={() => {
+                                        setOpenDeleteSuccessModal(false);
+                                        moveToList();
+                                    }}
+                                >
+                                    확인
+                                </button>
+                            </div>
+                        </div>
+                    </ModalBody>
+                </Modal>
+
+                <Modal
+                    show={openCommentDeleteSuccessModal}
+                    size="md"
+                    onClose={() => setOpenCommentDeleteSuccessModal(false)}
+                    popup
+                >
+                    <ModalHeader />
+
+                    <ModalBody>
+                        <div className="text-center">
+                            <h3 className="mb-5 text-lg font-normal text-gray-500">
+                                댓글이 삭제되었습니다.
+                            </h3>
+
+                            <div className="flex justify-center">
+                                <button
+                                    type="button"
+                                    className="rounded-lg border border-blue-200 bg-blue-100 px-5 py-2.5
+                                    text-sm font-medium text-blue-600 hover:bg-blue-200"
+                                    onClick={() => setOpenCommentDeleteSuccessModal(false)}
+                                >
+                                    확인
+                                </button>
+                            </div>
+                        </div>
+                    </ModalBody>
+                </Modal>
+
+                <Modal
+                    show={openCommentEditModal}
+                    size="md"
+                    onClose={() => setOpenCommentEditModal(false)}
+                    popup
+                >
+                    <ModalHeader />
+
+                    <ModalBody>
+                        <div className="text-center">
+
+                            <h3 className="mb-5 text-lg font-normal text-gray-500">
+                                댓글이 수정되었습니다.
+                            </h3>
+
+                            <div className="flex justify-center">
+                                <button
+                                    type="button"
+                                    className="rounded-lg bg-blue-200 px-5 py-2.5 text-sm
+                                    font-medium text-white hover:bg-blue-200"
+                                    onClick={() => setOpenCommentEditModal(false)}
+                                >
+                                    확인
+                                </button>
+                            </div>
+                        </div>
+                    </ModalBody>
+                </Modal>
+
+                <Modal
+                    show={openCommentAddModal}
+                    size="md"
+                    onClose={() => setOpenCommentAddModal(false)}
+                    popup    
+                >
+                    <ModalHeader />
+                    <ModalBody>
+                        <div className="text-center">
+                            <h3 className="mb-5 text-lg font-normal text-gray-500">
+                                댓글이 등록되었습니다.
+                            </h3>
+                            <div className="flex justify-center">
+                                <button
+                                    type="button"
+                                    className="rounded-lg border border-blue-200 bg-blue-100 px-5 py-2.5
+                                    text-sm font-medium text-blue-600 hover:bg-blue-200"
+                                    onClick={() => setOpenCommentAddModal(false)}
+                                >
+                                    확인
+                                </button>
+                            </div>
+                        </div>
+                    </ModalBody>
+                </Modal>
+
+                <Modal
+                    show={openLoginModal}
+                    size="md"
+                    onClose={() => setOpenLoginModal(false)}
+                    popup
+                >
+                    <ModalHeader />
+                    <ModalBody>
+                        <div className="text-center">
+                            <h3 className="mb-5 text-lg font-normal text-gray-500">
+                                로그인 후 이용해 주세요
+                            </h3>
+
+                            <div className="flex justify-center">
+                                <button
+                                    type="button"
+                                    className="rounded-lg border border-yellow-100 bg-yellow-100 px-5 py-2.5
+                                    text-sm font-medium text-yellow-700 hover:bg-yellow-200"
+                                    onClick={() => setOpenLoginModal(false)}
+                                >
+                                    확인
                                 </button>
                             </div>
                         </div>

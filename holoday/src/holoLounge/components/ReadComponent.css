@@ -11,3 +11,8 @@
 .boardDetail {
    width: 100%;
 }
+
+.self-start {
+   width: 380px;
+   min-width: 380px;
+}
