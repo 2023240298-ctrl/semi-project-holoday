@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Card, Label } from "flowbite-react";
-import customAxios from "../../api/customAxios";
+import customAxios from "../api/TokenApi";
 import './LoginComponent.css'
 
 const LoginComponent = () => {

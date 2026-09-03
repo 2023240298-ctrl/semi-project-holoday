@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { getList as getInfoList } from "../holoInfo/api/infoApi";
-import { getList as getBoardList } from "../holoLounge/js/HoloBoardApi";
+import { getList as getInfoList } from "../../holoInfo/api/infoApi";
+import { getList as getBoardList } from "../../holoLounge/js/HoloBoardApi";
 import "./Home.css";
 
 const categoryName = {
@@ -11,10 +11,10 @@ const categoryName = {
 };
 
 const Home = () => {
-  const [infoList, setInfoList] = useState([]);
-  const [boardList, setBoardList] = useState([]);
-  const [startIndex, setStartIndex] = useState(1);
-  const navigate = useNavigate();
+    const [infoList, setInfoList] = useState([]);
+    const [boardList, setBoardList] = useState([]);
+    const [startIndex, setStartIndex] = useState(1);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getInfoList({
@@ -25,7 +25,7 @@ const Home = () => {
         });
 
         getBoardList({
-            page:1,
+            page: 1,
             size: 6
         }).then((result) => {
             setBoardList(result.dtoList);
@@ -45,36 +45,36 @@ const Home = () => {
             ? infoList[startIndex + 1]
             : null;
 
-   
+
 
     const nextSlide = () => {
-    if (startIndex < infoList.length -1) {
-        setStartIndex(startIndex + 1);
-    }
+        if (startIndex < infoList.length - 1) {
+            setStartIndex(startIndex + 1);
+        }
     };
 
     const prevSlide = () => {
-    if (startIndex > 0) {
-        setStartIndex(startIndex - 1);
-    }
+        if (startIndex > 0) {
+            setStartIndex(startIndex - 1);
+        }
     };
 
-    
+
 
     return (
         <div className="home">
-          <section className="home-info">
-            <div className="home-section-title ">
-                <h2 className="OkMallangW">HOLO PICK</h2>
+            <section className="home-info">
+                <div className="home-section-title ">
+                    <h2 className="OkMallangW">HOLO PICK</h2>
                     <button
                         type="button"
                         onClick={() => navigate("/holoinfo")}
                     >
                         더보기
                     </button>
-            </div>
+                </div>
 
-            <div className="home-info-slider">
+                <div className="home-info-slider">
                     {/* 이전 카드 */}
                     <div className="home-info-side">
                         {prevInfo && (
@@ -146,9 +146,9 @@ const Home = () => {
                 onClick={() => navigate("/holoddam")}
             >
                 <div>
-                  <span>오늘 뭐 하지?</span>
-                  <h2 className="OkMallangW">HOLO DDAM</h2>
-                  <p>오늘은 뭐 하면서 시간 때울까?</p>
+                    <span>오늘 뭐 하지?</span>
+                    <h2 className="OkMallangW">HOLO DDAM</h2>
+                    <p>오늘은 뭐 하면서 시간 때울까?</p>
                 </div>
 
                 <button type="button">
@@ -157,58 +157,58 @@ const Home = () => {
             </section>
 
             <section className="home-lounge">
-              <div className="home-section-title .logo-text">
-                <h2 className="OkMallangW">HOLO LOUNGE</h2>
+                <div className="home-section-title .logo-text">
+                    <h2 className="OkMallangW">HOLO LOUNGE</h2>
 
-                <button
-                    type="button"
-                    onClick={() => navigate("/holoboard")}
-                >
-                    더보기
-                </button>
-              </div>
-
-            <div className="home-lounge-list">
-                {boardList.map((board) => (
-                    <div 
-                      key={board.boardNo}
-                      className="home-lounge-card"
-                      onClick={() => navigate(`/holoboard/${board.boardNo}`)}
+                    <button
+                        type="button"
+                        onClick={() => navigate("/holoboard")}
                     >
-                    <div className="home-lounge-card-top">
-
-                    {board.boardSimg ? (
-                      <img
-                        src={`http://localhost:8080/upload/${board.boardSimg}`}
-                        alt=""
-                      />
-                    ) : (
-                    <div className="home-lounge-no-image"></div>
-                )}
-
-                <div className="home-lounge-card-title">
-                    <h3>{board.boardTitle}</h3>
-                    <span>작성자 {board.userId}</span>
+                        더보기
+                    </button>
                 </div>
 
-                </div>
+                <div className="home-lounge-list">
+                    {boardList.map((board) => (
+                        <div
+                            key={board.boardNo}
+                            className="home-lounge-card"
+                            onClick={() => navigate(`/holoboard/${board.boardNo}`)}
+                        >
+                            <div className="home-lounge-card-top">
 
-            <p className="home-lounge-content">
-                {board.boardContent}
-            </p>
+                                {board.boardSimg ? (
+                                    <img
+                                        src={`http://localhost:8080/upload/${board.boardSimg}`}
+                                        alt=""
+                                    />
+                                ) : (
+                                    <div className="home-lounge-no-image"></div>
+                                )}
 
-            <div className="home-lounge-meta">
-                <span>{board.boardDate}</span>
+                                <div className="home-lounge-card-title">
+                                    <h3>{board.boardTitle}</h3>
+                                    <span>작성자 {board.userId}</span>
+                                </div>
 
-                <div>
-                    <span>좋아요 {board.boardLike}</span>
-                    <span>조회수 {board.boardHit}</span>
+                            </div>
+
+                            <p className="home-lounge-content">
+                                {board.boardContent}
+                            </p>
+
+                            <div className="home-lounge-meta">
+                                <span>{board.boardDate}</span>
+
+                                <div>
+                                    <span>좋아요 {board.boardLike}</span>
+                                    <span>조회수 {board.boardHit}</span>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-                </div>
-            </div>
-            ))}
-            </div>
-        </section>
+            </section>
 
 
         </div>
