@@ -65,7 +65,7 @@ const Home = () => {
         <div className="home">
           <section className="home-info">
             <div className="home-section-title ">
-                <h2>홀로알림</h2>
+                <h2 className="OkMallangW">HOLO PICK</h2>
                     <button
                         type="button"
                         onClick={() => navigate("/holoinfo")}
@@ -147,7 +147,7 @@ const Home = () => {
             >
                 <div>
                   <span>오늘 뭐 하지?</span>
-                  <h2>홀로땜</h2>
+                  <h2 className="OkMallangW">HOLO DDAM</h2>
                   <p>오늘은 뭐 하면서 시간 때울까?</p>
                 </div>
 
@@ -158,7 +158,7 @@ const Home = () => {
 
             <section className="home-lounge">
               <div className="home-section-title .logo-text">
-                <h2>홀로라운지</h2>
+                <h2 className="OkMallangW">HOLO LOUNGE</h2>
 
                 <button
                     type="button"

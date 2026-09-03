@@ -1,495 +1,482 @@
+@font-face {
+    font-family: 'OkMallangW';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2603-1@1.0/OkMallangW-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
 body,
 #root {
-    background: white;
+  background: white;
 }
-
-
 /* 
    홈 전체
  */
 
 .home {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 30px;
 }
-
 
 /*
    공통 제목
  */
 
 .home-section-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
 .home-section-title h2 {
-    margin: 0;
-    font-size: 28px;
-    font-weight: 700;
+  margin: 0;
+  font-weight: 700;
+  font-family: "OkMallangW";
+}
+.home-section-title {
+  color: #4d749b;
+  font-size: 40px;
 }
 
 .home-section-title button {
-    border: none;
-    background: none;
-    font-size: 14px;
-    color: #777;
-    cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 14px;
+  color: #777;
+  cursor: pointer;
 }
 
 .home-section-title button:hover {
-    color: #333;
+  color: #333;
 }
-
 
 /* 
    홀로알림
  */
 
 .home-info {
-    margin-bottom: 70px;
+  margin-bottom: 70px;
 }
-
 
 /* 슬라이더 전체 */
 
 .home-info-slider {
-    display: grid;
-    grid-template-columns: 0.8fr 2.4fr 0.8fr;
-    gap: 16px;
+  display: grid;
+  grid-template-columns: 0.8fr 2.4fr 0.8fr;
+  gap: 16px;
 
-    width: 100%;
-    height: 430px;
+  width: 100%;
+  height: 430px;
 
-    align-items: center;
+  align-items: center;
 }
-
 
 /* 양쪽 작은 카드 */
 .home-info-side {
-    width: 100%;
-    height: 330px;
+  width: 100%;
+  height: 330px;
 
-    overflow: hidden;
-    border-radius: 16px;
+  overflow: hidden;
+  border-radius: 16px;
 
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
 .home-info-side img {
-    display: block;
+  display: block;
 
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    object-fit: cover;
+  object-fit: cover;
 }
-
 
 /* 가운데 카드  */
 .home-info-center {
-    position: relative;
+  position: relative;
 
-    width: 100%;
-    height: 430px;
+  width: 100%;
+  height: 430px;
 }
-
 
 /* 가운데 큰 카드 */
 .home-info-main {
-    position: relative;
+  position: relative;
 
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    overflow: hidden;
-    border-radius: 18px;
+  overflow: hidden;
+  border-radius: 18px;
 
-    cursor: pointer;
+  cursor: pointer;
 }
-
 
 /* 가운데 이미지 */
 .home-info-main > img {
-    display: block;
+  display: block;
 
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    object-fit: cover;
+  object-fit: cover;
 }
-
 
 /* 글씨가 잘 보이도록 아래쪽 어둡게 */
 .home-info-main::after {
-    content: "";
+  content: "";
 
-    position: absolute;
+  position: absolute;
 
-    left: 0;
-    right: 0;
-    bottom: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
-    height: 60%;
+  height: 60%;
 
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.8),
-        rgba(0, 0, 0, 0.25),
-        transparent
-    );
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.25),
+    transparent
+  );
 
-    z-index: 1;
+  z-index: 1;
 
-    pointer-events: none;
+  pointer-events: none;
 }
-
 
 /* 가운데 카드 글씨 */
 .home-info-main-text {
-    position: absolute;
+  position: absolute;
 
-    left: 35px;
-    bottom: 35px;
+  left: 35px;
+  bottom: 35px;
 
-    z-index: 2;
+  z-index: 2;
 
-    color: white;
+  color: white;
 }
 
 .home-info-main-text span {
-    display: block;
+  display: block;
 
-    font-size: 14px;
-    font-weight: 600;
+  font-size: 14px;
+  font-weight: 600;
 
-    color: white;
+  color: white;
 }
 
 .home-info-main-text h3 {
-    margin: 7px 0;
+  margin: 7px 0;
 
-    font-size: 30px;
-    font-weight: 700;
+  font-size: 30px;
+  font-weight: 700;
 
-    color: white;
+  color: white;
 
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
 }
 
 .home-info-main-text p {
-    margin: 0;
+  margin: 0;
 
-    font-size: 16px;
+  font-size: 16px;
 
-    color: white;
+  color: white;
 
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
 }
-
 
 /* 화살표 */
 .home-slider-prev,
 .home-slider-next {
-    position: absolute;
+  position: absolute;
 
-    top: 50%;
-    transform: translateY(-50%);
+  top: 50%;
+  transform: translateY(-50%);
 
-    width: 46px;
-    height: 46px;
+  width: 46px;
+  height: 46px;
 
-    padding: 0;
+  padding: 0;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    border: none;
-    border-radius: 50%;
+  border: none;
+  border-radius: 50%;
 
-    background: rgba(107, 107, 107, 0.6);
-    color: white;
+  background: rgba(107, 107, 107, 0.6);
+  color: white;
 
-    font-size: 25px;
+  font-size: 25px;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    z-index: 10;
+  z-index: 10;
 }
-
 
 /* 가운데 카드의 양쪽 경계에 걸치기 */
 .home-slider-prev {
-    left: -23px;
+  left: -23px;
 }
 
 .home-slider-next {
-    right: -23px;
+  right: -23px;
 }
 
 .home-slider-prev:hover,
 .home-slider-next:hover {
-    background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.75);
 }
-
 
 /* 
    홀로땜
  */
 
 .home-ddam {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 
-    margin-bottom: 70px;
-    padding: 36px 44px;
+  margin-bottom: 70px;
+  padding: 36px 44px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    background: linear-gradient(
-        135deg,
-        #eef2ff 0%,
-        #dce7ff 55%,
-        #f6f8ff 100%
-    );
+  background: linear-gradient(135deg, #eef2ff 0%, #dce7ff 55%, #f6f8ff 100%);
 
-    border: 1px solid #d7e2f7;
-    border-radius: 22px;
+  border: 1px solid #d7e2f7;
+  border-radius: 22px;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.home-ddam .OkMallangW{
+    font-family: "OkMallangW";
+    color: #0d345c;
 }
 
 .home-ddam:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(91, 135, 178, 0.18);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(91, 135, 178, 0.18);
 }
-
 
 /* 장식 원 */
 .home-ddam::before {
-    content: "";
+  content: "";
 
-    position: absolute;
-    width: 180px;
-    height: 180px;
+  position: absolute;
+  width: 180px;
+  height: 180px;
 
-    right: 180px;
-    top: -90px;
+  right: 180px;
+  top: -90px;
 
-    border-radius: 50%;
+  border-radius: 50%;
 
-    background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.45);
 }
 
 .home-ddam::after {
-    content: "✦";
+  content: "✦";
 
-    position: absolute;
-    right: 260px;
-    bottom: 20px;
+  position: absolute;
+  right: 260px;
+  bottom: 20px;
 
-    font-size: 32px;
-    color: rgba(91, 135, 178, 0.35);
+  font-size: 32px;
+  color: rgba(91, 135, 178, 0.35);
 
-    transform: rotate(15deg);
+  transform: rotate(15deg);
 }
-
 
 /* 문구 */
 .home-ddam > div {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 }
 
 .home-ddam span {
-    font-size: 14px;
-    font-weight: 700;
-    color: #5b87b2;
+  font-size: 14px;
+  font-weight: 700;
+  color: #5b87b2;
 }
 
 .home-ddam h2 {
-    margin: 5px 0 7px;
+  margin: 5px 0 7px;
 
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: 2px;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 2px;
 
-    color: #222;
+  color: #222;
 }
 
 .home-ddam p {
-    margin: 0;
+  margin: 0;
 
-    font-size: 15px;
-    color: #687385;
+  font-size: 15px;
+  color: #687385;
 }
-
 
 /* 버튼 */
 .home-ddam button {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 
-    padding: 12px 20px;
+  padding: 12px 20px;
 
-    border: none;
-    border-radius: 999px;
+  border: none;
+  border-radius: 999px;
 
-    background-color: #5b87b2;
-    color: white;
+  background-color: #5b87b2;
+  color: white;
 
-    font-size: 14px;
-    font-weight: 700;
+  font-size: 14px;
+  font-weight: 700;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition:
-        transform 0.2s ease,
-        background-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .home-ddam button:hover {
-    background-color: #496f94;
-    transform: translateX(3px);
+  background-color: #496f94;
+  transform: translateX(3px);
 }
 /* 
    홀로라운지
 */
 
 .home-lounge {
-    margin-bottom: 70px;
+  margin-bottom: 70px;
 }
 
 .home-lounge-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
 }
 /* 카드 */
 .home-lounge-card {
-    min-width: 0;
-    padding: 20px;
+  min-width: 0;
+  padding: 20px;
 
-    border: 1px solid #e1e7f0;
-    border-radius: 16px;
+  border: 1px solid #e1e7f0;
+  border-radius: 16px;
 
-    background-color: white;
+  background-color: white;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .home-lounge-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
-
 
 /* 카드 위쪽 */
 .home-lounge-card-top {
-    display: flex;
-    align-items: center;
-    gap: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
-
 
 /* 썸네일 */
 .home-lounge-card-top img,
 .home-lounge-no-image {
-    width: 62px;
-    height: 62px;
+  width: 62px;
+  height: 62px;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    border-radius: 12px;
+  border-radius: 12px;
 
-    object-fit: cover;
+  object-fit: cover;
 }
 
 .home-lounge-no-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    background-color: #f3f6fa;
+  background-color: #f3f6fa;
 
-    font-size: 11px;
-    color: #999;
+  font-size: 11px;
+  color: #999;
 }
-
 
 /* 제목 */
 .home-lounge-card-title {
-    min-width: 0;
+  min-width: 0;
 }
 
 .home-lounge-card-title h3 {
-    margin: 0 0 7px;
+  margin: 0 0 7px;
 
-    font-size: 17px;
-    font-weight: 700;
+  font-size: 17px;
+  font-weight: 700;
 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .home-lounge-card-title span {
-    font-size: 12px;
-    color: #888;
+  font-size: 12px;
+  color: #888;
 }
-
 
 /* 내용 미리보기 */
 .home-lounge-content {
-    height: 66px;
-    margin: 0 0 18px;
+  height: 66px;
+  margin: 0 0 18px;
 
-    overflow: hidden;
+  overflow: hidden;
 
-    font-size: 14px;
-    line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.6;
 
-    color: #666;
+  color: #666;
 
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
-
 
 /* 아래 정보 */
 .home-lounge-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    padding-top: 13px;
+  padding-top: 13px;
 
-    border-top: 1px solid #eee;
+  border-top: 1px solid #eee;
 
-    font-size: 11px;
-    color: #999;
+  font-size: 11px;
+  color: #999;
 }
 
 .home-lounge-meta > div {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
