@@ -124,7 +124,7 @@ const ListComponent = () => {
 
                   <div className="holo-text mt-4 flex text-sm text-gray-500">
                      <span>
-                        작성일: {board.boardDate}
+                        {board.boardDate}
                      </span>
 
                      <div className="holo-text ml-auto flex gap-4">
