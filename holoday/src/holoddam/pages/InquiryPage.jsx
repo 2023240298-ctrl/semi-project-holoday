@@ -1,4 +1,3 @@
-import './InquiryPage.css';
 import HistoryCard from '../components/HistoryCard';
 import { useState, useEffect } from 'react';
 import { cardList } from '../api/HistoryApi';
