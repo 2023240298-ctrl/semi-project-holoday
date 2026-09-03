@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import useBoardCustomMove from "../../hooks/useBoardCustomMove";
+import useBoardCustomMove from "../hooks/useBoardCustomMove";
 import { postAdd, getCategoryList } from "../js/HoloBoardApi";
 import {Modal, ModalBody, ModalHeader} from "flowbite-react";
 import {HiOutlineCheckCircle} from "react-icons/hi";

@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { getOne, deleteOne, likeBoard, getCommentList, postComment, putComment, deleteComment, getCategoryList } from "../js/HoloBoardApi";
-import useBoardCustomMove from "../../hooks/useBoardCustomMove";
+import useBoardCustomMove from "../hooks/useBoardCustomMove";
 import "../components/ReadComponent.css"
 import { Card, Modal, ModalBody, ModalHeader } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import PagiNation from "../../components/common/PagiNation";
+import PagiNation from "../../common/pagination/PagiNation";
 
 const initState = {
     categoryNo: null,
