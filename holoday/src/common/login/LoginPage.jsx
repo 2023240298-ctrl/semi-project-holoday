@@ -1,5 +1,5 @@
-import LoginComponent from "../../components/common/LoginComponent";
-import './Member.css';
+import LoginComponent from "./LoginComponent";
+import '../Member.css';
 
 const LoginPage = () => {
    return (

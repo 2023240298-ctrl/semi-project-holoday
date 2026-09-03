@@ -1,64 +1,64 @@
 import { useEffect, useState } from "react";
-import{ getList } from "./api/infoApi";
+import { getList } from "./api/infoApi";
 import { useNavigate } from "react-router";
 import "./InfoList.css";
-import PagiNation from "../components/common/PagiNation";
+import PagiNation from "../common/pagination/PagiNation";
 
 const categoryName = {
-  1: "홀로 휴식",
-  2: "홀로 문화",
-  3: "홀로 체험",
+    1: "홀로 휴식",
+    2: "홀로 문화",
+    3: "홀로 체험",
 };
 
 
 const InfoList = () => {
-  const[serverData, setServerData] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState(0);
-  const navigate = useNavigate();
-  
-  const isAdmin =
-  localStorage.getItem("userIsAdmin") === "true";
+    const [serverData, setServerData] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState(0);
+    const navigate = useNavigate();
 
-  const moveToRead = (infoNo) => {
-    navigate(`/holoinfo/${infoNo}`);
-  };
+    const isAdmin =
+        localStorage.getItem("userIsAdmin") === "true";
 
-  const movePage = ({ page }) => {
-    getList({
-        page: page,
-        size: 9,
-        categoryNo: selectedCategory
-    }).then((result) => {
-        setServerData(result);
-    });
-  };
+    const moveToRead = (infoNo) => {
+        navigate(`/holoinfo/${infoNo}`);
+    };
 
-  
-  const moveCategory = (categoryNo) => {
-    setSelectedCategory(categoryNo);
+    const movePage = ({ page }) => {
+        getList({
+            page: page,
+            size: 9,
+            categoryNo: selectedCategory
+        }).then((result) => {
+            setServerData(result);
+        });
+    };
 
-    getList({
-        page: 1,
-        size: 9,
-        categoryNo: categoryNo
-    }).then((result) => {
-        setServerData(result);
-    });
-  };
 
-  useEffect(() => {
-  getList({
-    page: 1,
-    size: 9
-  }).then((result) => {
-    setServerData(result);
-  });
-}, []);
+    const moveCategory = (categoryNo) => {
+        setSelectedCategory(categoryNo);
 
-  
+        getList({
+            page: 1,
+            size: 9,
+            categoryNo: categoryNo
+        }).then((result) => {
+            setServerData(result);
+        });
+    };
 
-  if (!serverData) {
-    return <div>Loading...</div>;
+    useEffect(() => {
+        getList({
+            page: 1,
+            size: 9
+        }).then((result) => {
+            setServerData(result);
+        });
+    }, []);
+
+
+
+    if (!serverData) {
+        return <div>Loading...</div>;
     }
 
     return (
@@ -90,29 +90,29 @@ const InfoList = () => {
 
             <div className="info-cards">
                 {serverData.dtoList.map((info) => (
-                <div
-                    className="info-card-overlay"
-                    key={info.infoNo}
-                    onClick={() => moveToRead(info.infoNo)}
-                >
-                <img
-                src={`http://localhost:8080/upload/${info.infoSimg}`}
-                alt={info.infoTitle}
-                />
+                    <div
+                        className="info-card-overlay"
+                        key={info.infoNo}
+                        onClick={() => moveToRead(info.infoNo)}
+                    >
+                        <img
+                            src={`http://localhost:8080/upload/${info.infoSimg}`}
+                            alt={info.infoTitle}
+                        />
 
-                <div className="info-overlay-text">
-                    <span>{categoryName[info.categoryNo]}</span>
-                    <h3>{info.infoTitle}</h3>
-                    <p>{info.infoPlace}</p>
-                </div>   
-                </div>
+                        <div className="info-overlay-text">
+                            <span>{categoryName[info.categoryNo]}</span>
+                            <h3>{info.infoTitle}</h3>
+                            <p>{info.infoPlace}</p>
+                        </div>
+                    </div>
                 ))}
 
             </div>
             <div className="info-pagination">
                 <PagiNation
-                serverData={serverData}
-                movePage={movePage}
+                    serverData={serverData}
+                    movePage={movePage}
                 />
             </div>
         </div>

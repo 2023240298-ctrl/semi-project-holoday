@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
 import { getList, deleteOne } from "../js/HoloBoardApi";
-import useBoardCustomMove from "../../hooks/useBoardCustomMove";
-import PagiNation from "../../components/common/PagiNation";
+import useBoardCustomMove from "../hooks/useBoardCustomMove";
+import PagiNation from "../../common/pagination/PagiNation";
 import { useNavigate } from "react-router";
 import { Button, Card, Modal, ModalBody, ModalHeader } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 const initState = {
-    dtoList: [],
-    pageNumberList: [],
-    pageRequestDTO: null,
-    prev: false,
-    next: false,
-    totalCount: 0,
-    prevPage: 0,
-    nextPage: 0,
-    totalPage: 0,
-    currentPage: 0,
+   dtoList: [],
+   pageNumberList: [],
+   pageRequestDTO: null,
+   prev: false,
+   next: false,
+   totalCount: 0,
+   prevPage: 0,
+   nextPage: 0,
+   totalPage: 0,
+   currentPage: 0,
 };
 
 const ListComponent = () => {
-   const {page, size, moveToList} = useBoardCustomMove();
+   const { page, size, moveToList } = useBoardCustomMove();
    const navigate = useNavigate();
    const [serverData, setServerData] = useState(initState);
    const [openModal, setOpenModal] = useState(false);
@@ -28,7 +28,7 @@ const ListComponent = () => {
    const [openLoginModal, setOpenLoginModal] = useState(false);
 
    const fetchList = () => {
-      getList({page, size})
+      getList({ page, size })
          .then((data) => {
             console.log("목록 조회 성공:", data);
             setServerData(data);
@@ -64,9 +64,9 @@ const ListComponent = () => {
                            <div className="flex h-56 max-md:h-48 w-full items-center justify-center rounded-lg border border-blue-100 
                            bg-gray-50 text-sm text-gray-400">
                               이미지 없음
-                           </div>      
+                           </div>
                         )}
-                                     
+
                      </div>
 
                      <div
@@ -109,7 +109,7 @@ const ListComponent = () => {
                            type="button"
                            className="rounded-lg border border-red-200 bg-red-50 px-5 py-3 text-base
                            font-medium text-red-500 hover:bg-red-100"
-                           onClick={() =>{
+                           onClick={() => {
                               setDeleteBoardNo(board.boardNo);
                               setOpenModal(true);
                            }}
@@ -223,7 +223,7 @@ const ListComponent = () => {
                   onClick={() => {
                      const accessToken = localStorage.getItem("accessToken");
 
-                     if(!accessToken) {
+                     if (!accessToken) {
                         setOpenLoginModal(true);
                         return;
                      }
@@ -233,7 +233,7 @@ const ListComponent = () => {
                >
                   글쓰기
                </button>
-         </div>
+            </div>
 
          </div>
 

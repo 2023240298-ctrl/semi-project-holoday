@@ -4,7 +4,7 @@ const memberRouter = () => {
          path: "login",
          HydrateFallback: () => <div>로그인 페이지 불러오는 중</div>,
          lazy: async () => {
-            const { default: Component } = await import("../pages/LoginPage");
+            const { default: Component } = await import("../common/login/LoginPage");
             return { Component };
          },
       },
@@ -12,7 +12,7 @@ const memberRouter = () => {
          path: "signup",
          HydrateFallback: () => <div>회원가입 페이지 불러오는 중</div>,
          lazy: async () => {
-            const { default: Component } = await import("../pages/SignUpPage");
+            const { default: Component } = await import("../common/signup/SignUpPage");
             return { Component };
          },
       },
