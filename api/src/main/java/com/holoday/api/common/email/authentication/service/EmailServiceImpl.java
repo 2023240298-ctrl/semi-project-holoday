@@ -53,9 +53,6 @@ public class EmailServiceImpl implements EmailService {
         if (storedAuthCode == null){
             return false;
         }
-        if (savedAuthCode == null){
-            return false;
-        }
         if (storedAuthCode.isExpired()){
             savedAuthCode.remove(email);
             return false;
