@@ -15,12 +15,14 @@ const Header = ({ isLogin, setIsLogin }) => {
   return (
     <header className="header">
       <div className="header_logo logo-text ">
+        <a href="/">
         HOLODAY
+        </a>
       </div>
 
       <nav className="header_menu head-text">
         <a href="/">홈</a>
-        <a href="/holoinfo">홀로정보</a>
+        <a href="/holoinfo">홀로알림</a>
         <a href="/holoboard">홀로라운지</a>
         <a href="/holoddam">홀로땜</a>
       </nav>
