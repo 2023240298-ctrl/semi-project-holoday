@@ -1,4 +1,4 @@
-import useBoardCustomMove from "../../hooks/useBoardCustomMove";
+import useBoardCustomMove from "../hooks/useBoardCustomMove";
 import EditComponent from "../components/EditComponent";
 
 const HoloBoardEditPage = () => {

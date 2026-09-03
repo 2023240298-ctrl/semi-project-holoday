@@ -1,4 +1,4 @@
-import useBoardCustomMove from "../../hooks/useBoardCustomMove";
+import useBoardCustomMove from "../hooks/useBoardCustomMove";
 import ListComponent from "../components/ListComponent";
 import { Card } from "flowbite-react";
 
