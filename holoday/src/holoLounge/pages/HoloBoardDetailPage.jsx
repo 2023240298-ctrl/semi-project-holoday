@@ -6,9 +6,9 @@ const HoloBoardDetailPage = () => {
 
     return (
         <div>
-            <div>
-                홀로라운지 게시판 상세 조회 페이지 {no}
-            </div>
+            <h1 className="logo-text text-blue-400 [-webkit-text-stroke:1px_#1e40af] mb-16 text-center text-3xl">
+                Holo Lounge
+            </h1>
             <ReadComponent no={no}></ReadComponent>
         </div>
     );

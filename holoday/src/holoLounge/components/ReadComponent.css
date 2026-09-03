@@ -1,4 +1,13 @@
 .readBox {
-   display: "flex";
-   gap: "30px";
+   display: flex;
+   gap: 60px;
+}
+
+.boardArea {
+   flex: 1;
+   min-width: 0;
+}
+
+.boardDetail {
+   width: 100%;
 }

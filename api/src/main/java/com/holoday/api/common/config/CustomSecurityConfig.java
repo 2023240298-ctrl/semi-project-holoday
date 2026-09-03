@@ -70,6 +70,7 @@ public class CustomSecurityConfig {
                                 "/api/holoday/board/*/comments",
                                 "/api/holoday/info",
                                 "/api/holoday/info/*",
+                                "/api/holoday/categories",
                                 "/upload/**"
 
                         ).permitAll()

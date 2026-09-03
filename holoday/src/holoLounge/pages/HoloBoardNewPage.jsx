@@ -3,10 +3,9 @@ import AddComponent from "../components/AddComponent";
 const HoloBoardNewPage = () => {
     return (
         <div>
-            <div>
-                홀로라운지 게시판 게시글 등록 페이지
-            </div>
-
+            <h1 className="logo-text text-blue-400 [-webkit-text-stroke:1px_#1e40af] mb-16 text-center text-3xl">
+                Holo Lounge
+            </h1>
             <AddComponent />
         </div>
     );

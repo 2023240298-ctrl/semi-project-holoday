@@ -42,6 +42,7 @@ const InquiryPage = () => {
 
     return (
         <div className="h-[600px] w-full max-w-xl mx-auto">
+            <h1 className='head-text text-4xl mb-2'>오늘의 카드들</h1>
             <Carousel indicators={false} slide={false}
                 key={cards.length}
                 className="!h-full !w-full"
