@@ -20,11 +20,11 @@ function App() {
         isLogin={isLogin}
         setIsLogin={setIsLogin}
       />
-      <div className="App flex-1 flex flex-col">
-        <main className="main-content flex-1">
-          <Outlet />
-        </main>
-      </div>
+
+      <main className="main-content flex-1">
+        <Outlet />
+      </main>
+
       <Footer />
     </div>
   );
