@@ -1,22 +1,22 @@
-import customAxios from "../../api/customAxios";
+import TokenApi from "../../common/api/TokenApi";
 
 const prefix = `/api/holoday/board`;
 
 export const getOne = async (no) => {
-    const response = await customAxios.get(`${prefix}/${no}`);
+    const response = await TokenApi.get(`${prefix}/${no}`);
     return response.data;
 };
 
 export const getList = async (pageParam) => {
     const {page, size} = pageParam;
-    const response = await customAxios.get(prefix, {
+    const response = await TokenApi.get(prefix, {
         params: {page, size},
     });
     return response.data;
 };
 
 export const likeBoard = async (no) => {
-    const response = await customAxios.patch(
+    const response = await TokenApi.patch(
         `${prefix}/${no}/like`
     );
 
@@ -24,7 +24,7 @@ export const likeBoard = async (no) => {
 };
 
 export const unLikeBoard = async (no) => {
-    const response = await customAxios.patch(
+    const response = await TokenApi.patch(
         `${prefix}/${no}/unlike`
     );
 
@@ -32,7 +32,7 @@ export const unLikeBoard = async (no) => {
 };
 
 export const getCategoryList = async () => {
-    const response = await customAxios.get("/api/holoday/categories");
+    const response = await TokenApi.get("/api/holoday/categories");
     return response.data;
 };
 
@@ -50,7 +50,7 @@ export const postAdd = async(holoLounge, file) => {
         formData.append("file", file);
     }
 
-    const response = await customAxios.post(prefix, formData);
+    const response = await TokenApi.post(prefix, formData);
 
     return response.data;
 };
@@ -69,7 +69,7 @@ export const putOne = async(holoLounge, file) => {
         formData.append("file", file);
     }
 
-    const response = await customAxios.patch(
+    const response = await TokenApi.patch(
         `${prefix}/${holoLounge.boardNo}`,
         formData
     );
@@ -78,7 +78,7 @@ export const putOne = async(holoLounge, file) => {
 };
 
 export const deleteOne = async(no) => {
-    const response = await customAxios.delete(
+    const response = await TokenApi.delete(
         `${prefix}/${no}`
     );
 
@@ -88,7 +88,7 @@ export const deleteOne = async(no) => {
 export const getCommentList = async (boardNo, pageParam) => {
     const {page, size} = pageParam;
 
-    const response = await customAxios.get(
+    const response = await TokenApi.get(
         `${prefix}/${boardNo}/comments`,
         {
             params: {page, size},
@@ -99,7 +99,7 @@ export const getCommentList = async (boardNo, pageParam) => {
 };
 
 export const postComment = async (boardNo, comment) => {
-    const response = await customAxios.post(
+    const response = await TokenApi.post(
         `${prefix}/${boardNo}/comments`,
         comment
     );
@@ -108,7 +108,7 @@ export const postComment = async (boardNo, comment) => {
 };
 
 export const putComment = async (hComment) => {
-    const response = await customAxios.patch(
+    const response = await TokenApi.patch(
         `/api/holoday/comment/${hComment.commentNo}`,
         hComment
     );
@@ -117,7 +117,7 @@ export const putComment = async (hComment) => {
 }
 
 export const deleteComment = async (commentNo) => {
-    const response = await customAxios.delete(
+    const response = await TokenApi.delete(
         `/api/holoday/comment/${commentNo}`
     );
 
@@ -125,7 +125,7 @@ export const deleteComment = async (commentNo) => {
 };
 
 export const likeComment = async (commentNo) => {
-    const response = await customAxios.patch(
+    const response = await TokenApi.patch(
         `/api/holoday/comment/${commentNo}/like`
     );
 
@@ -133,7 +133,7 @@ export const likeComment = async (commentNo) => {
 };
 
 export const unLikeComment = async (commentNo) => {
-    const response = await customAxios.patch(
+    const response = await TokenApi.patch(
         `/api/holoday/comment/${commentNo}/unlike`
     );
 

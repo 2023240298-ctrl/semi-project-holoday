@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import ReadComponent from "../components/ReadComponent";
-import useBoardCustomMove from "../../hooks/useBoardCustomMove";
+import useBoardCustomMove from "../hooks/useBoardCustomMove";
 
 const HoloBoardDetailPage = () => {
     const {no} = useParams();
