@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const customAxios = axios.create({
+const TokenApi = axios.create({
    baseURL: "http://localhost:8080",
 });
 
-customAxios.interceptors.request.use((config) => {
+TokenApi.interceptors.request.use((config) => {
    const accessToken = localStorage.getItem("accessToken");
 
    if (accessToken) {
@@ -14,7 +14,7 @@ customAxios.interceptors.request.use((config) => {
    return config;
 });
 
-customAxios.interceptors.response.use(
+TokenApi.interceptors.response.use(
    (response) => {
       return response;
    },
@@ -47,7 +47,7 @@ customAxios.interceptors.response.use(
             localStorage.setItem("userIsAdmin", response.data?.userIsAdmin);
             localStorage.setItem("accessToken", response.data?.accessToken);
 
-            return customAxios(originalRequest);
+            return TokenApi(originalRequest);
          } catch (refreshError) {
             localStorage.removeItem("accessToken");
             localStorage.removeItem("refreshToken");
@@ -61,4 +61,4 @@ customAxios.interceptors.response.use(
    }
 );
 
-export default customAxios;
+export default TokenApi;
