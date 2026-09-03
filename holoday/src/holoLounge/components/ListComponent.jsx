@@ -41,24 +41,24 @@ const ListComponent = () => {
 
    return (
       <>
-         <div className="w-3/4 mx-auto">
+         <div className="w-3/4 mx-auto max-md:w-full">
             {serverData.dtoList.map((board) => (
                <Card
                   key={board.boardNo}
                   className="board-card mb-16 px-6 py-6"
                >
 
-                  <div className="flex gap-6">
+                  <div className="flex gap-6 max-md:flex-col">
 
-                     <div className="w-40 shrink-0">
+                     <div className="w-24 shrink-0 sm:w-32 md:w-40 max-md:w-full">
                         {board.boardSimg ? (
                            <img
                               src={`http://localhost:8080/upload/${board.boardSimg}`}
                               alt="썸네일"
-                              className="h-56 w-full rounded-lg border border-blue-100 object-cover"
+                              className="h-56 max-md:h-48 w-full rounded-lg border border-blue-100 object-cover"
                            />
                         ) : (
-                           <div className="flex h-56 w-full items-center justify-center rounded-lg border border-blue-100 
+                           <div className="flex h-56 max-md:h-48 w-full items-center justify-center rounded-lg border border-blue-100 
                            bg-gray-50 text-sm text-gray-400">
                               이미지 없음
                            </div>      
@@ -67,7 +67,8 @@ const ListComponent = () => {
                      </div>
 
                      <div
-                        className="flex h-56 flex-1 cursor-pointer flex-col"
+                        className="flex h-36 min-w-0 flex-1 cursor-pointer flex-col 
+                        sm:h-44 md:h-56 max-md:h-auto max-md:w-full"
                         onClick={() =>
                            navigate(`/holoboard/${board.boardNo}`)
                         }
@@ -79,16 +80,16 @@ const ListComponent = () => {
                         <p className="holo-text mb-5 text-right text-sm">
                            작성자 | {board.userId}
                         </p>
-                        <div className="mt-auto h-32 rounded-lg border border-blue-100 bg-blue-50/50 px-5 py-4">
-                           <p className="holo-text text-base leading-7 text-gray-600">
-                              {board.boardContent.length > 70
-                                 ? board.boardContent.slice(0, 70) + "..."
-                                 : board.boardContent}
+                        <div className="mt-auto min-h-32 rounded-lg border border-blue-100 
+                        bg-blue-50/50 px-5 py-4">
+                           <p className="holo-text line-clamp-4 text-base leading-7 text-gray-600">
+                              {board.boardContent}
                            </p>
                         </div>
                      </div>
 
-                     <div className="flex w-28 flex-col items-end justify-end gap-6">
+                     <div className="flex w-20 shrink-0 flex-col items-end justify-end gap-3 sm:w-24 sm:gap-4 md:w-28 md:gap-6 max-md:w-full 
+                     max-md:flex-row max-md:justify-end">
                         <button
                            type="button"
                            className="rounded-lg border border-blue-200 bg-blue-50 px-5 py-3 text-base
