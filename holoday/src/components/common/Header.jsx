@@ -37,19 +37,19 @@ const Header = ({ isLogin, setIsLogin }) => {
         ) : (
           <button
             type="button"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/holoday/login")}
           >
             로그인
           </button>
         )}
         {!isLogin && (
           <button
-            type="button" onClick={() => navigate("/holosignup")}
+            type="button" onClick={() => navigate("/holoday/signup")}
           >
             회원가입
           </button>
         )}
-        </div>
+      </div>
     </header>
   );
 
