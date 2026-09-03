@@ -194,17 +194,7 @@ const EditComponent = () => {
                   </label>
                </div>
                
-                  {holoLounge.boardImg && (
-                     <div className="mt-4 flex justify-center">
-                        <img
-                           src={`http://localhost:8080/upload/${holoLounge.boardImg}`}
-                           alt="기존 이미지"
-                           className="h-72 w-72 rounded-lg border border-blue-100 object-cover"
-                        />
-                     </div>
-                  )}
-
-                  {file && (
+                  {file ? (
                      <div className="mt-4 flex justify-center">
                         <img
                            src={URL.createObjectURL(file)}
@@ -212,6 +202,16 @@ const EditComponent = () => {
                            className="h-72 w-72 rounded-lg border border-blue-100 object-cover"
                         />
                      </div>
+                  ) : (
+                     holoLounge.boardImg && (
+                        <div className="mt-4 flex justify-center">
+                           <img
+                              src={`http://localhost:8080/upload/${holoLounge.boardImg}`}
+                              alt="기존 이미지"
+                              className="h-72 w-72 rounded-lg border border-blue-100 object-cover"
+                           />
+                        </div>
+                     )
                   )}
             </div>
 
