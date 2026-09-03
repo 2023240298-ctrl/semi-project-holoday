@@ -1,6 +1,6 @@
 import SignUpComponent from "./SignUpComponent";
 import './SignUpPage.css';
-import './Member.css';
+import '../Member.css';
 
 const SignUpPage = () => {
     return (

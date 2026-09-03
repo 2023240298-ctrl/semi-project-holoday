@@ -1,6 +1,6 @@
 import './App.css'
-import Header from './components/common/Header'
-import Footer from './components/common/Footer'
+import Header from './common/layout/Header'
+import Footer from './common/layout/Footer'
 import { Outlet } from 'react-router'
 import { useState } from 'react'
 import { ThemeInit } from '../.flowbite-react/init'

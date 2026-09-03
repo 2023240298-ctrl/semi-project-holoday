@@ -2,7 +2,7 @@ import { Card, Label } from "flowbite-react";
 import './SignUpComponent.css'
 import { HiMail } from "react-icons/hi";
 import { useState, useEffect } from 'react';
-import { checkEmail, checkId, signup, send, authenticate } from '../../api/SignUpApi';
+import { checkEmail, checkId, signup, send, authenticate } from '../api/SignUpApi';
 import { toast } from 'react-toastify';
 
 const initState = {
