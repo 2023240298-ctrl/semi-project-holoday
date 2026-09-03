@@ -25,6 +25,7 @@ const ListComponent = () => {
    const [serverData, setServerData] = useState(initState);
    const [openModal, setOpenModal] = useState(false);
    const [deleteBoardNo, setDeleteBoardNo] = useState(null);
+   const [openLoginModal, setOpenLoginModal] = useState(false);
 
    const fetchList = () => {
       getList({page, size})
@@ -181,12 +182,54 @@ const ListComponent = () => {
                </ModalBody>
             </Modal>
 
+            <Modal
+               show={openLoginModal}
+               size="md"
+               onClose={() => setOpenLoginModal(false)}
+               popup
+            >
+
+               <ModalHeader />
+               <ModalBody>
+                  <div className="text-center">
+
+                     <HiOutlineExclamationCircle
+                        className="mx-auto mb-4 h-14 w-14 text-gray-400" />
+
+                     <h3 className="mb-5 text-lg font-normal text-gray-500">
+                        로그인 후 이용해 주세요.
+                     </h3>
+                     <div className="flex justify-center">
+
+                        <button
+                           type="button"
+                           className="rounded-lg border border-yellow-100 bg-yellow-100 px-5 py-2.5
+                           text-sm font-medium text-yellow-700 hover:bg-yellow-200"
+                           onClick={() => setOpenLoginModal(false)}
+                        >
+                           확인
+                        </button>
+                     </div>
+                  </div>
+               </ModalBody>
+
+            </Modal>
+
             <div className="flex justify-end">
                <button
                   type="button"
                   className="rounded-lg border border-sky-300 bg-sky-100 px-5 py-3 text-base
                   font-semibold text-sky-700 hover:bg-sky-200"
-                  onClick={() => navigate("/holoboard/new")}
+                  onClick={() => {
+                     const accessToken = localStorage.getItem("accessToken");
+
+                     if(!accessToken) {
+                        setOpenLoginModal(true);
+                        return;
+                     }
+
+                     navigate("/holoboard/new");
+                  }}
                >
                   글쓰기
                </button>
