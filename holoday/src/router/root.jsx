@@ -3,7 +3,7 @@ import { createBrowserRouter, Outlet } from "react-router";
 import holoddamRouter from "./holoddamRouter";
 import holoBoardRouter from "./holoBoardRouter";
 import holoInfoRouter from "./holoInfoRouter";
-import Home from "../home/Home";
+import Home from "../common/home/Home";
 import App from "../App";
 
 
