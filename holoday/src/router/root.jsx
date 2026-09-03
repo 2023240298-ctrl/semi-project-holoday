@@ -16,8 +16,10 @@ const root = createBrowserRouter([
             index: true,
             element: <Home />,
          },
-         
-         ...memberRouter(),
+         {
+            path: "holoday",
+            children: memberRouter(),
+         },
          {
             path: "holoddam",
             children: holoddamRouter(),
