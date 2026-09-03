@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface HCommentRepository extends JpaRepository<HComment, Long> {
     Page<HComment> findByBoardNo(Long boardNo, Pageable pageable);
+
+    void deleteByBoardNo(Long boardNo);
 }
