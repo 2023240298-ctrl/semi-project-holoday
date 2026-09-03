@@ -13,7 +13,7 @@ const categoryName = {
 const Home = () => {
   const [infoList, setInfoList] = useState([]);
   const [boardList, setBoardList] = useState([]);
-  const [startIndex, setStartIndex] = useState(0);
+  const [startIndex, setStartIndex] = useState(1);
   const navigate = useNavigate();
 
     useEffect(() => {
@@ -84,48 +84,49 @@ const Home = () => {
                             />
                         )}
                     </div>
-                    {/* 가운데 메인 카드 */}
-                    {currentInfo && (
-                        <div
-                            className="home-info-main"
-                            onClick={() =>
-                                navigate(`/holoinfo/${currentInfo.infoNo}`)
-                            }
-                        >
-                            <img
-                                src={`http://localhost:8080/upload/${currentInfo.infoSimg}`}
-                                alt={currentInfo.infoTitle}
-                            />
 
-                            <div className="home-info-main-text">
-                                <span>
-                                    {categoryName[currentInfo.categoryNo]}
-                                </span>
-                                <h3>{currentInfo.infoTitle}</h3>
-                                <p>{currentInfo.infoPlace}</p>
-                            </div>
+                    {/* 가운데 영역 */}
+                    {currentInfo && (
+                        <div className="home-info-center">
 
                             <button
                                 type="button"
                                 className="home-slider-prev"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    prevSlide();
-                                }}
+                                onClick={prevSlide}
                             >
                                 ◁
                             </button>
 
+                            <div
+                                className="home-info-main"
+                                onClick={() =>
+                                    navigate(`/holoinfo/${currentInfo.infoNo}`)
+                                }
+                            >
+                                <img
+                                    src={`http://localhost:8080/upload/${currentInfo.infoSimg}`}
+                                    alt={currentInfo.infoTitle}
+                                />
+
+                                <div className="home-info-main-text">
+                                    <span>
+                                        {categoryName[currentInfo.categoryNo]}
+                                    </span>
+
+                                    <h3>{currentInfo.infoTitle}</h3>
+
+                                    <p>{currentInfo.infoPlace}</p>
+                                </div>
+                            </div>
+
                             <button
                                 type="button"
                                 className="home-slider-next"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    nextSlide();
-                                }}
+                                onClick={nextSlide}
                             >
                                 ▷
                             </button>
+
                         </div>
                     )}
                     {/* 다음 카드 */}
@@ -154,8 +155,9 @@ const Home = () => {
                     카드 보러 가기 →
                 </button>
             </section>
+
             <section className="home-lounge">
-              <div className="home-section-title">
+              <div className="home-section-title .logo-text">
                 <h2>홀로라운지</h2>
 
                 <button
@@ -168,12 +170,44 @@ const Home = () => {
 
             <div className="home-lounge-list">
                 {boardList.map((board) => (
-                    <div key={board.boardNo}>
-                        <h3>{board.boardTitle}</h3>
-                    </div>
-                ))}
-            </div>
+                    <div 
+                      key={board.boardNo}
+                      className="home-lounge-card"
+                      onClick={() => navigate(`/holoboard/${board.boardNo}`)}
+                    >
+                    <div className="home-lounge-card-top">
 
+                    {board.boardSimg ? (
+                      <img
+                        src={`http://localhost:8080/upload/${board.boardSimg}`}
+                        alt=""
+                      />
+                    ) : (
+                    <div className="home-lounge-no-image"></div>
+                )}
+
+                <div className="home-lounge-card-title">
+                    <h3>{board.boardTitle}</h3>
+                    <span>작성자 {board.userId}</span>
+                </div>
+
+                </div>
+
+            <p className="home-lounge-content">
+                {board.boardContent}
+            </p>
+
+            <div className="home-lounge-meta">
+                <span>{board.boardDate}</span>
+
+                <div>
+                    <span>좋아요 {board.boardLike}</span>
+                    <span>조회수 {board.boardHit}</span>
+                </div>
+                </div>
+            </div>
+            ))}
+            </div>
         </section>
 
 
