@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { getOne, deleteOne, likeBoard, unLikeBoard, getCommentList, postComment, putComment, deleteComment, getCategoryList } from "../js/HoloBoardApi";
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 import "../components/ReadComponent.css"
-import { Card, Badge } from "flowbite-react";
+import { Card, Badge, Modal, ModalBody, ModalHeader } from "flowbite-react";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 import PagiNation from "../../components/common/PagiNation";
 
 const initState = {
@@ -39,6 +40,9 @@ const ReadComponent = ({no}) => {
     const [editingCommentNo, setEditingCommentNo] = useState(null);
     const [editContent, setEditContent] = useState("");
     const [commentContent, setCommentContent] = useState("");
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [openCommentDeleteModal, setOpenCommentDeleteModal] = useState(false);
+    const [deleteCommentNo, setDeleteCommentNo] = useState(null);
     const {moveToList, moveToModify} = useBoardCustomMove();
 
     useEffect(() => {
@@ -157,16 +161,7 @@ const ReadComponent = ({no}) => {
                         type="button"
                         className="holo-text rounded-lg border border-red-200 bg-red-50 px-5 py-3 text-base
                         font-medium text-red-500 hover:bg-red-100"
-                        onClick={() => {
-                            deleteOne(no)
-                                .then(result => {
-                                    console.log("삭제 완료:", result);
-                                    moveToList();
-                                })  
-                                .catch(e => {
-                                    console.error(e);
-                                });
-                        }}
+                        onClick={() => setOpenDeleteModal(true)}
                     >
                         삭제하기
                     </button>
@@ -334,25 +329,8 @@ const ReadComponent = ({no}) => {
                                     className="holo-text rounded-lg border border-red-200 bg-red-50
                                     px-2 py-1 text-xs text-red-500"
                                     onClick={() => {
-                                        const accessToken = localStorage.getItem("accessToken");
-
-                                        if(!accessToken) {
-                                            alert("로그인 후 이용해 주세요.");
-                                            return;
-                                        }
-
-                                        deleteComment(comment.commentNo)
-                                            .then(() => {
-                                                setComments((prev) => ({
-                                                    ...prev,
-                                                    dtoList: prev.dtoList.filter(
-                                                        (item) => item.commentNo !== comment.commentNo
-                                                    )
-                                                }));
-                                            })
-                                            .catch((e) => {
-                                                console.error(e);
-                                            });
+                                        setDeleteCommentNo(comment.commentNo);
+                                        setOpenCommentDeleteModal(true);
                                     }}
                                 >
                                     삭제하기
@@ -376,6 +354,108 @@ const ReadComponent = ({no}) => {
                         }}
                     />
                 </div>
+
+                <Modal
+                    show={openDeleteModal}
+                    size="md"
+                    onClose={() => setOpenDeleteModal(false)}
+                    popup
+                >
+                    <ModalHeader />
+                    <ModalBody>
+                        <div className="text-center">
+                            <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400" />
+
+                            <h3 className="mb-5 text-lg font-normal text-gray-500">
+
+                                정말 삭제하시겠습니까?
+                            </h3>
+
+                            <div className="flex justify-center gap-4">
+                                <button
+                                    type="button"
+                                    className="rounded-lg bg-red-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-red-700"
+                                    onClick={() => {
+                                        deleteOne(no)
+                                            .then((result) => {
+                                                console.log("삭제 완료:", result);
+                                                setOpenDeleteModal(false);
+                                                moveToList();
+                                            })
+                                            .catch((e) => {
+                                                console.error(e);
+                                            });
+                                    }}
+                                >
+                                    삭제
+                                </button>
+
+                                <button
+                                    type="button"
+                                    className="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100"
+                                    onClick={() => setOpenDeleteModal(false)}
+                                >
+                                    취소
+                                </button>
+                            </div>
+                        </div>
+                    </ModalBody>
+                </Modal>
+
+                <Modal
+                    show={openCommentDeleteModal}
+                    size="md"
+                    onClose={() => setOpenCommentDeleteModal(false)}
+                    popup
+                >
+                    <ModalHeader />
+                    <ModalBody>
+                        <div className="text-center">
+                            <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400" />
+
+                            <h3 className="mb-5 text-lg font-normal text-gray-500">
+                                정말 삭제하시겠습니까?
+                            </h3>
+
+                            <div className="flex justify-center gap-4">
+                                <button
+                                    type="button"
+                                    className="rounded-lg bg-red-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-red-700"
+                                    onClick={() => {
+                                        deleteComment(deleteCommentNo)
+                                            .then(() => {
+                                                setOpenCommentDeleteModal(false),
+                                                setDeleteCommentNo(null);
+
+                                                getCommentList(no, {
+                                                    page: commentInitState.page,
+                                                    size: 4,
+                                                }).then((data) => {
+                                                    setComments(data);
+                                                });
+                                            })
+                                            .catch((e) => {
+                                                console.error(e);
+                                            });
+                                    }}
+                                >
+                                    삭제
+                                </button>
+                                
+                                <button
+                                    type="button"
+                                    className="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100"
+                                    onClick={() => {
+                                        setOpenCommentDeleteModal(false);
+                                        setDeleteCommentNo(null);
+                                    }}
+                                >
+                                    취소
+                                </button>
+                            </div>
+                        </div>
+                    </ModalBody>
+                </Modal>
             </div>
         </div>
     );

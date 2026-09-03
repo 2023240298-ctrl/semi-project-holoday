@@ -39,6 +39,12 @@ const useBoardCustomMove = () => {
       });
    };
 
+   const moveToBoardHome = () => {
+      navigate({
+         pathname: "/holoboard",
+      });
+   };
+
    const moveToRegister = () => {
       navigate({
          pathname: "/holoboard/new",
@@ -59,7 +65,7 @@ const useBoardCustomMove = () => {
       });
    };
 
-   return {moveToRegister, moveToList, moveToModify, moveToRead, page, size,};
+   return {moveToRegister, moveToList, moveToBoardHome, moveToModify, moveToRead, page, size,};
 };
 
 export default useBoardCustomMove;

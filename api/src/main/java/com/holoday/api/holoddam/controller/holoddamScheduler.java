@@ -31,7 +31,7 @@ public class holoddamScheduler {
     @Scheduled(cron = "30 0 3 * * *")
     public void autoCollectCards(){
         try{
-            String query = "혼자 즐기다 먹거리 즐거움 놀기 행복";
+            String query = "혼자 놀기 웃긴";
             SortType sortType = SortType.RECENCY;
             cardFacadeService.collectAndSaveAll(query, sortType);
         }catch (Exception e){

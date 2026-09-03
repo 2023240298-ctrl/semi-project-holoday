@@ -2,6 +2,8 @@ import { useNavigate, useParams } from "react-router";
 import { getOne, putOne, getCategoryList } from "../js/HoloBoardApi";
 import { useEffect, useState } from "react";
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
+import {Modal, ModalBody, ModalHeader} from "flowbite-react";
+import {HiOutlineCheckCircle} from "react-icons/hi";
 
 const initState = {
    boardNo: 0,
@@ -24,6 +26,7 @@ const EditComponent = () => {
    const [categories, setCategories] = useState([]);
    const [file, setFile] = useState(null);
    const {moveToList} = useBoardCustomMove();
+   const [openModifyModal, setOpenModifyModal] = useState(false);
 
    useEffect(() => {
       getOne(no)
@@ -62,7 +65,7 @@ const EditComponent = () => {
       putOne(holoLounge, file)
          .then((result) => {
             console.log("수정 결과:", result);
-            navigate(`/holoboard/${holoLounge.boardNo}`);
+            setOpenModifyModal(true);
          })
          .catch((e) => {
             console.error(e);
@@ -223,6 +226,37 @@ const EditComponent = () => {
             </div>
 
          </form>
+
+         <Modal
+            show={openModifyModal}
+            size="md"
+            onClose={() => setOpenModifyModal(false)}
+            popup
+         >
+            <ModalHeader />
+
+            <ModalBody>
+               <div className="text-center">
+                  <HiOutlineCheckCircle className="mx-auto mb-4 h-14 w-14 text-blue-300" />
+
+                  <h3 className="mb-5 text-lg font-normal text-gray-600">
+                     수정이 완료되었습니다.
+                  </h3>
+
+                  <button
+                     type="button"
+                     className="rounded-lg bg-blue-100 px-5 py-2.5 text-sm font-medium text-blue-600 hover:bg-blue-200"
+                     onClick={() => {
+                        setOpenModifyModal(false);
+                        navigate(`/holoboard/${holoLounge.boardNo}`);
+                     }}
+                  >
+                     확인
+                  </button>
+               </div>
+            </ModalBody>
+         </Modal>
+
       </div>
    );
 };

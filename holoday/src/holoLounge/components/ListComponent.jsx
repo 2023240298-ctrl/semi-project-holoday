@@ -3,7 +3,8 @@ import { getList, deleteOne } from "../js/HoloBoardApi";
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 import PagiNation from "../../components/common/PagiNation";
 import { useNavigate } from "react-router";
-import { Card } from "flowbite-react";
+import { Button, Card, Modal, ModalBody, ModalHeader } from "flowbite-react";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 const initState = {
     dtoList: [],
@@ -21,8 +22,9 @@ const initState = {
 const ListComponent = () => {
    const {page, size, moveToList} = useBoardCustomMove();
    const navigate = useNavigate();
-
    const [serverData, setServerData] = useState(initState);
+   const [openModal, setOpenModal] = useState(false);
+   const [deleteBoardNo, setDeleteBoardNo] = useState(null);
 
    const fetchList = () => {
       getList({page, size})
@@ -106,15 +108,9 @@ const ListComponent = () => {
                            type="button"
                            className="rounded-lg border border-red-200 bg-red-50 px-5 py-3 text-base
                            font-medium text-red-500 hover:bg-red-100"
-                           onClick={() => {
-                              deleteOne(board.boardNo)
-                                 .then(result => {
-                                    console.log("삭제 완료:", result);
-                                    fetchList();
-                                 })
-                                 .catch(e => {
-                                    console.error(e);
-                                 });
+                           onClick={() =>{
+                              setDeleteBoardNo(board.boardNo);
+                              setOpenModal(true);
                            }}
                         >
                            삭제하기
@@ -124,7 +120,7 @@ const ListComponent = () => {
 
                   <div className="holo-text mt-4 flex text-sm text-gray-500">
                      <span>
-                        작성일: {board.boardDate}
+                        {board.boardDate}
                      </span>
 
                      <div className="holo-text ml-auto flex gap-4">
@@ -139,6 +135,51 @@ const ListComponent = () => {
 
                </Card>
             ))}
+
+            <Modal
+               show={openModal}
+               size="md"
+               onClose={() => setOpenModal(false)}
+               popup
+            >
+               <ModalHeader />
+               <ModalBody>
+                  <div className="text-center">
+                     <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400" />
+
+                     <h3 className="mb-5 text-lg font-normal text-gray-500">
+                        게시물을 삭제하시겠습니까?
+                     </h3>
+
+                     <div className="flex justify-center gap-4">
+                        <Button
+                           color="red"
+                           onClick={() => {
+                              deleteOne(deleteBoardNo)
+                                 .then(result => {
+                                    console.log("삭제 완료", result);
+                                    setOpenModal(false);
+                                    setDeleteBoardNo(null);
+                                    fetchList();
+                                 })
+                                 .catch(e => {
+                                    console.error(e);
+                                 });
+                           }}
+                        >
+                           삭제
+                        </Button>
+
+                        <Button
+                           color="gray"
+                           onClick={() => setOpenModal(false)}
+                        >
+                           취소
+                        </Button>
+                     </div>
+                  </div>
+               </ModalBody>
+            </Modal>
 
             <div className="flex justify-end">
                <button

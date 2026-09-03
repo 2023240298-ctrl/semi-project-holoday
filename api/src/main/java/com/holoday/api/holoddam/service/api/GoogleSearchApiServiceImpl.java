@@ -30,7 +30,7 @@ public class GoogleSearchApiServiceImpl implements ApiService<GoogleSearchRespon
                 .queryParam("q", query)
                 .queryParam("hl", "ko")
                 .queryParam("gl", "kr")
-                .queryParam("num", 3);
+                .queryParam("num", 5);
         if (sortType == SortType.RECENCY) {
             builder.queryParam("tbs", "qdr:d");
         }

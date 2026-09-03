@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 import { postAdd, getCategoryList } from "../js/HoloBoardApi";
+import {Modal, ModalBody, ModalHeader} from "flowbite-react";
+import {HiOutlineCheckCircle} from "react-icons/hi";
 
 const accessToken = localStorage.getItem("accessToken");
 
@@ -24,6 +26,8 @@ const AddComponent = () => {
    const [holoLounge, setHoloLounge] = useState(initState);
    const [categories, setCategories] = useState([]);
    const [file, setFile] = useState(null);
+   const [openAddModal, setOpenAddModal] = useState(false);
+   const [addBoardNo, setAddBoardNo] = useState(null);
 
    useEffect(() => {
       getCategoryList()
@@ -56,10 +60,15 @@ const AddComponent = () => {
       
       postAdd(holoLounge, file)
       .then(result => {
+
          console.log(result);
-         navigate(`/holoboard/${result.boardNo}`);
+         setAddBoardNo(result.boardNo);
+         setOpenAddModal(true);
+
       }).catch(e => {
+
          console.error(e)
+      
       });
    };
 
@@ -200,7 +209,40 @@ const AddComponent = () => {
                   글쓰기
                </button>
             </div>
-         </form>   
+         </form>
+
+         <Modal
+            show={openAddModal}
+            size="md"
+            onClose={() => setOpenAddModal(false)}
+            popup
+         >
+            <ModalHeader />
+
+            <ModalBody>
+               <div className="text-center">
+
+                  <HiOutlineCheckCircle className="mx-auto mb-4 h-14 w-14 text-blue-300" />
+
+                  <h3 className="mb-5 text-lg font-normal text-gray-600">
+                     게시글이 등록되었습니다.
+                  </h3>
+
+                  <button
+                     type="button"
+                     className="rounded-lg bg-blue-100 px-5 py-2.5 text-sm font-medium text-blue-600 hover:bg-blue-200"
+                     onClick={() => {
+                        setOpenAddModal(false);
+                        navigate(`/holoboard/${addBoardNo}`);
+                     }}
+                  >
+                     확인
+                  </button>
+               </div>
+            </ModalBody>
+
+
+         </Modal>
       </div>
    );
 };

@@ -5,6 +5,7 @@ import com.holoday.api.common.pagination.PageResponseDTO;
 import com.holoday.api.hololounge.dto.HoloLoungeDTO;
 import com.holoday.api.hololounge.entity.HoloLounge;
 import com.holoday.api.hololounge.mapper.HoloLoungeMapper;
+import com.holoday.api.hololounge.repository.HCommentRepository;
 import com.holoday.api.hololounge.repository.HoloLoungeRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ import java.util.List;
 public class HoloLoungeServiceImpl implements HoloLoungeService{
     private final HoloLoungeRepository holoLoungeRepository;
     private final HoloLoungeMapper holoLoungeMapper;
+    private final HCommentRepository hCommentRepository;
 
     private HoloLounge getLounge(Long no) {
         return holoLoungeRepository.findById(no)
@@ -75,6 +77,9 @@ public class HoloLoungeServiceImpl implements HoloLoungeService{
     @Override
     public void remove(Long no) {
         HoloLounge holoLounge = getLounge(no);
+
+        hCommentRepository.deleteByBoardNo(no);
+
         holoLoungeRepository.delete(holoLounge);
     }
 
