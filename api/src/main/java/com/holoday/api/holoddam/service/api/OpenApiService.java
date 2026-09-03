@@ -31,7 +31,8 @@ public class OpenApiService {
         OpenApiRequest request = new OpenApiRequest(
                 "gpt-4o-mini",
                 List.of(
-                        new OpenApiRequest.Message("system", "너는 웹 컨텐츠 및 뉴스 전문 요약 AI이다.전달받은 본문 텍스트를 바탕으로 핵심 내용만 문장으로 요약하라.\n" +
+                        new OpenApiRequest.Message("system", "너는 웹 컨텐츠 및 뉴스 전문 요약 AI이다." +
+                                "전달받은 본문 텍스트를 바탕으로 핵심 내용만 문장으로 요약하라.\n" +
                                 "[제약 조건]\n" +
                                 "    1. 각 문장은 원문의 핵심 사실을 포함하여 충분히 상세하게 작성할 것.\n" +
                                 "    2. 3개 이상의 문장이 하나의 완성도 높은 문단을 이루도록 할 것.\n" +
