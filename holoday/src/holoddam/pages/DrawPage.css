@@ -1,5 +1,5 @@
 body,
 #root {
-    background: #ffffff !important;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(188, 195, 230, 1) 50%, rgba(255, 255, 255, 1) 100%) !important;
+    background: #ffffff;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(188, 195, 230, 1) 50%, rgba(255, 255, 255, 1) 100%);
 }
