@@ -1,0 +1,276 @@
+.home {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 30px;
+}
+
+/* 홀로 알림 */
+.home-info {
+    margin-bottom: 70px;
+}
+
+.home-section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.home-section-title h2 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.home-info-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.home-info-card {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 18px;
+    cursor: pointer;
+}
+
+.home-info-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.home-info-card:hover img {
+    transform: scale(1.04);
+}
+
+.home-info-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 70px 20px 20px;
+
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.35) 55%,
+        rgba(0, 0, 0, 0) 100%
+    );
+
+    color: white;
+}
+
+.home-info-overlay span {
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.home-info-overlay h3 {
+    margin: 6px 0 4px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+.home-info-overlay p {
+    margin: 0;
+    font-size: 14px;
+    color: #f1f1f1;
+
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.home-info-slider {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 16px;
+
+    height: 430px;
+    overflow: hidden;
+}
+
+/* 양쪽 카드 */
+.home-info-side {
+    height: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.home-info-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 가운데 큰 카드 */
+.home-info-main {
+    position: relative;
+
+    height: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+
+    cursor: pointer;
+}
+
+.home-info-main > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 가운데 카드 글자 */
+.home-info-main-text {
+    position: absolute;
+    left: 35px;
+    bottom: 35px;
+
+    color: white;
+
+    text-shadow: 0 2px 7px rgba(0, 0, 0, 0.9);
+}
+
+.home-info-main-text span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.home-info-main-text h3 {
+    margin: 7px 0;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.home-info-main-text p {
+    margin: 0;
+    font-size: 16px;
+}
+
+
+/* 화살표 */
+.home-slider-prev,
+.home-slider-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 46px;
+    height: 46px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+
+    font-size: 28px;
+    cursor: pointer;
+
+    z-index: 2;
+}
+
+.home-slider-prev {
+    left: -10px;
+}
+
+.home-slider-next {
+    right: -23px;
+}
+
+/* 홀로땜 */
+.home-ddam {
+    margin: 70px 0;
+    padding: 32px 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: linear-gradient(
+        135deg,
+        #eef2ff,
+        #dce5ff
+    );
+
+    border-radius: 18px;
+    cursor: pointer;
+
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.home-ddam:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(91, 135, 178, 0.18);
+}
+
+.home-ddam span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #5b87b2;
+}
+
+.home-ddam h2 {
+    margin: 6px 0 0;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.home-ddam button {
+    padding: 11px 18px;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: #5b87b2;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+
+/* 홀로 라운지*/
+.home-lounge {
+    margin-top: 70px;
+}
+
+.home-lounge-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px 24px;
+}
+
+.home-lounge-list > div {
+    padding: 22px;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.home-lounge-list > div:hover {
+    background-color: #f8f8f8;
+}
+
+.home-lounge-list h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.home-info,
+.home-ddam,
+.home-lounge {
+    margin-bottom: 70px;
+}
