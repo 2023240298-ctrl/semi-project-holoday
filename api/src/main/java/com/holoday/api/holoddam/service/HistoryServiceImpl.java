@@ -24,7 +24,7 @@ public class HistoryServiceImpl implements HistoryService{
 
     @Override
     public Card viewCard(String userId) {
-        List<Long> viewedCardNos = historyRepository.findAllByUserIdOrderByCardNoDesc(userId).stream()
+        List<Long> viewedCardNos = historyRepository.findAllByUserIdOrderByCardNoAsc(userId).stream()
                 .map(history -> history.getCard().getCardNo())
                 .toList();
 
@@ -55,7 +55,7 @@ public class HistoryServiceImpl implements HistoryService{
         if (user.isUserIsAdmin()){
             return cardRepository.findAll(Sort.by(Sort.Direction.DESC, "cardNo"));
         }
-        List<History> histories = historyRepository.findAllByUserIdOrderByCardNoDesc(userId);
+        List<History> histories = historyRepository.findAllByUserIdOrderByCardNoAsc(userId);
         return histories.stream()
                 .map(History::getCard)
                 .toList();

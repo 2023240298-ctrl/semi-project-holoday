@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public interface HistoryRepository extends JpaRepository<History, Long> {
     @Query("SELECT h FROM History h WHERE h.user.userId = :userId ORDER BY h.card.cardNo DESC")
-    List<History> findAllByUserIdOrderByCardNoDesc(@Param("userId") String userId);
+    List<History> findAllByUserIdOrderByCardNoAsc(@Param("userId") String userId);
 
     @Modifying
     @Transactional

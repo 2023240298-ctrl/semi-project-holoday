@@ -9,7 +9,7 @@ const Header = ({ isLogin, setIsLogin }) => {
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("userIsAdmin");
     setIsLogin(false);
-    navigate("/");
+    window.location.href = '/';
   };
 
   return (
