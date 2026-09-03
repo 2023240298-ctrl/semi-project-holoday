@@ -22,7 +22,7 @@ const DrawPage = () => {
                     <h1 className='head-text text-6xl'>회원만 이용할 수 있는 페이지입니다.</h1>
                     <h1 className='head-text text-6xl'>
                         <sapn className='text-blue-600 font-bold cursor-pointer hover:underline'
-                            onClick={() => navigate('/login')}>로그인</sapn>
+                            onClick={() => navigate('/holoday/login')}>로그인</sapn>
                         해주세요!</h1>
                 </div>
             </>

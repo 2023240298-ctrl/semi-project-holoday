@@ -44,15 +44,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
-#root {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100vh;
-}
-
 .logo-text {
   font-family: 'JejuStoneWall';
 }
@@ -68,7 +59,8 @@ body,
 /* 공통 메인 영역 */
 .main-content {
   width: 100%;
-
+  max-width: 1200px;
+  min-height: 700px;
 
   margin: 0 auto;
   padding: 40px 60px;
