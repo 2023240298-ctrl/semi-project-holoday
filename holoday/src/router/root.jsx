@@ -1,5 +1,5 @@
 import memberRouter from "./memberRouter";
-import { createBrowserRouter, Outlet } from "react-router";
+import { createBrowserRouter } from "react-router";
 import holoddamRouter from "./holoddamRouter";
 import holoBoardRouter from "./holoBoardRouter";
 import holoInfoRouter from "./holoInfoRouter";
