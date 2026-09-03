@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { getOne, deleteOne, likeBoard, unLikeBoard, getCommentList, postComment, putComment, deleteComment, getCategoryList } from "../js/HoloBoardApi";
+import { useEffect, useState, useRef } from "react";
+import { getOne, deleteOne, likeBoard, getCommentList, postComment, putComment, deleteComment, getCategoryList } from "../js/HoloBoardApi";
 import useBoardCustomMove from "../../hooks/useBoardCustomMove";
 import "../components/ReadComponent.css"
-import { Card, Badge, Modal, ModalBody, ModalHeader } from "flowbite-react";
+import { Card, Modal, ModalBody, ModalHeader } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import PagiNation from "../../components/common/PagiNation";
 
@@ -40,6 +40,7 @@ const ReadComponent = ({no}) => {
     const [editingCommentNo, setEditingCommentNo] = useState(null);
     const [editContent, setEditContent] = useState("");
     const [commentContent, setCommentContent] = useState("");
+    const commentRef = useRef(null);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [openDeleteSuccessModal, setOpenDeleteSuccessModal] = useState(false);
     const [openCommentAddModal, setOpenCommentAddModal] = useState(false);
@@ -202,14 +203,16 @@ const ReadComponent = ({no}) => {
 
             <div className="self-start">
                 <div className="rounded-lg border border-blue-100 p-5 pb-2">
-                    <div>
+                    <form>
                         <textarea
+                            ref={commentRef}
                             value={commentContent}
                             onChange={(e) => setCommentContent(e.target.value)}
                             className="holo-text h-24 w-full resize-none rounded-lg border border-blue-100
                             bg-blue-50 px-4 py-3 text-sm text-gray-700
                             placeholder:text-gray-400 focus:border-blue-300 focus:ring-blue-200"
                             placeholder="댓글을 입력하세요."
+                            required
                         />
 
                         <button
@@ -225,12 +228,12 @@ const ReadComponent = ({no}) => {
                                     return;
                                 }
 
-                                const content = commentContent.trim();
-
-                                if(!content){
-                                    alert("댓글 내용을 입력해 주세요.");
+                                if(!commentRef.current.checkValidity()) {
+                                    commentRef.current.reportValidity();
                                     return;
                                 }
+
+                                const content = commentContent.trim();
 
                                 postComment(no, {
                                     commentContent: content
@@ -255,7 +258,7 @@ const ReadComponent = ({no}) => {
                         >
                             댓글 등록
                         </button>
-                    </div>
+                    </form>
 
                     {comments.dtoList.map((comment) => (
                         <div
