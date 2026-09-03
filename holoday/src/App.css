@@ -183,6 +183,7 @@
   }
 }
 
+/* 홀로라운지 반응형 */
 @media (max-width: 1024px) {
   .main-content {
     padding: 32px 30px;
@@ -198,7 +199,7 @@
     padding: 24px 20px;
   }
 
-  .board-card > div:first-child {
-    gap: 12px;
+  .board-card {
+    margin-bottom: 40px !important;
   }
 }
